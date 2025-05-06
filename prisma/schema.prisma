@@ -7,12 +7,230 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ADMIN
+  MUSYRIF
+}
+
+enum Gender {
+  L
+  P
+}
+
 model User {
-  id       Int     @id @default(autoincrement())
-  name     String  @db.VarChar(255)
-  email    String  @unique @db.VarChar(255)
-  password String? @db.VarChar(255)
-  salt     String? @db.VarChar(255)
+  id         String   @id @default(uuid()) @db.Uuid
+  name       String   @db.VarChar(255)
+  email      String   @unique @db.VarChar(255)
+  password   String   @db.VarChar(255)
+  salt       String   @db.VarChar(255)
+  role       Role     @default(MUSYRIF)
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  Student          Student[]
+  MemorizingLogs   MemorizingLogs[]
+  MurojaahLogs     MurojaahLogs[]
+  MemorizationPlan MemorizationPlan[]
+  Attendance       Attendance[]
 
   @@map("users")
+}
+
+enum StudentStatus {
+  ACTIVE
+  GRADUATION
+  NONACTIVE
+}
+
+model Student {
+  id         String        @id @default(uuid()) @db.Uuid
+  musyrif_id String        @db.Uuid
+  gender     Gender        @default(L)
+  birth_date DateTime      @db.Date
+  join_date  DateTime      @db.Date
+  status     StudentStatus @default(ACTIVE)
+  created_at DateTime      @default(now())
+  updated_at DateTime      @default(now())
+
+  MusyrifUser      User               @relation(fields: [musyrif_id], references: [id])
+  MemorizingLogs   MemorizingLogs[]
+  Parent           Parent[]
+  MurojaahLogs     MurojaahLogs[]
+  JuzEvaluation    JuzEvaluation[]
+  MemorizationPlan MemorizationPlan[]
+  Attendance       Attendance[]
+
+  @@map("students")
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  EXCUSED
+}
+
+model Attendance {
+  id          String           @id @default(uuid()) @db.Uuid
+  student_id  String           @db.Uuid
+  date        DateTime         @default(now())
+  status      AttendanceStatus @default(PRESENT)
+  remark      String           @db.Text
+  recorded_by String           @db.Uuid
+  created_at  DateTime         @default(now())
+
+  AttendanceStudent Student @relation(fields: [student_id], references: [id])
+  AttendaceMusyrif  User    @relation(fields: [recorded_by], references: [id])
+
+  @@map("attendances")
+}
+
+enum ParentStatus {
+  PARENTS
+  NEAR_FAMILY
+}
+
+model Parent {
+  id            String       @id @default(uuid()) @db.Uuid
+  student_id    String       @db.Uuid
+  name          String       @db.VarChar(100)
+  gender        Gender       @default(L)
+  phone         String?      @db.VarChar(20)
+  parent_status ParentStatus @default(PARENTS)
+  description   String?      @db.Text
+  address       String?      @db.Text
+
+  ParentStudent Student @relation(fields: [student_id], references: [id])
+
+  @@map("parents")
+}
+
+enum Assessment {
+  PASS
+  FAIL
+}
+
+model MemorizingLogs {
+  id              String     @id @default(uuid()) @db.Uuid
+  student_id      String     @db.Uuid
+  musyrif_id      String     @db.Uuid
+  juz             Int        @db.Integer
+  surah           String     @db.VarChar()
+  from_ayah       Int        @db.Integer
+  to_ayah         Int        @db.Integer
+  submission_date DateTime   @db.Date
+  assessment      Assessment @default(PASS)
+  notes           String?    @db.Text
+  isRepeat        Int        @db.SmallInt
+  created_at      DateTime   @default(now())
+  updated_at      DateTime   @default(now())
+
+  MemorizingLogsStudent Student @relation(fields: [student_id], references: [id])
+  MemorizingLogsMusyrif User    @relation(fields: [musyrif_id], references: [id])
+
+  @@map("memorizing_logs")
+}
+
+model MurojaahLogs {
+  id              String     @id @default(uuid()) @db.Uuid
+  student_id      String     @db.Uuid
+  musyrif_id      String     @db.Uuid
+  juz             Int        @db.Integer
+  surah           String     @db.VarChar()
+  from_ayah       Int        @db.Integer
+  to_ayah         Int        @db.Integer
+  submission_date DateTime   @db.Date
+  assessment      Assessment @default(PASS)
+  notes           String?    @db.Text
+  isRepeat        Int        @db.SmallInt
+  created_at      DateTime   @default(now())
+  updated_at      DateTime   @default(now())
+
+  MurojaahLogsStudent Student @relation(fields: [student_id], references: [id])
+  MurojaahLogsMusyrif User    @relation(fields: [musyrif_id], references: [id])
+
+  @@map("murojaah_logs")
+}
+
+enum Revelation {
+  MECCAN
+  MEDINAN
+}
+
+model Surah {
+  id              String     @id @default(uuid()) @db.Uuid
+  name            String     @db.VarChar(50)
+  arabic_name     String     @db.VarChar(50)
+  ayah_counts     Int        @db.Integer
+  revelation_type Revelation @default(MECCAN)
+  Ayah            Ayah[]
+
+  @@map("surahs")
+}
+
+model Ayah {
+  id          String @id @default(uuid()) @db.Uuid
+  surah_id    String @db.Uuid
+  ayah_number Int    @db.Integer
+  juz_number  Int    @db.Integer
+  text        String @db.Text
+
+  AyahSurah Surah @relation(fields: [surah_id], references: [id])
+
+  @@unique([surah_id, ayah_number])
+  @@map("ayahs")
+}
+
+model Juz {
+  id          String @id @default(uuid()) @db.Uuid
+  juz         Int    @db.Integer
+  start_surah Int    @db.Integer
+  start_ayah  Int    @db.Integer
+  end_surah   Int    @db.Integer
+  end_ayah    Int    @db.Integer
+
+  @@map("juz")
+}
+
+model JuzEvaluation {
+  id              String     @id @default(uuid()) @db.Uuid
+  student_id      String     @db.Uuid
+  juz_number      Int        @db.Integer
+  evaluation_date DateTime   @default(now())
+  assessment      Assessment @default(PASS)
+  notes           String     @db.Text
+  created_at      DateTime   @default(now())
+  updated_at      DateTime   @default(now())
+
+  EvaluationStudent Student @relation(fields: [student_id], references: [id])
+
+  @@map("juz_evaluations")
+}
+
+enum PlanType {
+  JUZ
+  SURAH
+  PAGE
+}
+
+model MemorizationPlan {
+  id          String   @id @default(uuid()) @db.Uuid
+  student_id  String   @db.Uuid
+  plan_type   PlanType @default(SURAH)
+  juz_number  Int?     @db.Integer
+  surah_id    String?  @db.Uuid
+  page_number Int?     @db.Integer
+
+  start_ayah Int @db.Integer
+  end_ayah   Int @db.Integer
+
+  target_date DateTime @db.Date
+  assigned_by String   @db.Uuid
+  notes       String   @db.Text
+  created_at  DateTime @default(now())
+
+  MemorizingPlanStudents Student @relation(fields: [student_id], references: [id])
+  MemorizingPlanMusyrif  User    @relation(fields: [assigned_by], references: [id])
+
+  @@map("memorizing_plans")
 }

@@ -1,8 +1,8 @@
-# Nest JS Boilerplate
+# Hafidz Track API
 
 ## Description
 
-RESTful API using Nest JS with Posgre Boilerplate
+Log memorizing and repeating tracking students
 
 ## Project setup
 
