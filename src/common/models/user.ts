@@ -1,8 +1,12 @@
+import { Role } from '@prisma/client';
+
 interface UserData {
-  id: number;
+  id: string;
   sub?: number;
   name: string;
   email: string;
+  role: Role;
+  createdAt: Date;
 }
 
 interface User extends UserData {

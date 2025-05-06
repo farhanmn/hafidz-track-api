@@ -121,7 +121,7 @@ export class UserController {
   })
   @UseGuards(JwtAuthGuard)
   async findOne(
-    @Param('id') id: number
+    @Param('id') id: string
   ): Promise<ApiResponses<UserData | null>> {
     try {
       const user = await this.userService.findOne(id);
@@ -152,7 +152,7 @@ export class UserController {
   })
   @UseGuards(JwtAuthGuard)
   async update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() dto: UpdateUserDto
   ): Promise<ApiResponses<UserData>> {
     try {
@@ -181,9 +181,9 @@ export class UserController {
     description: 'User deleted successfully'
   })
   @UseGuards(JwtAuthGuard)
-  async remove(@Param('id') id: number): Promise<ApiResponses<boolean>> {
+  async remove(@Param('id') id: string): Promise<ApiResponses<boolean>> {
     try {
-      const user = await this.userService.remove(Number(id));
+      const user = await this.userService.remove(id);
       return successResponse('User deleted successfully', user);
     } catch (error) {
       if (error instanceof HttpException) {

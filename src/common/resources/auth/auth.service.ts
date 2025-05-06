@@ -30,7 +30,9 @@ export class AuthService {
     const newUser = {
       ...request,
       password: hashPassword.pwd,
-      salt: hashPassword.salt
+      salt: hashPassword.salt,
+      role: request.role,
+      created_at: request.createdAt
     };
 
     return await this.usersService.create(newUser);
@@ -60,6 +62,8 @@ export class AuthService {
       id: user.id,
       name: user.name,
       email: user.email,
+      role: user.role,
+      createdAt: user.createdAt,
       token
     };
   }

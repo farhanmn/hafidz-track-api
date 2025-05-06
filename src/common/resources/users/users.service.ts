@@ -7,12 +7,17 @@ import { prismaClient } from '../../../application/database';
 import { toUser, toUserList } from './mappers/user.mapper';
 import { UserPaginationDto } from './dto/user-pagination.dto';
 import { metaPagination } from '../../../utils/response';
+import { hash } from '../../../utils/crypto';
 
 @Injectable()
 export class UsersService {
   async create(createUserDto: CreateUserDto): Promise<User> {
+    const { salt } = hash(createUserDto.password);
     const user = await prismaClient.user.create({
-      data: createUserDto
+      data: {
+        ...createUserDto,
+        salt
+      }
     });
 
     return toUser(user);
@@ -72,7 +77,7 @@ export class UsersService {
     };
   }
 
-  async findOne(id: number): Promise<User | null> {
+  async findOne(id: string): Promise<User | null> {
     const user = await prismaClient.user.findUnique({
       where: {
         id
@@ -101,7 +106,7 @@ export class UsersService {
     });
   }
 
-  async update(id: number, updateUserInput: UpdateUserDto): Promise<User> {
+  async update(id: string, updateUserInput: UpdateUserDto): Promise<User> {
     const user = await prismaClient.user.update({
       data: updateUserInput,
       where: {
@@ -112,7 +117,7 @@ export class UsersService {
     return toUser(user);
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const user = await prismaClient.user.delete({
       where: {
         id
