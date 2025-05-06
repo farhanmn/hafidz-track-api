@@ -101,7 +101,9 @@ export class UsersService {
         name: true,
         email: true,
         password: true,
-        salt: true
+        salt: true,
+        role: true,
+        created_at: true
       }
     });
   }

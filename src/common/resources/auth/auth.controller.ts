@@ -55,7 +55,7 @@ export class AuthController {
   })
   async login(@Body() dto: loginDto): Promise<
     ApiResponses<{
-      id: number;
+      id: string;
       email: string;
       name: string;
       token: string;

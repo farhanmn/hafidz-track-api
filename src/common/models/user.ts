@@ -6,7 +6,7 @@ interface UserData {
   name: string;
   email: string;
   role: Role;
-  createdAt: Date;
+  created_at: Date;
 }
 
 interface User extends UserData {
