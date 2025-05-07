@@ -5,6 +5,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { JwtStrategy } from './strategies/jwt.strategies';
 import { AuthController } from './auth.controller';
+import { Role } from '@prisma/client';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -12,7 +13,9 @@ describe('AuthService', () => {
   const testing = {
     name: 'Testing',
     email: 'email4Testing3@testing.com',
-    password: 'passwordTesting'
+    password: 'passwordTesting',
+    role: Role.ADMIN,
+    created_at: new Date()
   };
 
   beforeEach(async () => {

@@ -1,14 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
 import { UserController } from './user.controller';
+import { Role } from '@prisma/client';
 
 describe('UsersService', () => {
   let service: UsersService;
-  let idTesting: number;
+  let idTesting: string;
   const testing = {
     name: 'Testing',
     email: 'only4Test1@testing.com',
-    password: 'passwordTesting'
+    password: 'passwordTesting',
+    role: Role.ADMIN,
+    created_at: new Date()
   };
 
   beforeEach(async () => {
@@ -39,7 +42,7 @@ describe('UsersService', () => {
 
   it('should be successfully get all users', async () => {
     const testingUser = {
-      id: expect.any(Number) as number,
+      id: expect.any(String) as string,
       name: testing.name,
       email: testing.email
     };
@@ -66,7 +69,8 @@ describe('UsersService', () => {
 
   it('should be successfully update user', async () => {
     const dto = {
-      name: 'Testing change name'
+      name: 'Testing change name',
+      role: Role.ADMIN
     };
     const result = await service.update(idTesting, dto);
     expect(result).toHaveProperty('id');

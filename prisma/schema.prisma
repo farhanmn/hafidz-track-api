@@ -47,7 +47,7 @@ model Student {
   musyrif_id String        @db.Uuid
   gender     Gender        @default(L)
   birth_date DateTime      @db.Date
-  join_date  DateTime      @db.Date
+  join_date  DateTime?     @db.Date
   status     StudentStatus @default(ACTIVE)
   created_at DateTime      @default(now())
   updated_at DateTime      @default(now())

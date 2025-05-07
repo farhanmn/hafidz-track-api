@@ -1,6 +1,10 @@
-import { match } from './crypto';
+import { match } from './crypto.utils';
 import { config } from 'dotenv';
-import { LoginRequest, User, UserJWTObject } from '../common/models/user';
+import {
+  LoginRequest,
+  User,
+  UserJWTObject
+} from '../common/types/user.interface';
 config();
 
 const verifyPassword = (

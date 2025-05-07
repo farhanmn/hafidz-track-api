@@ -10,9 +10,9 @@ import { AuthService } from './auth.service';
 import { registerDto } from './dto/register.dto';
 import { loginDto } from './dto/login.dto';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { errorResponse, successResponse } from '../../utils/response';
-import { ApiResponses } from '../../common/models/response';
-import { UserData } from '../../common/models/user';
+import { errorResponse, successResponse } from '../../utils/response.utils';
+import { ApiResponses } from '../../common/types/response.interface';
+import { UserData } from '../../common/types/user.interface';
 import { Validation } from '../../common/validations/validation';
 import { UserValidation } from '../../common/validations/user-validation';
 

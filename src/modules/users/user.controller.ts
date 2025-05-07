@@ -25,10 +25,10 @@ import {
 } from '@nestjs/swagger';
 import { ResponseDto } from './dto/response.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { errorResponse, successResponse } from '../../utils/response';
-import { ApiResponses } from '../../common/models/response';
+import { errorResponse, successResponse } from '../../utils/response.utils';
+import { ApiResponses } from '../../common/types/response.interface';
 import { UserPaginationDto } from './dto/user-pagination.dto';
-import { UserData } from '../../common/models/user';
+import { UserData } from '../../common/types/user.interface';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
 
@@ -36,9 +36,6 @@ import { Roles } from '../../common/decorators/roles.decorator';
 export class UserController {
   constructor(private readonly userService: UsersService) {}
 
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN')
   @ApiOperation({ summary: 'Create a new user' })
   @ApiBody({ type: CreateUserDto })
   @ApiOkResponse({
@@ -57,6 +54,9 @@ export class UserController {
       }
     }
   })
+  @Post()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN')
   async create(@Body() dto: CreateUserDto): Promise<ApiResponses<UserData>> {
     try {
       const user = await this.userService.create(dto);
@@ -76,9 +76,6 @@ export class UserController {
     }
   }
 
-  @Get()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({
@@ -87,6 +84,9 @@ export class UserController {
     type: ResponseDto,
     isArray: true
   })
+  @Get()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN')
   async findAll(
     @Query() query: UserPaginationDto,
     @Query('name') name?: string
@@ -117,9 +117,6 @@ export class UserController {
     }
   }
 
-  @Get(':id')
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN')
   @ApiOperation({ summary: 'Get user by id' })
   @ApiQuery({ name: 'id', required: true, description: 'Id of user' })
   @ApiResponse({
@@ -127,6 +124,9 @@ export class UserController {
     description: 'User data',
     type: ResponseDto
   })
+  @Get(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN')
   async findOne(
     @Param('id') id: string
   ): Promise<ApiResponses<UserData | null>> {
@@ -148,9 +148,6 @@ export class UserController {
     }
   }
 
-  @Put(':id')
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN')
   @ApiOperation({ summary: 'Edit user by id' })
   @ApiBody({ type: UpdateUserDto })
   @ApiParam({ name: 'id', required: true })
@@ -159,6 +156,9 @@ export class UserController {
     description: 'User updated successfully',
     type: ResponseDto
   })
+  @Put(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN')
   async update(
     @Param('id') id: string,
     @Body() dto: UpdateUserDto
@@ -181,15 +181,15 @@ export class UserController {
     }
   }
 
-  @Delete(':id')
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN')
   @ApiOperation({ summary: 'Delete user by id' })
   @ApiParam({ name: 'id', required: true })
   @ApiResponse({
     status: 200,
     description: 'User deleted successfully'
   })
+  @Delete(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN')
   async remove(@Param('id') id: string): Promise<ApiResponses<boolean>> {
     try {
       const user = await this.userService.remove(id);

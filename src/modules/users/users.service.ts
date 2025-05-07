@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { User as UserWithPass } from '../../common/models/user';
+import { User as UserWithPass } from '../../common/types/user.interface';
 import { prismaClient } from '../../application/database';
 import { toUser, toUserList } from './mappers/user.mapper';
 import { UserPaginationDto } from './dto/user-pagination.dto';
-import { metaPagination } from '../../utils/response';
-import { hash } from '../../utils/crypto';
+import { metaPagination } from '../../utils/response.utils';
+import { hash } from '../../utils/crypto.utils';
 
 @Injectable()
 export class UsersService {
