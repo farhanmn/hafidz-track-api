@@ -5,7 +5,7 @@ import { User } from './entities/user.entity';
 import { User as UserWithPass } from '../../common/types/user.interface';
 import { prismaClient } from '../../application/database';
 import { toUser, toUserList } from './mappers/user.mapper';
-import { UserPaginationDto } from './dto/user-pagination.dto';
+import { Pagination } from '../../common/types/pagination.interface';
 import { metaPagination } from '../../utils/response.utils';
 import { hash } from '../../utils/crypto.utils';
 
@@ -29,7 +29,7 @@ export class UsersService {
     paginationDto
   }: {
     name?: string;
-    paginationDto?: UserPaginationDto;
+    paginationDto?: Pagination;
   }): Promise<{
     data: User[];
     meta: {

@@ -23,11 +23,11 @@ import {
   ApiQuery,
   ApiResponse
 } from '@nestjs/swagger';
-import { ResponseDto } from './dto/response.dto';
+import { ResponseSchema } from '../../common/dto/response.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { errorResponse, successResponse } from '../../utils/response.utils';
 import { ApiResponses } from '../../common/types/response.interface';
-import { UserPaginationDto } from './dto/user-pagination.dto';
+import { Pagination } from '../../common/types/pagination.interface';
 import { UserData } from '../../common/types/user.interface';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
@@ -81,19 +81,19 @@ export class UserController {
   @ApiResponse({
     status: 200,
     description: 'List of all users',
-    type: ResponseDto,
+    type: ResponseSchema,
     isArray: true
   })
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')
   async findAll(
-    @Query() query: UserPaginationDto,
+    @Query() query: Pagination,
     @Query('name') name?: string
   ): Promise<
     ApiResponses<{
       data: UserData[];
-      meta: UserPaginationDto;
+      meta: Pagination;
     }>
   > {
     try {
@@ -122,7 +122,7 @@ export class UserController {
   @ApiResponse({
     status: 200,
     description: 'User data',
-    type: ResponseDto
+    type: ResponseSchema
   })
   @Get(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -154,7 +154,7 @@ export class UserController {
   @ApiResponse({
     status: 200,
     description: 'User updated successfully',
-    type: ResponseDto
+    type: ResponseSchema
   })
   @Put(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)

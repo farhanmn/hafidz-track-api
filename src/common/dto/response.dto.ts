@@ -1,9 +1,8 @@
-// response.dto.ts
 import { ApiProperty } from '@nestjs/swagger';
 
-export class ResponseDto<T> {
+export class ResponseSchema<T> {
   @ApiProperty({ example: 200 })
-  statusCode: number;
+  status: number;
 
   @ApiProperty({ example: 'Success' })
   message: string;
