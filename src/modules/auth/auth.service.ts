@@ -1,16 +1,16 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
-import { verifyPassword } from '../../../utils/user';
+import { verifyPassword } from '../../utils/user';
 import {
   LoginRequest,
   LoginResponse,
   RegisterRequest,
   User as UserWithPass,
-  UserData
-} from '../../models/user';
+  UserJWTObject
+} from '../../common/models/user';
 import { User } from '../users/entities/user.entity';
-import { hash } from '../../../utils/crypto';
+import { hash } from '../../utils/crypto';
 
 @Injectable()
 export class AuthService {
@@ -26,11 +26,10 @@ export class AuthService {
       throw new Error('Email already exists');
     }
 
-    const hashPassword = hash(request.password);
+    // const hashPassword = hash(request.password);
     const newUser = {
       ...request,
-      password: hashPassword.pwd,
-      salt: hashPassword.salt,
+      password: request.password,
       role: request.role,
       created_at: request.created_at
     };
@@ -47,7 +46,7 @@ export class AuthService {
       throw new Error('Invalid email');
     }
 
-    const verifyPass: UserData | null = verifyPassword(user, {
+    const verifyPass: UserJWTObject | null = verifyPassword(user, {
       email: request.email,
       password: request.password
     });

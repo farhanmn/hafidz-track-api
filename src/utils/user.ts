@@ -1,12 +1,12 @@
 import { match } from './crypto';
 import { config } from 'dotenv';
-import { LoginRequest, User, UserData } from '../common/models/user';
+import { LoginRequest, User, UserJWTObject } from '../common/models/user';
 config();
 
 const verifyPassword = (
   userData: User,
   loginData: LoginRequest
-): UserData | null => {
+): UserJWTObject | null => {
   if (!userData) {
     return null;
   }
@@ -16,7 +16,8 @@ const verifyPassword = (
       id: userData.id,
       sub: userData.id,
       name: userData.name,
-      email: userData.email
+      email: userData.email,
+      role: userData.role
     };
   }
   return null;

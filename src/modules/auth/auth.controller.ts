@@ -10,9 +10,11 @@ import { AuthService } from './auth.service';
 import { registerDto } from './dto/register.dto';
 import { loginDto } from './dto/login.dto';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { errorResponse, successResponse } from '../../../utils/response';
-import { ApiResponses } from '../../models/response';
-import { UserData } from '../../models/user';
+import { errorResponse, successResponse } from '../../utils/response';
+import { ApiResponses } from '../../common/models/response';
+import { UserData } from '../../common/models/user';
+import { Validation } from '../../common/validations/validation';
+import { UserValidation } from '../../common/validations/user-validation';
 
 @Controller('auth')
 export class AuthController {
@@ -28,7 +30,8 @@ export class AuthController {
   })
   async register(@Body() dto: registerDto): Promise<ApiResponses<UserData>> {
     try {
-      const user = await this.authService.signUp(dto);
+      const validateRequest = Validation.validate(UserValidation.CREATE, dto);
+      const user = await this.authService.signUp(validateRequest);
       return successResponse('CREATED', user);
     } catch (error) {
       if (error instanceof HttpException) {
@@ -62,7 +65,8 @@ export class AuthController {
     }>
   > {
     try {
-      const user = await this.authService.signIn(dto);
+      const validateRequest = Validation.validate(UserValidation.LOGIN, dto);
+      const user = await this.authService.signIn(validateRequest);
       return successResponse('OK', user);
     } catch (error) {
       if (error instanceof HttpException) {

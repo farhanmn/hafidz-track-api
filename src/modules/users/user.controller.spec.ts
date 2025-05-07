@@ -1,15 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { UsersService } from './users.service';
+import { Role } from '@prisma/client';
 
 describe('UserController', () => {
   let controller: UserController;
   let service: UsersService;
-  let idTesting: number;
+  let idTesting: string;
   const testing = {
     name: 'Testing',
     email: 'only4Test2@testing.com',
-    password: 'passwordTesting'
+    password: 'passwordTesting',
+    role: Role.ADMIN,
+    created_at: new Date()
   };
 
   beforeEach(async () => {
@@ -33,9 +36,8 @@ describe('UserController', () => {
 
   it('should be successfully create user', async () => {
     const result = await controller.create(testing);
-    console.log(result);
     if (result.success) {
-      idTesting = Number(result.data.id);
+      idTesting = result.data.id;
     }
     expect(result).toHaveProperty('success');
     expect(result).toHaveProperty('message');
@@ -62,7 +64,8 @@ describe('UserController', () => {
 
   it('should be successfully update user', async () => {
     const dto = {
-      name: `${testing.name} change name`
+      name: `${testing.name} change name`,
+      role: Role.ADMIN
     };
     const result = await controller.update(idTesting, dto);
     expect(result).toHaveProperty('success');

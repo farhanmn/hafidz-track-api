@@ -2,20 +2,21 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { User as UserWithPass } from '../../models/user';
-import { prismaClient } from '../../../application/database';
+import { User as UserWithPass } from '../../common/models/user';
+import { prismaClient } from '../../application/database';
 import { toUser, toUserList } from './mappers/user.mapper';
 import { UserPaginationDto } from './dto/user-pagination.dto';
-import { metaPagination } from '../../../utils/response';
-import { hash } from '../../../utils/crypto';
+import { metaPagination } from '../../utils/response';
+import { hash } from '../../utils/crypto';
 
 @Injectable()
 export class UsersService {
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const { salt } = hash(createUserDto.password);
+    const { pwd, salt } = hash(createUserDto.password);
     const user = await prismaClient.user.create({
       data: {
         ...createUserDto,
+        password: pwd,
         salt
       }
     });
