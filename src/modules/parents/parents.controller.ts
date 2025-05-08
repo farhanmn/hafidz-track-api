@@ -10,30 +10,30 @@ import {
   HttpException,
   Query
 } from '@nestjs/common';
-import { StudentsService } from './students.service';
-import { CreateStudentDto } from './dto/create-student.dto';
-import { UpdateStudentDto } from './dto/update-student.dto';
+import { ParentsService } from './parents.service';
+import { CreateParentDto } from './dto/create-parent.dto';
+import { UpdateParentDto } from './dto/update-parent.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { errorResponse, successResponse } from '../../utils/response.utils';
-import { Student as StudentInterface } from '../../common/types/student.interface';
 import { ApiResponses } from '../../common/types/response.interface';
+import { Parent as ParentInterface } from '../../common/types/parent.interface';
 import { Pagination } from '../../common/types/pagination.interface';
 
-@Controller('students')
-export class StudentsController {
-  constructor(private readonly studentsService: StudentsService) {}
+@Controller('parents')
+export class ParentsController {
+  constructor(private readonly parentsService: ParentsService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')
   async create(
-    @Body() createStudentDto: CreateStudentDto
-  ): Promise<ApiResponses<StudentInterface>> {
+    @Body() createParentDto: CreateParentDto
+  ): Promise<ApiResponses<ParentInterface>> {
     try {
-      const student = await this.studentsService.create(createStudentDto);
-      return successResponse('Create student successfully', student);
+      const parent = await this.parentsService.create(createParentDto);
+      return successResponse('Create user successfully', parent);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -57,16 +57,16 @@ export class StudentsController {
     @Query('name') name?: string
   ): Promise<
     ApiResponses<{
-      data: StudentInterface[];
+      data: ParentInterface[];
       meta: Pagination;
     }>
   > {
     try {
-      const students = await this.studentsService.findAll({
+      const parents = await this.parentsService.findAll({
         name,
         pagination: query
       });
-      return successResponse('OK', students);
+      return successResponse('OK', parents);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -87,10 +87,10 @@ export class StudentsController {
   @Roles('ADMIN', 'MUSYRIF')
   async findOne(
     @Param('id') id: string
-  ): Promise<ApiResponses<StudentInterface | null>> {
+  ): Promise<ApiResponses<ParentInterface | null>> {
     try {
-      const student = await this.studentsService.findOne(id);
-      return successResponse('OK', student);
+      const parent = await this.parentsService.findOne(id);
+      return successResponse('OK', parent);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -108,14 +108,14 @@ export class StudentsController {
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN')
+  @Roles('ADMIN', 'MUSYRIF')
   async update(
     @Param('id') id: string,
-    @Body() updateStudentDto: UpdateStudentDto
-  ): Promise<ApiResponses<StudentInterface>> {
+    @Body() updateParentDto: UpdateParentDto
+  ): Promise<ApiResponses<ParentInterface>> {
     try {
-      const student = await this.studentsService.update(id, updateStudentDto);
-      return successResponse('Student updated successfully', student);
+      const parent = await this.parentsService.update(id, updateParentDto);
+      return successResponse('Parent updated successfully', parent);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -136,8 +136,8 @@ export class StudentsController {
   @Roles('ADMIN')
   async remove(@Param('id') id: string): Promise<ApiResponses<boolean>> {
     try {
-      const student = await this.studentsService.remove(id);
-      return successResponse('Student deleted successfully', student);
+      const parent = await this.parentsService.remove(id);
+      return successResponse('Parent deleted successfully', parent);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
