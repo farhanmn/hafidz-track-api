@@ -10,7 +10,8 @@ import {
   HttpStatus,
   HttpCode,
   HttpException,
-  Query
+  Query,
+  Patch
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -99,7 +100,7 @@ export class UserController {
     try {
       const users = await this.userService.findAll({
         name,
-        paginationDto: query
+        pagination: query
       });
       return successResponse('OK', users);
     } catch (error) {
@@ -156,7 +157,7 @@ export class UserController {
     description: 'User updated successfully',
     type: ResponseSchema
   })
-  @Put(':id')
+  @Patch(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')
   async update(

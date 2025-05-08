@@ -9,7 +9,7 @@ import {
   User as UserWithPass,
   UserJWTObject
 } from '../../common/types/user.interface';
-import { User } from '../users/entities/user.entity';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -18,7 +18,9 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
-  async signUp(request: RegisterRequest): Promise<User> {
+  async signUp(
+    request: RegisterRequest
+  ): Promise<Omit<User, 'password' | 'salt' | 'updated_at'>> {
     const user = await this.usersService.findEmail(request.email);
 
     if (user) {

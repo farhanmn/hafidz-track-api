@@ -1,26 +1,106 @@
 import { Injectable } from '@nestjs/common';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
+import { prismaClient } from '../../application/database';
+import { toStudent, toStudentList } from './mappers/student.mapper';
+import { Pagination } from '../../common/types/pagination.interface';
+import { metaPagination } from '../../utils/response.utils';
 
 @Injectable()
 export class StudentsService {
-  create(createStudentDto: CreateStudentDto) {
-    return 'This action adds a new student';
+  async create(createStudentDto: CreateStudentDto) {
+    const student = await prismaClient.student.create({
+      data: createStudentDto
+    });
+
+    return toStudent(student);
   }
 
-  findAll() {
-    return `This action returns all students`;
+  async findAll({
+    name,
+    pagination
+  }: {
+    name?: string;
+    pagination?: Pagination;
+  }) {
+    const page = Number(pagination?.page) || 1;
+    const limit = Number(pagination?.limit) || 10;
+    const students = await prismaClient.student.findMany({
+      where: {
+        ...(name
+          ? {
+              name: {
+                startsWith: `%${name}%`,
+                mode: 'insensitive'
+              }
+            }
+          : {})
+      },
+      include: {
+        MusyrifUser: true
+      },
+      skip: (page - 1) * limit,
+      take: limit,
+      orderBy: {
+        name: 'asc'
+      }
+    });
+
+    const count = await prismaClient.student.count({
+      where: {
+        ...(name
+          ? {
+              name: {
+                startsWith: `%${name}%`,
+                mode: 'insensitive'
+              }
+            }
+          : {})
+      }
+    });
+
+    return {
+      data: toStudentList(students),
+      meta: metaPagination(count, page, limit)
+    };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} student`;
+  async findOne(id: string) {
+    const student = await prismaClient.student.findUnique({
+      where: {
+        id
+      }
+    });
+
+    if (!student) {
+      return null;
+    }
+
+    return toStudent(student);
   }
 
-  update(id: number, updateStudentDto: UpdateStudentDto) {
-    return `This action updates a #${id} student`;
+  async update(id: string, updateStudentDto: UpdateStudentDto) {
+    const student = await prismaClient.student.update({
+      data: updateStudentDto,
+      where: {
+        id
+      }
+    });
+
+    return toStudent(student);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} student`;
+  async remove(id: string) {
+    const student = await prismaClient.student.delete({
+      where: {
+        id
+      }
+    });
+
+    if (!student) {
+      return false;
+    }
+
+    return true;
   }
 }
