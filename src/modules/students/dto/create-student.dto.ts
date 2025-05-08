@@ -1,6 +1,6 @@
-import { IsDate, IsEnum, IsOptional, IsUUID } from 'class-validator';
+import { IsDate, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Gender, StudentStatus } from '@prisma/client';
+import { Gender, GradeStatus, StudentStatus } from '@prisma/client';
 
 export class CreateStudentDto {
   @IsUUID()
@@ -10,6 +10,15 @@ export class CreateStudentDto {
   @IsEnum(Gender)
   @ApiProperty({ example: Gender.L })
   gender: Gender;
+
+  @IsString()
+  name: string;
+
+  @IsString()
+  grade: string;
+
+  @IsEnum(GradeStatus)
+  gradeStatus: GradeStatus;
 
   @IsDate()
   @ApiProperty({ example: '2000-11-11' })

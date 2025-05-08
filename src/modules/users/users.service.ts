@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
+import { User } from '@prisma/client';
 import { User as UserWithPass } from '../../common/types/user.interface';
 import { prismaClient } from '../../application/database';
 import { toUser, toUserList } from './mappers/user.mapper';
@@ -11,7 +11,9 @@ import { hash } from '../../utils/crypto.utils';
 
 @Injectable()
 export class UsersService {
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(
+    createUserDto: CreateUserDto
+  ): Promise<Omit<User, 'password' | 'salt' | 'updated_at'>> {
     const { pwd, salt } = hash(createUserDto.password);
     const user = await prismaClient.user.create({
       data: {
@@ -26,12 +28,12 @@ export class UsersService {
 
   async findAll({
     name,
-    paginationDto
+    pagination
   }: {
     name?: string;
-    paginationDto?: Pagination;
+    pagination?: Pagination;
   }): Promise<{
-    data: User[];
+    data: Omit<User, 'password' | 'salt' | 'updated_at'>[];
     meta: {
       total: number;
       page: number;
@@ -39,8 +41,8 @@ export class UsersService {
       totalPages: number;
     };
   }> {
-    const page = Number(paginationDto?.page) || 1;
-    const limit = Number(paginationDto?.limit) || 10;
+    const page = Number(pagination?.page) || 1;
+    const limit = Number(pagination?.limit) || 10;
     const users = await prismaClient.user.findMany({
       where: {
         ...(name
@@ -78,7 +80,9 @@ export class UsersService {
     };
   }
 
-  async findOne(id: string): Promise<User | null> {
+  async findOne(
+    id: string
+  ): Promise<Omit<User, 'password' | 'salt' | 'updated_at'> | null> {
     const user = await prismaClient.user.findUnique({
       where: {
         id
@@ -109,7 +113,10 @@ export class UsersService {
     });
   }
 
-  async update(id: string, updateUserInput: UpdateUserDto): Promise<User> {
+  async update(
+    id: string,
+    updateUserInput: UpdateUserDto
+  ): Promise<Omit<User, 'password' | 'salt' | 'updated_at'>> {
     const user = await prismaClient.user.update({
       data: updateUserInput,
       where: {

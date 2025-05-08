@@ -42,15 +42,24 @@ enum StudentStatus {
   NONACTIVE
 }
 
+enum GradeStatus {
+  ELEMENTARY_SCHOOL
+  JUNIOR_HIGH_SCHOOL
+  SENIOR_HIGH_SCHOOL
+}
+
 model Student {
-  id         String        @id @default(uuid()) @db.Uuid
-  musyrif_id String        @db.Uuid
-  gender     Gender        @default(L)
-  birth_date DateTime      @db.Date
-  join_date  DateTime?     @db.Date
-  status     StudentStatus @default(ACTIVE)
-  created_at DateTime      @default(now())
-  updated_at DateTime      @default(now())
+  id          String        @id @default(uuid()) @db.Uuid
+  musyrif_id  String        @db.Uuid
+  name        String        @db.VarChar()
+  gender      Gender        @default(L)
+  grade       String        @db.VarChar()
+  gradeStatus GradeStatus
+  birth_date  DateTime      @db.Date
+  join_date   DateTime?     @db.Date
+  status      StudentStatus @default(ACTIVE)
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @default(now())
 
   MusyrifUser      User               @relation(fields: [musyrif_id], references: [id])
   MemorizingLogs   MemorizingLogs[]
