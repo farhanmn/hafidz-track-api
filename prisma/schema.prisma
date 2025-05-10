@@ -169,9 +169,11 @@ enum Revelation {
 model Surah {
   id              String     @id @default(uuid()) @db.Uuid
   name            String     @db.VarChar(50)
+  surah_number    Int        @db.Integer
   arabic_name     String     @db.VarChar(50)
   ayah_counts     Int        @db.Integer
   revelation_type Revelation @default(MECCAN)
+  juz             Int[]      @default([])
   Ayah            Ayah[]
 
   @@map("surahs")
@@ -193,9 +195,9 @@ model Ayah {
 model Juz {
   id          String @id @default(uuid()) @db.Uuid
   juz         Int    @db.Integer
-  start_surah Int    @db.Integer
+  start_surah String @db.VarChar()
   start_ayah  Int    @db.Integer
-  end_surah   Int    @db.Integer
+  end_surah   String @db.VarChar()
   end_ayah    Int    @db.Integer
 
   @@map("juz")
