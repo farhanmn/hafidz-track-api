@@ -17,6 +17,9 @@ export class RefsService {
         juz: {
           has: juz
         }
+      },
+      orderBy: {
+        surah_number: 'asc'
       }
     });
   }
