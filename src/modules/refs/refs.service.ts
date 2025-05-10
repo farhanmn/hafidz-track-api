@@ -23,4 +23,15 @@ export class RefsService {
       }
     });
   }
+
+  getAyahBySurah(surahId: string) {
+    return prismaClient.ayah.findMany({
+      where: {
+        surah_id: surahId
+      },
+      orderBy: {
+        ayah_number: 'asc'
+      }
+    });
+  }
 }

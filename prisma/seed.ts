@@ -257,7 +257,7 @@ const main = async () => {
       arabic_name: 'آل عمران',
       ayah_counts: 200,
       revelation_type: Revelation.MEDINAN,
-      juz: [4],
+      juz: [3, 4],
       surah_number: 3
     },
     {
@@ -265,7 +265,7 @@ const main = async () => {
       arabic_name: 'النساء',
       ayah_counts: 176,
       revelation_type: Revelation.MEDINAN,
-      juz: [5, 6],
+      juz: [4, 5, 6],
       surah_number: 4
     },
     {
@@ -281,7 +281,7 @@ const main = async () => {
       arabic_name: 'الأنعام',
       ayah_counts: 165,
       revelation_type: Revelation.MECCAN,
-      juz: [7],
+      juz: [7, 8],
       surah_number: 6
     },
     {
@@ -301,36 +301,44 @@ const main = async () => {
       surah_number: 8
     },
     {
+      name: 'At-Taubah',
+      arabic_name: 'التوبة',
+      ayah_counts: 129,
+      revelation_type: Revelation.MEDINAN,
+      juz: [10, 11],
+      surah_number: 115
+    },
+    {
       name: 'Yunus',
       arabic_name: 'يونس',
       ayah_counts: 109,
       revelation_type: Revelation.MECCAN,
-      juz: [10, 11],
-      surah_number: 9
+      juz: [11],
+      surah_number: 10
     },
     {
       name: 'Hud',
       arabic_name: 'هود',
       ayah_counts: 123,
       revelation_type: Revelation.MECCAN,
-      juz: [11],
-      surah_number: 10
+      juz: [11, 12],
+      surah_number: 11
     },
     {
       name: 'Yusuf',
       arabic_name: 'يوسف',
       ayah_counts: 111,
       revelation_type: Revelation.MECCAN,
-      juz: [11, 12],
-      surah_number: 11
+      juz: [12, 13],
+      surah_number: 12
     },
     {
       name: "Ar-Ra'd",
       arabic_name: 'الرعد',
       ayah_counts: 43,
       revelation_type: Revelation.MEDINAN,
-      juz: [12],
-      surah_number: 12
+      juz: [13],
+      surah_number: 13
     },
     {
       name: 'Ibrahim',
@@ -338,15 +346,15 @@ const main = async () => {
       ayah_counts: 52,
       revelation_type: Revelation.MECCAN,
       juz: [13],
-      surah_number: 13
+      surah_number: 14
     },
     {
       name: 'Al-Hijr',
       arabic_name: 'الحجر',
       ayah_counts: 99,
       revelation_type: Revelation.MECCAN,
-      juz: [13, 14],
-      surah_number: 14
+      juz: [14],
+      surah_number: 15
     },
     {
       name: 'An-Nahl',
@@ -354,31 +362,31 @@ const main = async () => {
       ayah_counts: 128,
       revelation_type: Revelation.MECCAN,
       juz: [14],
-      surah_number: 15
+      surah_number: 16
     },
     {
       name: 'Al-Isra',
       arabic_name: 'الإسراء',
       ayah_counts: 111,
       revelation_type: Revelation.MECCAN,
-      juz: [14, 15],
-      surah_number: 16
+      juz: [15],
+      surah_number: 17
     },
     {
       name: 'Al-Kahfi',
       arabic_name: 'الكهف',
       ayah_counts: 110,
       revelation_type: Revelation.MECCAN,
-      juz: [15],
-      surah_number: 17
+      juz: [15, 16],
+      surah_number: 18
     },
     {
       name: 'Maryam',
       arabic_name: 'مريم',
       ayah_counts: 98,
       revelation_type: Revelation.MECCAN,
-      juz: [15, 16],
-      surah_number: 18
+      juz: [16],
+      surah_number: 19
     },
     {
       name: 'Taha',
@@ -386,15 +394,15 @@ const main = async () => {
       ayah_counts: 135,
       revelation_type: Revelation.MECCAN,
       juz: [16],
-      surah_number: 19
+      surah_number: 20
     },
     {
       name: 'Al-Anbiya',
       arabic_name: 'الأنبياء',
       ayah_counts: 112,
       revelation_type: Revelation.MECCAN,
-      juz: [16],
-      surah_number: 20
+      juz: [17],
+      surah_number: 21
     },
     {
       name: 'Al-Hajj',
@@ -402,15 +410,15 @@ const main = async () => {
       ayah_counts: 78,
       revelation_type: Revelation.MEDINAN,
       juz: [17],
-      surah_number: 21
+      surah_number: 22
     },
     {
       name: "Al-Mu'minun",
       arabic_name: 'المؤمنون',
       ayah_counts: 118,
       revelation_type: Revelation.MECCAN,
-      juz: [17, 18],
-      surah_number: 22
+      juz: [18],
+      surah_number: 23
     },
     {
       name: 'An-Nur',
@@ -418,7 +426,7 @@ const main = async () => {
       ayah_counts: 64,
       revelation_type: Revelation.MEDINAN,
       juz: [18],
-      surah_number: 23
+      surah_number: 24
     },
     {
       name: 'Al-Furqan',
@@ -426,7 +434,7 @@ const main = async () => {
       ayah_counts: 77,
       revelation_type: Revelation.MECCAN,
       juz: [18, 19],
-      surah_number: 24
+      surah_number: 25
     },
     {
       name: "Ash-Shu'ara",
@@ -434,15 +442,15 @@ const main = async () => {
       ayah_counts: 227,
       revelation_type: Revelation.MECCAN,
       juz: [19],
-      surah_number: 25
+      surah_number: 26
     },
     {
       name: 'An-Naml',
       arabic_name: 'النمل',
       ayah_counts: 93,
       revelation_type: Revelation.MECCAN,
-      juz: [19],
-      surah_number: 26
+      juz: [19, 20],
+      surah_number: 27
     },
     {
       name: 'Al-Qasas',
@@ -450,15 +458,15 @@ const main = async () => {
       ayah_counts: 88,
       revelation_type: Revelation.MECCAN,
       juz: [20],
-      surah_number: 27
+      surah_number: 28
     },
     {
       name: 'Al-Ankabut',
       arabic_name: 'العنكبوت',
       ayah_counts: 69,
       revelation_type: Revelation.MECCAN,
-      juz: [20],
-      surah_number: 28
+      juz: [20, 21],
+      surah_number: 29
     },
     {
       name: 'Ar-Rum',
@@ -466,7 +474,7 @@ const main = async () => {
       ayah_counts: 60,
       revelation_type: Revelation.MECCAN,
       juz: [21],
-      surah_number: 29
+      surah_number: 30
     },
     {
       name: 'Luqman',
@@ -474,375 +482,375 @@ const main = async () => {
       ayah_counts: 34,
       revelation_type: Revelation.MECCAN,
       juz: [21],
-      surah_number: 30
+      surah_number: 31
     },
     {
       name: 'As-Sajdah',
       arabic_name: 'السجدة',
       ayah_counts: 30,
       revelation_type: Revelation.MECCAN,
-      juz: [21, 22],
-      surah_number: 31
+      juz: [21],
+      surah_number: 32
     },
     {
       name: 'Al-Ahzab',
       arabic_name: 'الأحزاب',
       ayah_counts: 73,
       revelation_type: Revelation.MEDINAN,
-      juz: [22],
-      surah_number: 32
+      juz: [21, 22],
+      surah_number: 33
     },
     {
       name: "Saba'",
       arabic_name: 'سبأ',
       ayah_counts: 54,
       revelation_type: Revelation.MECCAN,
-      juz: [23],
-      surah_number: 33
+      juz: [22],
+      surah_number: 34
     },
     {
       name: 'Fatir',
       arabic_name: 'فاطر',
       ayah_counts: 45,
       revelation_type: Revelation.MECCAN,
-      juz: [23],
-      surah_number: 34
+      juz: [22],
+      surah_number: 35
     },
     {
       name: 'Yasin',
       arabic_name: 'يس',
       ayah_counts: 83,
       revelation_type: Revelation.MECCAN,
-      juz: [23, 24],
-      surah_number: 35
+      juz: [22, 23],
+      surah_number: 36
     },
     {
       name: 'As-Saffat',
       arabic_name: 'الصافات',
       ayah_counts: 182,
       revelation_type: Revelation.MECCAN,
-      juz: [24],
-      surah_number: 36
+      juz: [23],
+      surah_number: 37
     },
     {
       name: 'Sad',
       arabic_name: 'ص',
       ayah_counts: 88,
       revelation_type: Revelation.MECCAN,
-      juz: [25],
-      surah_number: 37
+      juz: [23],
+      surah_number: 38
     },
     {
       name: 'Az-Zumar',
       arabic_name: 'الزمر',
       ayah_counts: 75,
       revelation_type: Revelation.MECCAN,
-      juz: [25, 26],
-      surah_number: 38
+      juz: [23, 24],
+      surah_number: 39
     },
     {
       name: 'Ghafir',
       arabic_name: 'غافر',
       ayah_counts: 85,
       revelation_type: Revelation.MECCAN,
-      juz: [26],
-      surah_number: 39
+      juz: [24],
+      surah_number: 40
     },
     {
       name: 'Fussilat',
       arabic_name: 'فصلت',
       ayah_counts: 54,
       revelation_type: Revelation.MECCAN,
-      juz: [26, 27],
-      surah_number: 40
+      juz: [24, 25],
+      surah_number: 41
     },
     {
       name: 'Ash-Shuraa',
       arabic_name: 'الشورى',
       ayah_counts: 53,
       revelation_type: Revelation.MECCAN,
-      juz: [27],
-      surah_number: 41
+      juz: [25],
+      surah_number: 42
     },
     {
       name: 'Az-Zukhruf',
       arabic_name: 'الزخرف',
       ayah_counts: 89,
       revelation_type: Revelation.MECCAN,
-      juz: [27],
-      surah_number: 42
+      juz: [25],
+      surah_number: 43
     },
     {
       name: 'Ad-Dukhan',
       arabic_name: 'الدخان',
       ayah_counts: 59,
       revelation_type: Revelation.MECCAN,
-      juz: [27, 28],
-      surah_number: 43
+      juz: [25],
+      surah_number: 44
     },
     {
       name: 'Al-Jathiyah',
       arabic_name: 'الجاثية',
       ayah_counts: 37,
       revelation_type: Revelation.MECCAN,
-      juz: [28],
-      surah_number: 44
+      juz: [25],
+      surah_number: 45
     },
     {
       name: 'Al-Ahqaf',
       arabic_name: 'الأحقاف',
       ayah_counts: 35,
       revelation_type: Revelation.MECCAN,
-      juz: [28],
-      surah_number: 45
+      juz: [26],
+      surah_number: 46
     },
     {
       name: 'Muhammad',
       arabic_name: 'محمد',
       ayah_counts: 38,
       revelation_type: Revelation.MEDINAN,
-      juz: [29],
-      surah_number: 46
+      juz: [26],
+      surah_number: 47
     },
     {
       name: 'Al-Fath',
       arabic_name: 'الفتح',
       ayah_counts: 29,
       revelation_type: Revelation.MEDINAN,
-      juz: [29],
-      surah_number: 47
+      juz: [26],
+      surah_number: 48
     },
     {
       name: 'Al-Hujurat',
       arabic_name: 'الحجرات',
       ayah_counts: 18,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 48
+      juz: [26],
+      surah_number: 49
     },
     {
       name: 'Qaf',
       arabic_name: 'ق',
       ayah_counts: 45,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 49
+      juz: [26],
+      surah_number: 50
     },
     {
       name: 'Adh-Dhariyat',
       arabic_name: 'الذاريات',
       ayah_counts: 60,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 50
+      juz: [26, 27],
+      surah_number: 51
     },
     {
       name: 'At-Tur',
       arabic_name: 'الطور',
       ayah_counts: 49,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 51
+      juz: [27],
+      surah_number: 52
     },
     {
       name: 'An-Najm',
       arabic_name: 'النجم',
       ayah_counts: 62,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 52
+      juz: [27],
+      surah_number: 53
     },
     {
       name: 'Al-Qamar',
       arabic_name: 'القمر',
       ayah_counts: 55,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 53
+      juz: [27],
+      surah_number: 54
     },
     {
       name: 'Ar-Rahman',
       arabic_name: 'الرحمن',
       ayah_counts: 78,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 54
+      juz: [27],
+      surah_number: 55
     },
     {
       name: "Al-Waqi'ah",
       arabic_name: 'الواقعة',
       ayah_counts: 96,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 55
+      juz: [27],
+      surah_number: 56
     },
     {
       name: 'Al-Hadid',
       arabic_name: 'الحديد',
       ayah_counts: 29,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 56
+      juz: [27],
+      surah_number: 57
     },
     {
       name: 'Al-Mujadilah',
       arabic_name: 'المجادلة',
       ayah_counts: 22,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 57
+      juz: [28],
+      surah_number: 58
     },
     {
       name: 'Al-Hashr',
       arabic_name: 'الحشر',
       ayah_counts: 24,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 58
+      juz: [28],
+      surah_number: 59
     },
     {
       name: 'Al-Mumtahanah',
       arabic_name: 'الممتحنة',
       ayah_counts: 13,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 59
+      juz: [28],
+      surah_number: 60
     },
     {
       name: 'As-Saf',
       arabic_name: 'الصف',
       ayah_counts: 14,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 60
+      juz: [28],
+      surah_number: 61
     },
     {
       name: "Al-Jumu'ah",
       arabic_name: 'الجمعة',
       ayah_counts: 11,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 61
+      juz: [28],
+      surah_number: 62
     },
     {
       name: 'Al-Munafiqun',
       arabic_name: 'المنافقون',
       ayah_counts: 11,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 62
+      juz: [28],
+      surah_number: 63
     },
     {
       name: 'At-Taghabun',
       arabic_name: 'التغابن',
       ayah_counts: 18,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 63
+      juz: [28],
+      surah_number: 64
     },
     {
       name: 'At-Talaq',
       arabic_name: 'الطلاق',
       ayah_counts: 12,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 64
+      juz: [28],
+      surah_number: 65
     },
     {
       name: 'At-Tahrim',
       arabic_name: 'التحريم',
       ayah_counts: 12,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 65
+      juz: [28],
+      surah_number: 66
     },
     {
       name: 'Al-Mulk',
       arabic_name: 'الملك',
       ayah_counts: 30,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 66
+      juz: [29],
+      surah_number: 67
     },
     {
       name: 'Al-Qalam',
       arabic_name: 'القلم',
       ayah_counts: 52,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 67
+      juz: [29],
+      surah_number: 68
     },
     {
       name: 'Al-Haqqah',
       arabic_name: 'الحاقة',
       ayah_counts: 52,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 68
+      juz: [29],
+      surah_number: 69
     },
     {
       name: "Al-Ma'arij",
       arabic_name: 'المعارج',
       ayah_counts: 44,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 69
+      juz: [29],
+      surah_number: 70
     },
     {
       name: 'Nuh',
       arabic_name: 'نوح',
       ayah_counts: 28,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 70
+      juz: [29],
+      surah_number: 71
     },
     {
       name: 'Al-Jinn',
       arabic_name: 'الجن',
       ayah_counts: 28,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 71
+      juz: [29],
+      surah_number: 72
     },
     {
       name: 'Al-Muzzammil',
       arabic_name: 'المزمل',
       ayah_counts: 20,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 72
+      juz: [29],
+      surah_number: 73
     },
     {
       name: 'Al-Muddaththir',
       arabic_name: 'المدثر',
       ayah_counts: 56,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 73
+      juz: [29],
+      surah_number: 74
     },
     {
       name: 'Al-Qiyamah',
       arabic_name: 'القيامة',
       ayah_counts: 40,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 74
+      juz: [29],
+      surah_number: 75
     },
     {
       name: 'Al-Insan',
       arabic_name: 'الإنسان',
       ayah_counts: 31,
       revelation_type: Revelation.MEDINAN,
-      juz: [30],
-      surah_number: 75
+      juz: [29],
+      surah_number: 76
     },
     {
       name: 'Al-Mursalat',
       arabic_name: 'المرسلات',
       ayah_counts: 50,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 76
+      juz: [29],
+      surah_number: 77
     },
     {
       name: "An-Naba'",
@@ -850,7 +858,7 @@ const main = async () => {
       ayah_counts: 40,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 77
+      surah_number: 78
     },
     {
       name: "An-Nazi'at",
@@ -858,7 +866,7 @@ const main = async () => {
       ayah_counts: 46,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 78
+      surah_number: 79
     },
     {
       name: 'Abasa',
@@ -866,7 +874,7 @@ const main = async () => {
       ayah_counts: 42,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 79
+      surah_number: 80
     },
     {
       name: 'At-Takwir',
@@ -874,7 +882,7 @@ const main = async () => {
       ayah_counts: 29,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 80
+      surah_number: 81
     },
     {
       name: 'Al-Infithar',
@@ -882,7 +890,7 @@ const main = async () => {
       ayah_counts: 19,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 81
+      surah_number: 82
     },
     {
       name: 'Al-Mutaffifin',
@@ -890,7 +898,7 @@ const main = async () => {
       ayah_counts: 36,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 82
+      surah_number: 83
     },
     {
       name: 'Al-Inshiqaq',
@@ -898,7 +906,7 @@ const main = async () => {
       ayah_counts: 25,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 83
+      surah_number: 84
     },
     {
       name: 'Al-Buruj',
@@ -906,7 +914,7 @@ const main = async () => {
       ayah_counts: 22,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 84
+      surah_number: 85
     },
     {
       name: 'At-Tariq',
@@ -914,7 +922,7 @@ const main = async () => {
       ayah_counts: 17,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 85
+      surah_number: 86
     },
     {
       name: "Al-A'la",
@@ -922,7 +930,7 @@ const main = async () => {
       ayah_counts: 19,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 86
+      surah_number: 87
     },
     {
       name: 'Al-Ghashiyah',
@@ -930,7 +938,7 @@ const main = async () => {
       ayah_counts: 26,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 87
+      surah_number: 88
     },
     {
       name: 'Al-Fajr',
@@ -938,7 +946,7 @@ const main = async () => {
       ayah_counts: 30,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 88
+      surah_number: 89
     },
     {
       name: 'Al-Balad',
@@ -946,7 +954,7 @@ const main = async () => {
       ayah_counts: 20,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 89
+      surah_number: 90
     },
     {
       name: 'Ash-Shams',
@@ -954,7 +962,7 @@ const main = async () => {
       ayah_counts: 15,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 90
+      surah_number: 91
     },
     {
       name: 'Al-Lail',
@@ -962,7 +970,7 @@ const main = async () => {
       ayah_counts: 21,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 91
+      surah_number: 92
     },
     {
       name: 'Ad-Duha',
@@ -970,7 +978,7 @@ const main = async () => {
       ayah_counts: 11,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 92
+      surah_number: 93
     },
     {
       name: 'Ash-Sharh',
@@ -978,7 +986,7 @@ const main = async () => {
       ayah_counts: 8,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 93
+      surah_number: 94
     },
     {
       name: 'At-Tin',
@@ -986,7 +994,7 @@ const main = async () => {
       ayah_counts: 8,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 94
+      surah_number: 95
     },
     {
       name: 'Al-Alaq',
@@ -994,7 +1002,7 @@ const main = async () => {
       ayah_counts: 19,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 95
+      surah_number: 96
     },
     {
       name: 'Al-Qadr',
@@ -1002,7 +1010,7 @@ const main = async () => {
       ayah_counts: 5,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 96
+      surah_number: 97
     },
     {
       name: 'Al-Bayyinah',
@@ -1010,7 +1018,7 @@ const main = async () => {
       ayah_counts: 8,
       revelation_type: Revelation.MEDINAN,
       juz: [30],
-      surah_number: 97
+      surah_number: 98
     },
     {
       name: 'Az-Zalzalah',
@@ -1018,7 +1026,7 @@ const main = async () => {
       ayah_counts: 8,
       revelation_type: Revelation.MEDINAN,
       juz: [30],
-      surah_number: 98
+      surah_number: 99
     },
     {
       name: "Al-'Adiyat",
@@ -1026,7 +1034,7 @@ const main = async () => {
       ayah_counts: 11,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 99
+      surah_number: 100
     },
     {
       name: "Al-Qari'ah",
@@ -1034,7 +1042,7 @@ const main = async () => {
       ayah_counts: 11,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 100
+      surah_number: 101
     },
     {
       name: 'Al-Takathur',
@@ -1042,7 +1050,7 @@ const main = async () => {
       ayah_counts: 8,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 101
+      surah_number: 102
     },
     {
       name: "Al-'Asr",
@@ -1050,7 +1058,7 @@ const main = async () => {
       ayah_counts: 3,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 102
+      surah_number: 103
     },
     {
       name: 'Al-Humazah',
@@ -1058,7 +1066,7 @@ const main = async () => {
       ayah_counts: 9,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 103
+      surah_number: 104
     },
     {
       name: 'Al-Fil',
@@ -1066,7 +1074,7 @@ const main = async () => {
       ayah_counts: 5,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 104
+      surah_number: 105
     },
     {
       name: 'Quraish',
@@ -1074,7 +1082,7 @@ const main = async () => {
       ayah_counts: 4,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 105
+      surah_number: 106
     },
     {
       name: "Al-Ma'un",
@@ -1082,7 +1090,7 @@ const main = async () => {
       ayah_counts: 7,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 106
+      surah_number: 107
     },
     {
       name: 'Al-Kauthar',
@@ -1090,7 +1098,7 @@ const main = async () => {
       ayah_counts: 3,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 107
+      surah_number: 108
     },
     {
       name: 'Al-Kafirun',
@@ -1098,7 +1106,7 @@ const main = async () => {
       ayah_counts: 6,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 108
+      surah_number: 109
     },
     {
       name: 'An-Nasr',
@@ -1106,7 +1114,7 @@ const main = async () => {
       ayah_counts: 3,
       revelation_type: Revelation.MEDINAN,
       juz: [30],
-      surah_number: 109
+      surah_number: 110
     },
     {
       name: 'Al-Masad',
@@ -1114,7 +1122,7 @@ const main = async () => {
       ayah_counts: 5,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 110
+      surah_number: 111
     },
     {
       name: 'Al-Ikhlas',
@@ -1122,7 +1130,7 @@ const main = async () => {
       ayah_counts: 4,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 111
+      surah_number: 112
     },
     {
       name: 'Al-Falaq',
@@ -1130,21 +1138,13 @@ const main = async () => {
       ayah_counts: 5,
       revelation_type: Revelation.MECCAN,
       juz: [30],
-      surah_number: 112
+      surah_number: 113
     },
     {
       name: 'An-Nas',
       arabic_name: 'الناس',
       ayah_counts: 6,
       revelation_type: Revelation.MECCAN,
-      juz: [30],
-      surah_number: 113
-    },
-    {
-      name: 'At-Taubah',
-      arabic_name: 'التوبة',
-      ayah_counts: 129,
-      revelation_type: Revelation.MEDINAN,
       juz: [30],
       surah_number: 114
     }
