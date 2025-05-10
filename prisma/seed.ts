@@ -217,2208 +217,6 @@ const refJuz: JuzReq[] = [
   }
 ];
 
-const refSurah = [
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 7,
-    title: 'Al-Fatihah',
-    titleAr: 'الفاتحة',
-    index: '001',
-    pages: '1',
-    juz: [
-      {
-        index: '01',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_7'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 286,
-    title: 'Al-Baqarah',
-    titleAr: 'البقرة',
-    index: '002',
-    pages: '2',
-    juz: [
-      {
-        index: '01',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_141'
-        }
-      },
-      {
-        index: '02',
-        verse: {
-          start: 'verse_142',
-          end: 'verse_252'
-        }
-      },
-      {
-        index: '03',
-        verse: {
-          start: 'verse_253',
-          end: 'verse_286'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 200,
-    title: 'Ali Imran',
-    titleAr: 'آل عمران',
-    index: '003',
-    pages: '45',
-    juz: [
-      {
-        index: '03',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_92'
-        }
-      },
-      {
-        index: '04',
-        verse: {
-          start: 'verse_93',
-          end: 'verse_200'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 176,
-    title: "An-Nisa'",
-    titleAr: 'النساء',
-    index: '004',
-    pages: '69',
-    juz: [
-      {
-        index: '04',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_23'
-        }
-      },
-      {
-        index: '05',
-        verse: {
-          start: 'verse_24',
-          end: 'verse_147'
-        }
-      },
-      {
-        index: '06',
-        verse: {
-          start: 'verse_148',
-          end: 'verse_176'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 120,
-    title: "Al-Ma'idah",
-    titleAr: 'المائدة',
-    index: '005',
-    pages: '95',
-    juz: [
-      {
-        index: '06',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_81'
-        }
-      },
-      {
-        index: '07',
-        verse: {
-          start: 'verse_82',
-          end: 'verse_120'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 165,
-    title: "Al-An'am",
-    titleAr: 'الأنعام',
-    index: '006',
-    pages: '115',
-    juz: [
-      {
-        index: '07',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_110'
-        }
-      },
-      {
-        index: '08',
-        verse: {
-          start: 'verse_111',
-          end: 'verse_165'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 206,
-    title: "Al-A'raf",
-    titleAr: 'الأعراف',
-    index: '007',
-    pages: '136',
-    juz: [
-      {
-        index: '08',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_87'
-        }
-      },
-      {
-        index: '09',
-        verse: {
-          start: 'verse_88',
-          end: 'verse_206'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 75,
-    title: 'Al-Anfal',
-    titleAr: 'الأنفال',
-    index: '008',
-    pages: '160',
-    juz: [
-      {
-        index: '09',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_40'
-        }
-      },
-      {
-        index: '10',
-        verse: {
-          start: 'verse_41',
-          end: 'verse_75'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 129,
-    title: 'At-Taubah',
-    titleAr: 'التوبة',
-    index: '009',
-    pages: '169',
-    juz: [
-      {
-        index: '10',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_92'
-        }
-      },
-      {
-        index: '11',
-        verse: {
-          start: 'verse_93',
-          end: 'verse_129'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 109,
-    title: 'Yunus',
-    titleAr: 'يونس',
-    index: '010',
-    pages: '187',
-    juz: [
-      {
-        index: '11',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_109'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 123,
-    title: 'Hud',
-    titleAr: 'هود',
-    index: '011',
-    pages: '199',
-    juz: [
-      {
-        index: '11',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_5'
-        }
-      },
-      {
-        index: '12',
-        verse: {
-          start: 'verse_6',
-          end: 'verse_123'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 111,
-    title: 'Yusuf',
-    titleAr: 'يوسف',
-    index: '012',
-    pages: '212',
-    juz: [
-      {
-        index: '12',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_52'
-        }
-      },
-      {
-        index: '13',
-        verse: {
-          start: 'verse_53',
-          end: 'verse_111'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 43,
-    title: "Ar-Ra'd",
-    titleAr: 'الرعد',
-    index: '013',
-    pages: '225',
-    juz: [
-      {
-        index: '13',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_43'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 52,
-    title: 'Ibrahim',
-    titleAr: 'إبراهيم',
-    index: '014',
-    pages: '231',
-    juz: [
-      {
-        index: '13',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_52'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 99,
-    title: 'Al-Hijr',
-    titleAr: 'الحجر',
-    index: '015',
-    pages: '237',
-    juz: [
-      {
-        index: '14',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_99'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 128,
-    title: 'An-Nahl',
-    titleAr: 'النحل',
-    index: '016',
-    pages: '242',
-    juz: [
-      {
-        index: '14',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_128'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 111,
-    title: 'Al-Isra',
-    titleAr: 'الإسراء',
-    index: '017',
-    pages: '255',
-    juz: [
-      {
-        index: '15',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_111'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 110,
-    title: 'Al-Kahfi',
-    titleAr: 'الكهف',
-    index: '018',
-    pages: '266',
-    juz: [
-      {
-        index: '15',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_74'
-        }
-      },
-      {
-        index: '16',
-        verse: {
-          start: 'verse_75',
-          end: 'verse_110'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 98,
-    title: 'Maryam',
-    titleAr: 'مريم',
-    index: '019',
-    pages: '277',
-    juz: [
-      {
-        index: '16',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_98'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 135,
-    title: 'Taha',
-    titleAr: 'طه',
-    index: '020',
-    pages: '284',
-    juz: [
-      {
-        index: '16',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_135'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 112,
-    title: 'Al-Anbiya',
-    titleAr: 'الأنبياء',
-    index: '021',
-    pages: '294',
-    juz: [
-      {
-        index: '17',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_112'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 78,
-    title: 'Al-Hajj',
-    titleAr: 'الحج',
-    index: '022',
-    pages: '302',
-    juz: [
-      {
-        index: '17',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_78'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 118,
-    title: "Al-Mu'minun",
-    titleAr: 'المؤمنون',
-    index: '023',
-    pages: '311',
-    juz: [
-      {
-        index: '18',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_118'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 64,
-    title: 'An-Nur',
-    titleAr: 'النور',
-    index: '024',
-    pages: '319',
-    juz: [
-      {
-        index: '18',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_64'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 77,
-    title: 'Al-Furqan',
-    titleAr: 'الفرقان',
-    index: '025',
-    pages: '329',
-    juz: [
-      {
-        index: '18',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_20'
-        }
-      },
-      {
-        index: '19',
-        verse: {
-          start: 'verse_21',
-          end: 'verse_77'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 227,
-    title: "Ash-Shu'ara",
-    titleAr: 'الشعراء',
-    index: '026',
-    pages: '335',
-    juz: [
-      {
-        index: '19',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_227'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 93,
-    title: 'An-Naml',
-    titleAr: 'النمل',
-    index: '027',
-    pages: '345',
-    juz: [
-      {
-        index: '19',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_55'
-        }
-      },
-      {
-        index: '20',
-        verse: {
-          start: 'verse_56',
-          end: 'verse_93'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 88,
-    title: 'Al-Qasas',
-    titleAr: 'القصص',
-    index: '028',
-    pages: '354',
-    juz: [
-      {
-        index: '20',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_88'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 69,
-    title: 'Al-Ankabut',
-    titleAr: 'العنكبوت',
-    index: '029',
-    pages: '364',
-    juz: [
-      {
-        index: '20',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_45'
-        }
-      },
-      {
-        index: '21',
-        verse: {
-          start: 'verse_46',
-          end: 'verse_69'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 60,
-    title: 'Ar-Rum',
-    titleAr: 'الروم',
-    index: '030',
-    pages: '371',
-    juz: [
-      {
-        index: '21',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_60'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 34,
-    title: 'Luqman',
-    titleAr: 'لقمان',
-    index: '031',
-    pages: '377',
-    juz: [
-      {
-        index: '21',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_34'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 30,
-    title: 'As-Sajdah',
-    titleAr: 'السجدة',
-    index: '032',
-    pages: '381',
-    juz: [
-      {
-        index: '21',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_30'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 73,
-    title: 'Al-Ahzab',
-    titleAr: 'الأحزاب',
-    index: '033',
-    pages: '383',
-    juz: [
-      {
-        index: '21',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_30'
-        }
-      },
-      {
-        index: '22',
-        verse: {
-          start: 'verse_31',
-          end: 'verse_73'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 54,
-    title: "Saba'",
-    titleAr: 'سبأ',
-    index: '034',
-    pages: '393',
-    juz: [
-      {
-        index: '22',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_54'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 45,
-    title: 'Fatir',
-    titleAr: 'فاطر',
-    index: '035',
-    pages: '399',
-    juz: [
-      {
-        index: '22',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_45'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 83,
-    title: 'Yasin',
-    titleAr: 'يس',
-    index: '036',
-    pages: '404',
-    juz: [
-      {
-        index: '22',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_27'
-        }
-      },
-      {
-        index: '23',
-        verse: {
-          start: 'verse_28',
-          end: 'verse_83'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 182,
-    title: 'As-Saffat',
-    titleAr: 'الصافات',
-    index: '037',
-    pages: '410',
-    juz: [
-      {
-        index: '23',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_182'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 88,
-    title: 'Sad',
-    titleAr: 'ص',
-    index: '038',
-    pages: '417',
-    juz: [
-      {
-        index: '23',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_88'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 75,
-    title: 'Az-Zumar',
-    titleAr: 'الزمر',
-    index: '039',
-    pages: '422',
-    juz: [
-      {
-        index: '23',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_31'
-        }
-      },
-      {
-        index: '24',
-        verse: {
-          start: 'verse_32',
-          end: 'verse_75'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 85,
-    title: 'Ghafir',
-    titleAr: 'غافر',
-    index: '040',
-    pages: '431',
-    juz: [
-      {
-        index: '24',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_85'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 54,
-    title: 'Fussilat',
-    titleAr: 'فصلت',
-    index: '041',
-    pages: '439',
-    juz: [
-      {
-        index: '24',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_46'
-        }
-      },
-      {
-        index: '25',
-        verse: {
-          start: 'verse_47',
-          end: 'verse_54'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 53,
-    title: 'Ash-Shuraa',
-    titleAr: 'الشورى',
-    index: '042',
-    pages: '445',
-    juz: [
-      {
-        index: '25',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_53'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 89,
-    title: 'Az-Zukhruf',
-    titleAr: 'الزخرف',
-    index: '043',
-    pages: '451',
-    juz: [
-      {
-        index: '25',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_89'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 59,
-    title: 'Ad-Dukhan',
-    titleAr: 'الدخان',
-    index: '044',
-    pages: '457',
-    juz: [
-      {
-        index: '25',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_59'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 37,
-    title: 'Al-Jathiyah',
-    titleAr: 'الجاثية',
-    index: '045',
-    pages: '460',
-    juz: [
-      {
-        index: '25',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_37'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 35,
-    title: 'Al-Ahqaf',
-    titleAr: 'الأحقاف',
-    index: '046',
-    pages: '464',
-    juz: [
-      {
-        index: '26',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_35'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 38,
-    title: 'Muhammad',
-    titleAr: 'محمد',
-    index: '047',
-    pages: '468',
-    juz: [
-      {
-        index: '26',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_38'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 29,
-    title: 'Al-Fath',
-    titleAr: 'الفتح',
-    index: '048',
-    pages: '472',
-    juz: [
-      {
-        index: '26',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_29'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 18,
-    title: 'Al-Hujurat',
-    titleAr: 'الحجرات',
-    index: '049',
-    pages: '477',
-    juz: [
-      {
-        index: '26',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_18'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 45,
-    title: 'Qaf',
-    titleAr: 'ق',
-    index: '050',
-    pages: '479',
-    juz: [
-      {
-        index: '26',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_45'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 60,
-    title: 'Adh-Dhariyat',
-    titleAr: 'الذاريات',
-    index: '051',
-    pages: '482',
-    juz: [
-      {
-        index: '26',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_30'
-        }
-      },
-      {
-        index: '27',
-        verse: {
-          start: 'verse_31',
-          end: 'verse_60'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 49,
-    title: 'At-Tur',
-    titleAr: 'الطور',
-    index: '052',
-    pages: '485',
-    juz: [
-      {
-        index: '27',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_49'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 62,
-    title: 'An-Najm',
-    titleAr: 'النجم',
-    index: '053',
-    pages: '487',
-    juz: [
-      {
-        index: '27',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_62'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 55,
-    title: 'Al-Qamar',
-    titleAr: 'القمر',
-    index: '054',
-    pages: '490',
-    juz: [
-      {
-        index: '27',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_55'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 78,
-    title: 'Ar-Rahman',
-    titleAr: 'الرحمن',
-    index: '055',
-    pages: '493',
-    juz: [
-      {
-        index: '27',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_78'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 96,
-    title: "Al-Waqi'ah",
-    titleAr: 'الواقعة',
-    index: '056',
-    pages: '496',
-    juz: [
-      {
-        index: '27',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_96'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 29,
-    title: 'Al-Hadid',
-    titleAr: 'الحديد',
-    index: '057',
-    pages: '499',
-    juz: [
-      {
-        index: '27',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_29'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 22,
-    title: 'Al-Mujadilah',
-    titleAr: 'المجادلة',
-    index: '058',
-    pages: '504',
-    juz: [
-      {
-        index: '28',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_22'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 24,
-    title: 'Al-Hashr',
-    titleAr: 'الحشر',
-    index: '059',
-    pages: '507',
-    juz: [
-      {
-        index: '28',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_24'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 13,
-    title: 'Al-Mumtahanah',
-    titleAr: 'الممتحنة',
-    index: '060',
-    pages: '510',
-    juz: [
-      {
-        index: '28',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_13'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 14,
-    title: 'As-Saf',
-    titleAr: 'الصف',
-    index: '061',
-    pages: '513',
-    juz: [
-      {
-        index: '28',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_14'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 11,
-    title: "Al-Jumu'ah",
-    titleAr: 'الجمعة',
-    index: '062',
-    pages: '515',
-    juz: [
-      {
-        index: '28',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_11'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 11,
-    title: 'Al-Munafiqun',
-    titleAr: 'المنافقون',
-    index: '063',
-    pages: '516',
-    juz: [
-      {
-        index: '28',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_11'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 18,
-    title: 'At-Taghabun',
-    titleAr: 'التغابن',
-    index: '064',
-    pages: '518',
-    juz: [
-      {
-        index: '28',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_18'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 12,
-    title: 'At-Talaq',
-    titleAr: 'الطلاق',
-    index: '065',
-    pages: '520',
-    juz: [
-      {
-        index: '28',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_12'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 12,
-    title: 'At-Tahrim',
-    titleAr: 'التحريم',
-    index: '066',
-    pages: '522',
-    juz: [
-      {
-        index: '28',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_12'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 30,
-    title: 'Al-Mulk',
-    titleAr: 'الملك',
-    index: '067',
-    pages: '524',
-    juz: [
-      {
-        index: '29',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_30'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 52,
-    title: 'Al-Qalam',
-    titleAr: 'القلم',
-    index: '068',
-    pages: '526',
-    juz: [
-      {
-        index: '29',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_52'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 52,
-    title: 'Al-Haqqah',
-    titleAr: 'الحاقة',
-    index: '069',
-    pages: '529',
-    juz: [
-      {
-        index: '29',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_52'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 44,
-    title: "Al-Ma'arij",
-    titleAr: 'المعارج',
-    index: '070',
-    pages: '531',
-    juz: [
-      {
-        index: '29',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_44'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 28,
-    title: 'Nuh',
-    titleAr: 'نوح',
-    index: '071',
-    pages: '533',
-    juz: [
-      {
-        index: '29',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_28'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 28,
-    title: 'Al-Jinn',
-    titleAr: 'الجن',
-    index: '072',
-    pages: '534',
-    juz: [
-      {
-        index: '29',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_28'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 20,
-    title: 'Al-Muzzammil',
-    titleAr: 'المزمل',
-    index: '073',
-    pages: '537',
-    juz: [
-      {
-        index: '29',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_20'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 56,
-    title: 'Al-Muddaththir',
-    titleAr: 'المدثر',
-    index: '074',
-    pages: '538',
-    juz: [
-      {
-        index: '29',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_56'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 40,
-    title: 'Al-Qiyamah',
-    titleAr: 'القيامة',
-    index: '075',
-    pages: '540',
-    juz: [
-      {
-        index: '29',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_40'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 31,
-    title: 'Al-Insan',
-    titleAr: 'الإنسان',
-    index: '076',
-    pages: '542',
-    juz: [
-      {
-        index: '29',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_31'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 50,
-    title: 'Al-Mursalat',
-    titleAr: 'المرسلات',
-    index: '077',
-    pages: '544',
-    juz: [
-      {
-        index: '29',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_50'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 40,
-    title: "An-Naba'",
-    titleAr: 'النبأ',
-    index: '078',
-    pages: '545',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_40'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 46,
-    title: "An-Nazi'at",
-    titleAr: 'النازعات',
-    index: '079',
-    pages: '547',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_46'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 42,
-    title: 'Abasa',
-    titleAr: 'عبس',
-    index: '080',
-    pages: '548',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_42'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 29,
-    title: 'At-Takwir',
-    titleAr: 'التكوير',
-    index: '081',
-    pages: '550',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_29'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 19,
-    title: 'Al-Infithar',
-    titleAr: 'الإنفطار',
-    index: '082',
-    pages: '551',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_19'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 36,
-    title: 'Al-Mutaffifin',
-    titleAr: 'المطففين',
-    index: '083',
-    pages: '552',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_36'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 25,
-    title: 'Al-Inshiqaq',
-    titleAr: 'الإنشقاق',
-    index: '084',
-    pages: '553',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_25'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 22,
-    title: 'Al-Buruj',
-    titleAr: 'البروج',
-    index: '085',
-    pages: '554',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_22'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 17,
-    title: 'At-Tariq',
-    titleAr: 'الطارق',
-    index: '086',
-    pages: '555',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_17'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 19,
-    title: "Al-A'la",
-    titleAr: 'الأعلى',
-    index: '087',
-    pages: '556',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_19'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 26,
-    title: 'Al-Ghashiyah',
-    titleAr: 'الغاشية',
-    index: '088',
-    pages: '556',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_26'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 30,
-    title: 'Al-Fajr',
-    titleAr: 'الفجر',
-    index: '089',
-    pages: '557',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_30'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 20,
-    title: 'Al-Balad',
-    titleAr: 'البلد',
-    index: '090',
-    pages: '559',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_20'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 15,
-    title: 'Ash-Shams',
-    titleAr: 'الشمس',
-    index: '091',
-    pages: '559',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_15'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 21,
-    title: 'Al-Lail',
-    titleAr: 'الليل',
-    index: '092',
-    pages: '560',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_21'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 11,
-    title: 'Ad-Duha',
-    titleAr: 'الضحى',
-    index: '093',
-    pages: '561',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_11'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 8,
-    title: 'Ash-Sharh',
-    titleAr: 'الشرح',
-    index: '094',
-    pages: '561',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_8'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 8,
-    title: 'At-Tin',
-    titleAr: 'التين',
-    index: '095',
-    pages: '562',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_8'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 19,
-    title: 'Al-Alaq',
-    titleAr: 'العلق',
-    index: '096',
-    pages: '562',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_19'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 5,
-    title: 'Al-Qadr',
-    titleAr: 'القدر',
-    index: '097',
-    pages: '563',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_5'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 8,
-    title: 'Al-Bayyinah',
-    titleAr: 'البينة',
-    index: '098',
-    pages: '563',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_8'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 8,
-    title: 'Az-Zalzalah',
-    titleAr: 'الزلزلة',
-    index: '099',
-    pages: '564',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_8'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 11,
-    title: "Al-'Adiyat",
-    titleAr: 'العاديات',
-    index: '100',
-    pages: '564',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_11'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 11,
-    title: "Al-Qari'ah",
-    titleAr: 'القارعة',
-    index: '101',
-    pages: '565',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_11'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 8,
-    title: 'Al-Takathur',
-    titleAr: 'التكاثر',
-    index: '102',
-    pages: '565',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_8'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 3,
-    title: "Al-'Asr",
-    titleAr: 'العصر',
-    index: '103',
-    pages: '566',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_3'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 9,
-    title: 'Al-Humazah',
-    titleAr: 'الهمزة',
-    index: '104',
-    pages: '566',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_9'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 5,
-    title: 'Al-Fil',
-    titleAr: 'الفيل',
-    index: '105',
-    pages: '566',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_5'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 4,
-    title: 'Quraish',
-    titleAr: 'قريش',
-    index: '106',
-    pages: '567',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_4'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 7,
-    title: "Al-Ma'un",
-    titleAr: 'الماعون',
-    index: '107',
-    pages: '567',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_7'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 3,
-    title: 'Al-Kauthar',
-    titleAr: 'الكوثر',
-    index: '108',
-    pages: '567',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_3'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 6,
-    title: 'Al-Kafirun',
-    titleAr: 'الكافرون',
-    index: '109',
-    pages: '568',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_6'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Medina',
-    type: 'Madaniyah',
-    count: 3,
-    title: 'An-Nasr',
-    titleAr: 'النصر',
-    index: '110',
-    pages: '568',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_3'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 5,
-    title: 'Al-Masad',
-    titleAr: 'المسد',
-    index: '111',
-    pages: '568',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_5'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 4,
-    title: 'Al-Ikhlas',
-    titleAr: 'الإخلاص',
-    index: '112',
-    pages: '569',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_4'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 5,
-    title: 'Al-Falaq',
-    titleAr: 'الفلق',
-    index: '113',
-    pages: '569',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_5'
-        }
-      }
-    ]
-  },
-  {
-    place: 'Mecca',
-    type: 'Makkiyah',
-    count: 6,
-    title: 'An-Nas',
-    titleAr: 'الناس',
-    index: '114',
-    pages: '569',
-    juz: [
-      {
-        index: '30',
-        verse: {
-          start: 'verse_1',
-          end: 'verse_6'
-        }
-      }
-    ]
-  }
-];
-
 async function fetchData(i): Promise<Surah> {
   const res = await fetch(
     `https://raw.githubusercontent.com/semarketir/quranjson/master/source/surah/surah_${i + 1}.json`
@@ -2437,15 +235,920 @@ const main = async () => {
     data: refJuz
   });
 
-  const surahData = refSurah.map((item) => {
-    return {
-      name: item.title,
-      arabic_name: item.titleAr,
-      ayah_counts: item.count,
-      revelation_type:
-        item.place === 'Mecca' ? Revelation.MECCAN : Revelation.MEDINAN
-    };
-  });
+  const surahData = [
+    {
+      name: 'Al-Fatihah',
+      arabic_name: 'الفاتحة',
+      ayah_counts: 7,
+      revelation_type: Revelation.MECCAN,
+      juz: [1],
+      surah_number: 1
+    },
+    {
+      name: 'Al-Baqarah',
+      arabic_name: 'البقرة',
+      ayah_counts: 286,
+      revelation_type: Revelation.MEDINAN,
+      juz: [1, 2, 3],
+      surah_number: 2
+    },
+    {
+      name: 'Ali Imran',
+      arabic_name: 'آل عمران',
+      ayah_counts: 200,
+      revelation_type: Revelation.MEDINAN,
+      juz: [4],
+      surah_number: 3
+    },
+    {
+      name: "An-Nisa'",
+      arabic_name: 'النساء',
+      ayah_counts: 176,
+      revelation_type: Revelation.MEDINAN,
+      juz: [5, 6],
+      surah_number: 4
+    },
+    {
+      name: "Al-Ma'idah",
+      arabic_name: 'المائدة',
+      ayah_counts: 120,
+      revelation_type: Revelation.MEDINAN,
+      juz: [6, 7],
+      surah_number: 5
+    },
+    {
+      name: "Al-An'am",
+      arabic_name: 'الأنعام',
+      ayah_counts: 165,
+      revelation_type: Revelation.MECCAN,
+      juz: [7],
+      surah_number: 6
+    },
+    {
+      name: "Al-A'raf",
+      arabic_name: 'الأعراف',
+      ayah_counts: 206,
+      revelation_type: Revelation.MECCAN,
+      juz: [8, 9],
+      surah_number: 7
+    },
+    {
+      name: 'Al-Anfal',
+      arabic_name: 'الأنفال',
+      ayah_counts: 75,
+      revelation_type: Revelation.MEDINAN,
+      juz: [9, 10],
+      surah_number: 8
+    },
+    {
+      name: 'Yunus',
+      arabic_name: 'يونس',
+      ayah_counts: 109,
+      revelation_type: Revelation.MECCAN,
+      juz: [10, 11],
+      surah_number: 9
+    },
+    {
+      name: 'Hud',
+      arabic_name: 'هود',
+      ayah_counts: 123,
+      revelation_type: Revelation.MECCAN,
+      juz: [11],
+      surah_number: 10
+    },
+    {
+      name: 'Yusuf',
+      arabic_name: 'يوسف',
+      ayah_counts: 111,
+      revelation_type: Revelation.MECCAN,
+      juz: [11, 12],
+      surah_number: 11
+    },
+    {
+      name: "Ar-Ra'd",
+      arabic_name: 'الرعد',
+      ayah_counts: 43,
+      revelation_type: Revelation.MEDINAN,
+      juz: [12],
+      surah_number: 12
+    },
+    {
+      name: 'Ibrahim',
+      arabic_name: 'إبراهيم',
+      ayah_counts: 52,
+      revelation_type: Revelation.MECCAN,
+      juz: [13],
+      surah_number: 13
+    },
+    {
+      name: 'Al-Hijr',
+      arabic_name: 'الحجر',
+      ayah_counts: 99,
+      revelation_type: Revelation.MECCAN,
+      juz: [13, 14],
+      surah_number: 14
+    },
+    {
+      name: 'An-Nahl',
+      arabic_name: 'النحل',
+      ayah_counts: 128,
+      revelation_type: Revelation.MECCAN,
+      juz: [14],
+      surah_number: 15
+    },
+    {
+      name: 'Al-Isra',
+      arabic_name: 'الإسراء',
+      ayah_counts: 111,
+      revelation_type: Revelation.MECCAN,
+      juz: [14, 15],
+      surah_number: 16
+    },
+    {
+      name: 'Al-Kahfi',
+      arabic_name: 'الكهف',
+      ayah_counts: 110,
+      revelation_type: Revelation.MECCAN,
+      juz: [15],
+      surah_number: 17
+    },
+    {
+      name: 'Maryam',
+      arabic_name: 'مريم',
+      ayah_counts: 98,
+      revelation_type: Revelation.MECCAN,
+      juz: [15, 16],
+      surah_number: 18
+    },
+    {
+      name: 'Taha',
+      arabic_name: 'طه',
+      ayah_counts: 135,
+      revelation_type: Revelation.MECCAN,
+      juz: [16],
+      surah_number: 19
+    },
+    {
+      name: 'Al-Anbiya',
+      arabic_name: 'الأنبياء',
+      ayah_counts: 112,
+      revelation_type: Revelation.MECCAN,
+      juz: [16],
+      surah_number: 20
+    },
+    {
+      name: 'Al-Hajj',
+      arabic_name: 'الحج',
+      ayah_counts: 78,
+      revelation_type: Revelation.MEDINAN,
+      juz: [17],
+      surah_number: 21
+    },
+    {
+      name: "Al-Mu'minun",
+      arabic_name: 'المؤمنون',
+      ayah_counts: 118,
+      revelation_type: Revelation.MECCAN,
+      juz: [17, 18],
+      surah_number: 22
+    },
+    {
+      name: 'An-Nur',
+      arabic_name: 'النور',
+      ayah_counts: 64,
+      revelation_type: Revelation.MEDINAN,
+      juz: [18],
+      surah_number: 23
+    },
+    {
+      name: 'Al-Furqan',
+      arabic_name: 'الفرقان',
+      ayah_counts: 77,
+      revelation_type: Revelation.MECCAN,
+      juz: [18, 19],
+      surah_number: 24
+    },
+    {
+      name: "Ash-Shu'ara",
+      arabic_name: 'الشعراء',
+      ayah_counts: 227,
+      revelation_type: Revelation.MECCAN,
+      juz: [19],
+      surah_number: 25
+    },
+    {
+      name: 'An-Naml',
+      arabic_name: 'النمل',
+      ayah_counts: 93,
+      revelation_type: Revelation.MECCAN,
+      juz: [19],
+      surah_number: 26
+    },
+    {
+      name: 'Al-Qasas',
+      arabic_name: 'القصص',
+      ayah_counts: 88,
+      revelation_type: Revelation.MECCAN,
+      juz: [20],
+      surah_number: 27
+    },
+    {
+      name: 'Al-Ankabut',
+      arabic_name: 'العنكبوت',
+      ayah_counts: 69,
+      revelation_type: Revelation.MECCAN,
+      juz: [20],
+      surah_number: 28
+    },
+    {
+      name: 'Ar-Rum',
+      arabic_name: 'الروم',
+      ayah_counts: 60,
+      revelation_type: Revelation.MECCAN,
+      juz: [21],
+      surah_number: 29
+    },
+    {
+      name: 'Luqman',
+      arabic_name: 'لقمان',
+      ayah_counts: 34,
+      revelation_type: Revelation.MECCAN,
+      juz: [21],
+      surah_number: 30
+    },
+    {
+      name: 'As-Sajdah',
+      arabic_name: 'السجدة',
+      ayah_counts: 30,
+      revelation_type: Revelation.MECCAN,
+      juz: [21, 22],
+      surah_number: 31
+    },
+    {
+      name: 'Al-Ahzab',
+      arabic_name: 'الأحزاب',
+      ayah_counts: 73,
+      revelation_type: Revelation.MEDINAN,
+      juz: [22],
+      surah_number: 32
+    },
+    {
+      name: "Saba'",
+      arabic_name: 'سبأ',
+      ayah_counts: 54,
+      revelation_type: Revelation.MECCAN,
+      juz: [23],
+      surah_number: 33
+    },
+    {
+      name: 'Fatir',
+      arabic_name: 'فاطر',
+      ayah_counts: 45,
+      revelation_type: Revelation.MECCAN,
+      juz: [23],
+      surah_number: 34
+    },
+    {
+      name: 'Yasin',
+      arabic_name: 'يس',
+      ayah_counts: 83,
+      revelation_type: Revelation.MECCAN,
+      juz: [23, 24],
+      surah_number: 35
+    },
+    {
+      name: 'As-Saffat',
+      arabic_name: 'الصافات',
+      ayah_counts: 182,
+      revelation_type: Revelation.MECCAN,
+      juz: [24],
+      surah_number: 36
+    },
+    {
+      name: 'Sad',
+      arabic_name: 'ص',
+      ayah_counts: 88,
+      revelation_type: Revelation.MECCAN,
+      juz: [25],
+      surah_number: 37
+    },
+    {
+      name: 'Az-Zumar',
+      arabic_name: 'الزمر',
+      ayah_counts: 75,
+      revelation_type: Revelation.MECCAN,
+      juz: [25, 26],
+      surah_number: 38
+    },
+    {
+      name: 'Ghafir',
+      arabic_name: 'غافر',
+      ayah_counts: 85,
+      revelation_type: Revelation.MECCAN,
+      juz: [26],
+      surah_number: 39
+    },
+    {
+      name: 'Fussilat',
+      arabic_name: 'فصلت',
+      ayah_counts: 54,
+      revelation_type: Revelation.MECCAN,
+      juz: [26, 27],
+      surah_number: 40
+    },
+    {
+      name: 'Ash-Shuraa',
+      arabic_name: 'الشورى',
+      ayah_counts: 53,
+      revelation_type: Revelation.MECCAN,
+      juz: [27],
+      surah_number: 41
+    },
+    {
+      name: 'Az-Zukhruf',
+      arabic_name: 'الزخرف',
+      ayah_counts: 89,
+      revelation_type: Revelation.MECCAN,
+      juz: [27],
+      surah_number: 42
+    },
+    {
+      name: 'Ad-Dukhan',
+      arabic_name: 'الدخان',
+      ayah_counts: 59,
+      revelation_type: Revelation.MECCAN,
+      juz: [27, 28],
+      surah_number: 43
+    },
+    {
+      name: 'Al-Jathiyah',
+      arabic_name: 'الجاثية',
+      ayah_counts: 37,
+      revelation_type: Revelation.MECCAN,
+      juz: [28],
+      surah_number: 44
+    },
+    {
+      name: 'Al-Ahqaf',
+      arabic_name: 'الأحقاف',
+      ayah_counts: 35,
+      revelation_type: Revelation.MECCAN,
+      juz: [28],
+      surah_number: 45
+    },
+    {
+      name: 'Muhammad',
+      arabic_name: 'محمد',
+      ayah_counts: 38,
+      revelation_type: Revelation.MEDINAN,
+      juz: [29],
+      surah_number: 46
+    },
+    {
+      name: 'Al-Fath',
+      arabic_name: 'الفتح',
+      ayah_counts: 29,
+      revelation_type: Revelation.MEDINAN,
+      juz: [29],
+      surah_number: 47
+    },
+    {
+      name: 'Al-Hujurat',
+      arabic_name: 'الحجرات',
+      ayah_counts: 18,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 48
+    },
+    {
+      name: 'Qaf',
+      arabic_name: 'ق',
+      ayah_counts: 45,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 49
+    },
+    {
+      name: 'Adh-Dhariyat',
+      arabic_name: 'الذاريات',
+      ayah_counts: 60,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 50
+    },
+    {
+      name: 'At-Tur',
+      arabic_name: 'الطور',
+      ayah_counts: 49,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 51
+    },
+    {
+      name: 'An-Najm',
+      arabic_name: 'النجم',
+      ayah_counts: 62,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 52
+    },
+    {
+      name: 'Al-Qamar',
+      arabic_name: 'القمر',
+      ayah_counts: 55,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 53
+    },
+    {
+      name: 'Ar-Rahman',
+      arabic_name: 'الرحمن',
+      ayah_counts: 78,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 54
+    },
+    {
+      name: "Al-Waqi'ah",
+      arabic_name: 'الواقعة',
+      ayah_counts: 96,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 55
+    },
+    {
+      name: 'Al-Hadid',
+      arabic_name: 'الحديد',
+      ayah_counts: 29,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 56
+    },
+    {
+      name: 'Al-Mujadilah',
+      arabic_name: 'المجادلة',
+      ayah_counts: 22,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 57
+    },
+    {
+      name: 'Al-Hashr',
+      arabic_name: 'الحشر',
+      ayah_counts: 24,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 58
+    },
+    {
+      name: 'Al-Mumtahanah',
+      arabic_name: 'الممتحنة',
+      ayah_counts: 13,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 59
+    },
+    {
+      name: 'As-Saf',
+      arabic_name: 'الصف',
+      ayah_counts: 14,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 60
+    },
+    {
+      name: "Al-Jumu'ah",
+      arabic_name: 'الجمعة',
+      ayah_counts: 11,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 61
+    },
+    {
+      name: 'Al-Munafiqun',
+      arabic_name: 'المنافقون',
+      ayah_counts: 11,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 62
+    },
+    {
+      name: 'At-Taghabun',
+      arabic_name: 'التغابن',
+      ayah_counts: 18,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 63
+    },
+    {
+      name: 'At-Talaq',
+      arabic_name: 'الطلاق',
+      ayah_counts: 12,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 64
+    },
+    {
+      name: 'At-Tahrim',
+      arabic_name: 'التحريم',
+      ayah_counts: 12,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 65
+    },
+    {
+      name: 'Al-Mulk',
+      arabic_name: 'الملك',
+      ayah_counts: 30,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 66
+    },
+    {
+      name: 'Al-Qalam',
+      arabic_name: 'القلم',
+      ayah_counts: 52,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 67
+    },
+    {
+      name: 'Al-Haqqah',
+      arabic_name: 'الحاقة',
+      ayah_counts: 52,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 68
+    },
+    {
+      name: "Al-Ma'arij",
+      arabic_name: 'المعارج',
+      ayah_counts: 44,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 69
+    },
+    {
+      name: 'Nuh',
+      arabic_name: 'نوح',
+      ayah_counts: 28,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 70
+    },
+    {
+      name: 'Al-Jinn',
+      arabic_name: 'الجن',
+      ayah_counts: 28,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 71
+    },
+    {
+      name: 'Al-Muzzammil',
+      arabic_name: 'المزمل',
+      ayah_counts: 20,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 72
+    },
+    {
+      name: 'Al-Muddaththir',
+      arabic_name: 'المدثر',
+      ayah_counts: 56,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 73
+    },
+    {
+      name: 'Al-Qiyamah',
+      arabic_name: 'القيامة',
+      ayah_counts: 40,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 74
+    },
+    {
+      name: 'Al-Insan',
+      arabic_name: 'الإنسان',
+      ayah_counts: 31,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 75
+    },
+    {
+      name: 'Al-Mursalat',
+      arabic_name: 'المرسلات',
+      ayah_counts: 50,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 76
+    },
+    {
+      name: "An-Naba'",
+      arabic_name: 'النبأ',
+      ayah_counts: 40,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 77
+    },
+    {
+      name: "An-Nazi'at",
+      arabic_name: 'النازعات',
+      ayah_counts: 46,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 78
+    },
+    {
+      name: 'Abasa',
+      arabic_name: 'عبس',
+      ayah_counts: 42,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 79
+    },
+    {
+      name: 'At-Takwir',
+      arabic_name: 'التكوير',
+      ayah_counts: 29,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 80
+    },
+    {
+      name: 'Al-Infithar',
+      arabic_name: 'الإنفطار',
+      ayah_counts: 19,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 81
+    },
+    {
+      name: 'Al-Mutaffifin',
+      arabic_name: 'المطففين',
+      ayah_counts: 36,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 82
+    },
+    {
+      name: 'Al-Inshiqaq',
+      arabic_name: 'الإنشقاق',
+      ayah_counts: 25,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 83
+    },
+    {
+      name: 'Al-Buruj',
+      arabic_name: 'البروج',
+      ayah_counts: 22,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 84
+    },
+    {
+      name: 'At-Tariq',
+      arabic_name: 'الطارق',
+      ayah_counts: 17,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 85
+    },
+    {
+      name: "Al-A'la",
+      arabic_name: 'الأعلى',
+      ayah_counts: 19,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 86
+    },
+    {
+      name: 'Al-Ghashiyah',
+      arabic_name: 'الغاشية',
+      ayah_counts: 26,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 87
+    },
+    {
+      name: 'Al-Fajr',
+      arabic_name: 'الفجر',
+      ayah_counts: 30,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 88
+    },
+    {
+      name: 'Al-Balad',
+      arabic_name: 'البلد',
+      ayah_counts: 20,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 89
+    },
+    {
+      name: 'Ash-Shams',
+      arabic_name: 'الشمس',
+      ayah_counts: 15,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 90
+    },
+    {
+      name: 'Al-Lail',
+      arabic_name: 'الليل',
+      ayah_counts: 21,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 91
+    },
+    {
+      name: 'Ad-Duha',
+      arabic_name: 'الضحى',
+      ayah_counts: 11,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 92
+    },
+    {
+      name: 'Ash-Sharh',
+      arabic_name: 'الشرح',
+      ayah_counts: 8,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 93
+    },
+    {
+      name: 'At-Tin',
+      arabic_name: 'التين',
+      ayah_counts: 8,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 94
+    },
+    {
+      name: 'Al-Alaq',
+      arabic_name: 'العلق',
+      ayah_counts: 19,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 95
+    },
+    {
+      name: 'Al-Qadr',
+      arabic_name: 'القدر',
+      ayah_counts: 5,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 96
+    },
+    {
+      name: 'Al-Bayyinah',
+      arabic_name: 'البينة',
+      ayah_counts: 8,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 97
+    },
+    {
+      name: 'Az-Zalzalah',
+      arabic_name: 'الزلزلة',
+      ayah_counts: 8,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 98
+    },
+    {
+      name: "Al-'Adiyat",
+      arabic_name: 'العاديات',
+      ayah_counts: 11,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 99
+    },
+    {
+      name: "Al-Qari'ah",
+      arabic_name: 'القارعة',
+      ayah_counts: 11,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 100
+    },
+    {
+      name: 'Al-Takathur',
+      arabic_name: 'التكاثر',
+      ayah_counts: 8,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 101
+    },
+    {
+      name: "Al-'Asr",
+      arabic_name: 'العصر',
+      ayah_counts: 3,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 102
+    },
+    {
+      name: 'Al-Humazah',
+      arabic_name: 'الهمزة',
+      ayah_counts: 9,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 103
+    },
+    {
+      name: 'Al-Fil',
+      arabic_name: 'الفيل',
+      ayah_counts: 5,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 104
+    },
+    {
+      name: 'Quraish',
+      arabic_name: 'قريش',
+      ayah_counts: 4,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 105
+    },
+    {
+      name: "Al-Ma'un",
+      arabic_name: 'الماعون',
+      ayah_counts: 7,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 106
+    },
+    {
+      name: 'Al-Kauthar',
+      arabic_name: 'الكوثر',
+      ayah_counts: 3,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 107
+    },
+    {
+      name: 'Al-Kafirun',
+      arabic_name: 'الكافرون',
+      ayah_counts: 6,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 108
+    },
+    {
+      name: 'An-Nasr',
+      arabic_name: 'النصر',
+      ayah_counts: 3,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 109
+    },
+    {
+      name: 'Al-Masad',
+      arabic_name: 'المسد',
+      ayah_counts: 5,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 110
+    },
+    {
+      name: 'Al-Ikhlas',
+      arabic_name: 'الإخلاص',
+      ayah_counts: 4,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 111
+    },
+    {
+      name: 'Al-Falaq',
+      arabic_name: 'الفلق',
+      ayah_counts: 5,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 112
+    },
+    {
+      name: 'An-Nas',
+      arabic_name: 'الناس',
+      ayah_counts: 6,
+      revelation_type: Revelation.MECCAN,
+      juz: [30],
+      surah_number: 113
+    },
+    {
+      name: 'At-Taubah',
+      arabic_name: 'التوبة',
+      ayah_counts: 129,
+      revelation_type: Revelation.MEDINAN,
+      juz: [30],
+      surah_number: 114
+    }
+  ];
 
   const insertSurahData = await prismaClient.surah.createManyAndReturn({
     data: surahData

@@ -1,24 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { CreateSurahDto } from './dto/create-ref.dto';
-import { UpdateRefDto } from './dto/update-ref.dto';
-import { Revelation } from '@prisma/client';
 import { prismaClient } from '../../application/database';
 
 @Injectable()
 export class RefsService {
-  findAll() {
-    return `This action returns all refs`;
+  getJuz() {
+    return prismaClient.juz.findMany({
+      orderBy: {
+        juz: 'asc'
+      }
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ref`;
-  }
-
-  update(id: number, updateRefDto: UpdateRefDto) {
-    return `This action updates a #${id} ref`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} ref`;
+  getSurahByJuz(juz: number) {
+    return prismaClient.surah.findMany({
+      where: {
+        juz: {
+          has: juz
+        }
+      }
+    });
   }
 }
