@@ -18,7 +18,7 @@ export class CreateStudentDto {
   grade: string;
 
   @IsEnum(GradeStatus)
-  gradeStatus: GradeStatus;
+  grade_status: GradeStatus;
 
   @IsDate()
   @ApiProperty({ example: '2000-11-11' })

@@ -14,7 +14,7 @@ describe('UsersService', () => {
     created_at: new Date()
   };
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UserController],
       providers: [UsersService],
@@ -51,7 +51,7 @@ describe('UsersService', () => {
       limit: 5
     };
     const result = await service.findAll({
-      paginationDto: paginate
+      pagination: paginate
     });
     expect(result).toHaveProperty('data');
     expect(result).toHaveProperty('meta');

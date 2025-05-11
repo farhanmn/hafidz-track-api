@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "client"
 }
 
 datasource db {
@@ -49,19 +50,19 @@ enum GradeStatus {
 }
 
 model Student {
-  id          String        @id @default(uuid()) @db.Uuid
-  musyrif_id  String        @db.Uuid
-  name        String        @db.VarChar()
-  gender      Gender        @default(L)
-  grade       String        @db.VarChar()
-  gradeStatus GradeStatus
-  birth_date  DateTime      @db.Date
-  join_date   DateTime?     @db.Date
-  status      StudentStatus @default(ACTIVE)
-  created_at  DateTime      @default(now())
-  updated_at  DateTime      @default(now())
+  id           String        @id @default(uuid()) @db.Uuid
+  musyrif_id   String        @db.Uuid
+  name         String        @db.VarChar()
+  gender       Gender        @default(L)
+  grade        String        @db.VarChar()
+  grade_status GradeStatus
+  birth_date   DateTime      @db.Date
+  join_date    DateTime?     @db.Date
+  status       StudentStatus @default(ACTIVE)
+  created_at   DateTime      @default(now())
+  updated_at   DateTime      @default(now())
 
-  MusyrifUser      User               @relation(fields: [musyrif_id], references: [id])
+  MusyrifUser      User               @relation(fields: [musyrif_id], references: [id], onDelete: Cascade)
   MemorizingLogs   MemorizingLogs[]
   Parent           Parent[]
   MurojaahLogs     MurojaahLogs[]
@@ -88,8 +89,8 @@ model Attendance {
   recorded_by String           @db.Uuid
   created_at  DateTime         @default(now())
 
-  AttendanceStudent Student @relation(fields: [student_id], references: [id])
-  AttendaceMusyrif  User    @relation(fields: [recorded_by], references: [id])
+  AttendanceStudent Student @relation(fields: [student_id], references: [id], onDelete: Cascade)
+  AttendaceMusyrif  User    @relation(fields: [recorded_by], references: [id], onDelete: Cascade)
 
   @@map("attendances")
 }
@@ -109,7 +110,7 @@ model Parent {
   description   String?      @db.Text
   address       String?      @db.Text
 
-  ParentStudent Student @relation(fields: [student_id], references: [id])
+  ParentStudent Student @relation(fields: [student_id], references: [id], onDelete: Cascade)
 
   @@map("parents")
 }
@@ -134,8 +135,8 @@ model MemorizingLogs {
   created_at      DateTime   @default(now())
   updated_at      DateTime   @default(now())
 
-  MemorizingLogsStudent Student @relation(fields: [student_id], references: [id])
-  MemorizingLogsMusyrif User    @relation(fields: [musyrif_id], references: [id])
+  MemorizingLogsStudent Student @relation(fields: [student_id], references: [id], onDelete: Cascade)
+  MemorizingLogsMusyrif User    @relation(fields: [musyrif_id], references: [id], onDelete: Cascade)
 
   @@map("memorizing_logs")
 }
@@ -155,8 +156,8 @@ model MurojaahLogs {
   created_at      DateTime   @default(now())
   updated_at      DateTime   @default(now())
 
-  MurojaahLogsStudent Student @relation(fields: [student_id], references: [id])
-  MurojaahLogsMusyrif User    @relation(fields: [musyrif_id], references: [id])
+  MurojaahLogsStudent Student @relation(fields: [student_id], references: [id], onDelete: Cascade)
+  MurojaahLogsMusyrif User    @relation(fields: [musyrif_id], references: [id], onDelete: Cascade)
 
   @@map("murojaah_logs")
 }
@@ -186,7 +187,7 @@ model Ayah {
   juz_number  Int    @db.Integer
   text        String @db.Text
 
-  AyahSurah Surah @relation(fields: [surah_id], references: [id])
+  AyahSurah Surah @relation(fields: [surah_id], references: [id], onDelete: Cascade)
 
   @@unique([surah_id, ayah_number])
   @@map("ayahs")
@@ -213,7 +214,7 @@ model JuzEvaluation {
   created_at      DateTime   @default(now())
   updated_at      DateTime   @default(now())
 
-  EvaluationStudent Student @relation(fields: [student_id], references: [id])
+  EvaluationStudent Student @relation(fields: [student_id], references: [id], onDelete: Cascade)
 
   @@map("juz_evaluations")
 }
@@ -240,8 +241,8 @@ model MemorizationPlan {
   notes       String   @db.Text
   created_at  DateTime @default(now())
 
-  MemorizingPlanStudents Student @relation(fields: [student_id], references: [id])
-  MemorizingPlanMusyrif  User    @relation(fields: [assigned_by], references: [id])
+  MemorizingPlanStudents Student @relation(fields: [student_id], references: [id], onDelete: Cascade)
+  MemorizingPlanMusyrif  User    @relation(fields: [assigned_by], references: [id], onDelete: Cascade)
 
   @@map("memorizing_plans")
 }

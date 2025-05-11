@@ -1,18 +1,118 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { StudentsService } from './students.service';
+import { UsersService } from '../users/users.service';
+import { Gender, GradeStatus, Role, StudentStatus } from '@prisma/client';
+import { StudentsController } from './students.controller';
+import * as moment from 'moment';
 
 describe('StudentsService', () => {
-  let service: StudentsService;
+  let studentsService: StudentsService;
+  let userService: UsersService;
 
-  beforeEach(async () => {
+  let idMusyrifTesting: string;
+  let idStudentsTesting: string;
+
+  const musyrifTesting = {
+    name: 'musyrifTesting',
+    email: 'musyrifTesting@testing1.com',
+    password: 'passwordTesting',
+    role: Role.MUSYRIF,
+    created_at: new Date()
+  };
+
+  const studentTesting = {
+    musyrif_id: '',
+    gender: Gender.L,
+    name: 'studentTesting',
+    grade: '10',
+    grade_status: GradeStatus.JUNIOR_HIGH_SCHOOL,
+    birth_date: new Date(),
+    join_date: new Date(),
+    status: StudentStatus.ACTIVE
+  };
+
+  beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [StudentsService],
+      controllers: [StudentsController],
+      providers: [StudentsService, UsersService]
     }).compile();
 
-    service = module.get<StudentsService>(StudentsService);
+    studentsService = module.get<StudentsService>(StudentsService);
+    userService = module.get<UsersService>(UsersService);
+
+    const userMusyrif = await userService.create(musyrifTesting);
+    idMusyrifTesting = userMusyrif.id;
+  });
+
+  afterAll(async () => {
+    await userService.deleteTestingUser([musyrifTesting.email]);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(userService).toBeDefined();
+    expect(studentsService).toBeDefined();
+  });
+
+  it('should be successfully create student', async () => {
+    studentTesting.musyrif_id = idMusyrifTesting;
+    const result = await studentsService.create(studentTesting);
+    idStudentsTesting = result.id;
+
+    expect(result).toHaveProperty('id');
+    expect(result.name).toBe(studentTesting.name);
+    expect(result.status).toBe(studentTesting.status);
+    expect(result.gender).toBe(studentTesting.gender);
+    expect(result.grade).toBe(studentTesting.grade);
+    expect(result.birth_date).toBe(
+      moment(studentTesting.birth_date).format('YYYY-MM-DD')
+    );
+    expect(result.join_date).toBe(
+      moment(studentTesting.join_date).format('YYYY-MM-DD')
+    );
+    expect(result.grade_status).toBe(studentTesting.grade_status);
+  });
+
+  it('should be successfully get all students', async () => {
+    const testingStudent = {
+      id: expect.any(String) as string,
+      name: studentTesting.name,
+      gender: studentTesting.gender,
+      grade: studentTesting.grade,
+      birth_date: moment(studentTesting.birth_date).format('YYYY-MM-DD'),
+      join_date: moment(studentTesting.join_date).format('YYYY-MM-DD'),
+      status: studentTesting.status,
+      grade_status: studentTesting.grade_status
+    };
+    const paginate = {
+      page: 1,
+      limit: 5
+    };
+    const result = await studentsService.findAll({
+      pagination: paginate
+    });
+    expect(result).toHaveProperty('data');
+    expect(result).toHaveProperty('meta');
+    expect(result.data).toEqual(
+      expect.arrayContaining([expect.objectContaining(testingStudent)])
+    );
+  });
+
+  it('should be successfully update student', async () => {
+    const dto = {
+      name: 'Student change name'
+    };
+    const result = await studentsService.update(idStudentsTesting, dto);
+    expect(result).toHaveProperty('id');
+    expect(result).toHaveProperty('name');
+    expect(result).toHaveProperty('birth_date');
+    expect(result).toHaveProperty('gender');
+    expect(result).toHaveProperty('grade');
+    expect(result).toHaveProperty('grade_status');
+    expect(result).toHaveProperty('join_date');
+  });
+
+  it('should be successfully delete student', async () => {
+    const result = await studentsService.remove(idStudentsTesting);
+    expect(result).toEqual(true);
   });
 });

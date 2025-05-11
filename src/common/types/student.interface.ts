@@ -13,8 +13,8 @@ interface Student {
   gender: Gender;
   grade: string;
   grade_status: GradeStatus;
-  birth_date: Date;
-  join_date: Date | undefined;
+  birth_date: string;
+  join_date: string | undefined;
   status: StudentStatus;
   musyrif?: Musyrif | null;
 }

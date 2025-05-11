@@ -7,7 +7,7 @@ export function toParent(parent: Parent & { Student?: Student | null }) {
       ? {
           name: parent.Student.name,
           grade: parent.Student.grade,
-          grade_status: parent.Student.gradeStatus,
+          grade_status: parent.Student.grade_status,
           status: parent.Student.status
         }
       : null
