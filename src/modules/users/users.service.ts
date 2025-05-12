@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from '@prisma/client';
+import { Role, User } from '@prisma/client';
 import { User as UserWithPass } from '../../common/types/user.interface';
 import { prismaClient } from '../../application/database';
 import { toUser, toUserList } from './mappers/user.mapper';
@@ -28,9 +28,11 @@ export class UsersService {
 
   async findAll({
     name,
+    role,
     pagination
   }: {
     name?: string;
+    role?: string;
     pagination?: Pagination;
   }): Promise<{
     data: Omit<User, 'password' | 'salt' | 'updated_at'>[];
@@ -43,6 +45,10 @@ export class UsersService {
   }> {
     const page = Number(pagination?.page) || 1;
     const limit = Number(pagination?.limit) || 10;
+    const userRole = Array.isArray(role)
+      ? (role as Role[])
+      : ([role] as Role[]);
+
     const users = await prismaClient.user.findMany({
       where: {
         ...(name
@@ -50,6 +56,13 @@ export class UsersService {
               name: {
                 startsWith: `%${name}%`,
                 mode: 'insensitive'
+              }
+            }
+          : {}),
+        ...(role
+          ? {
+              role: {
+                in: userRole
               }
             }
           : {})
@@ -68,6 +81,13 @@ export class UsersService {
               name: {
                 startsWith: `%${name}%`,
                 mode: 'insensitive'
+              }
+            }
+          : {}),
+        ...(role
+          ? {
+              role: {
+                in: userRole
               }
             }
           : {})
