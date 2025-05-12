@@ -23,6 +23,7 @@ import { Pagination } from '../../common/types/pagination.interface';
 import { Validation } from '../../common/validations/validation';
 import { StudentValidation } from '../../common/validations/student-validation';
 import { FindStudentDto } from './dto/find-student.dto';
+import moment from 'moment-timezone';
 
 @Controller('students')
 export class StudentsController {
@@ -39,7 +40,6 @@ export class StudentsController {
         StudentValidation.CREATE,
         createStudentDto
       );
-
       const student = await this.studentsService.create(validateRequest);
       return successResponse('Create student successfully', student);
     } catch (error) {
@@ -74,6 +74,7 @@ export class StudentsController {
 
       const students = await this.studentsService.findAll({
         name: validateRequest.name ?? '',
+        musyrif_id: validateRequest.musyrif_id ?? '',
         grade_status: validateRequest.grade_status ?? '',
         pagination: {
           page: +validateRequest.page,

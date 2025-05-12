@@ -4,6 +4,7 @@ import { StudentsService } from './students.service';
 import { Gender, GradeStatus, Role, StudentStatus } from '@prisma/client';
 import { UserController } from '../users/user.controller';
 import { UsersService } from '../users/users.service';
+import * as moment from 'moment-timezone';
 
 describe('StudentsController', () => {
   let studentController: StudentsController;
@@ -27,8 +28,8 @@ describe('StudentsController', () => {
     name: 'studentTesting',
     grade: '10',
     grade_status: GradeStatus.JUNIOR_HIGH_SCHOOL,
-    birth_date: new Date(),
-    join_date: new Date(),
+    birth_date: moment('2020-11-11', 'YYYY-MM-DD').toISOString(),
+    join_date: moment().toISOString(),
     status: StudentStatus.ACTIVE
   };
 

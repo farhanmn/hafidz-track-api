@@ -11,7 +11,12 @@ export class StudentValidation {
       'JUNIOR_HIGH_SCHOOL',
       'SENIOR_HIGH_SCHOOL'
     ]),
-    birth_date: z.date()
+    birth_date: z.string().regex(/(\d{4})-(\d{2})-(\d{2})/, {
+      message: "Invalid date format. Expected 'YYYY-MM-DD'"
+    }),
+    join_date: z.string().regex(/(\d{4})-(\d{2})-(\d{2})/, {
+      message: "Invalid date format. Expected 'YYYY-MM-DD'"
+    })
   });
 
   static readonly UPDATE: ZodType = z.object({
@@ -22,11 +27,26 @@ export class StudentValidation {
     grade_status: z
       .enum(['ELEMENTARY_SCHOOL', 'JUNIOR_HIGH_SCHOOL', 'SENIOR_HIGH_SCHOOL'])
       .optional(),
-    birth_date: z.date().optional()
+    birth_date: z
+      .string()
+      .regex(/(\d{4})-(\d{2})-(\d{2})/, {
+        message: "Invalid date format. Expected 'YYYY-MM-DD'"
+      })
+      .optional(),
+    join_date: z
+      .string()
+      .regex(/(\d{4})-(\d{2})-(\d{2})/, {
+        message: "Invalid date format. Expected 'YYYY-MM-DD'"
+      })
+      .optional()
   });
 
   static readonly LIST: ZodType = z.object({
     name: z.string().optional().default(''),
+    musyrif_id: z.string().optional(),
+    grade_status: z
+      .enum(['ELEMENTARY_SCHOOL', 'JUNIOR_HIGH_SCHOOL', 'SENIOR_HIGH_SCHOOL'])
+      .optional(),
     page: z.number().optional(),
     limit: z.number().optional()
   });

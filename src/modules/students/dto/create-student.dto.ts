@@ -22,12 +22,12 @@ export class CreateStudentDto {
 
   @IsDate()
   @ApiProperty({ example: '2000-11-11' })
-  birth_date: Date;
+  birth_date: string;
 
   @IsDate()
   @IsOptional()
   @ApiProperty({ example: '2000-11-11' })
-  join_date: Date | null;
+  join_date?: string;
 
   @IsEnum(StudentStatus)
   @ApiProperty({ example: StudentStatus.ACTIVE })

@@ -1,6 +1,6 @@
 import { Student as PrismaStudent } from '@prisma/client';
 import { User as PrismaUser } from '@prisma/client';
-import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 
 export function toStudent(
   student: PrismaStudent & { MusyrifUser?: PrismaUser | null }

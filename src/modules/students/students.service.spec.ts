@@ -3,7 +3,7 @@ import { StudentsService } from './students.service';
 import { UsersService } from '../users/users.service';
 import { Gender, GradeStatus, Role, StudentStatus } from '@prisma/client';
 import { StudentsController } from './students.controller';
-import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 
 describe('StudentsService', () => {
   let studentsService: StudentsService;
@@ -26,8 +26,8 @@ describe('StudentsService', () => {
     name: 'studentTesting',
     grade: '10',
     grade_status: GradeStatus.JUNIOR_HIGH_SCHOOL,
-    birth_date: new Date(),
-    join_date: new Date(),
+    birth_date: moment('2020-11-11', 'YYYY-MM-DD').toISOString(),
+    join_date: moment().toISOString(),
     status: StudentStatus.ACTIVE
   };
 
@@ -64,10 +64,10 @@ describe('StudentsService', () => {
     expect(result.gender).toBe(studentTesting.gender);
     expect(result.grade).toBe(studentTesting.grade);
     expect(result.birth_date).toBe(
-      moment(studentTesting.birth_date).format('YYYY-MM-DD')
+      moment(studentTesting.birth_date).subtract(1, 'day').format('YYYY-MM-DD')
     );
     expect(result.join_date).toBe(
-      moment(studentTesting.join_date).format('YYYY-MM-DD')
+      moment(studentTesting.join_date).subtract(1, 'day').format('YYYY-MM-DD')
     );
     expect(result.grade_status).toBe(studentTesting.grade_status);
   });
@@ -78,8 +78,12 @@ describe('StudentsService', () => {
       name: studentTesting.name,
       gender: studentTesting.gender,
       grade: studentTesting.grade,
-      birth_date: moment(studentTesting.birth_date).format('YYYY-MM-DD'),
-      join_date: moment(studentTesting.join_date).format('YYYY-MM-DD'),
+      birth_date: moment(studentTesting.birth_date)
+        .subtract(1, 'day')
+        .format('YYYY-MM-DD'),
+      join_date: moment(studentTesting.join_date)
+        .subtract(1, 'day')
+        .format('YYYY-MM-DD'),
       status: studentTesting.status,
       grade_status: studentTesting.grade_status
     };

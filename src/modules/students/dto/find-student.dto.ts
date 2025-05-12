@@ -1,8 +1,13 @@
-import { IsEnum, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { GradeStatus } from '@prisma/client';
 
 export class FindStudentDto {
+  @IsOptional()
+  @IsUUID()
+  @ApiProperty({ description: 'Musyrif ID' })
+  musyrif_id?: string;
+
   @IsOptional()
   @IsString()
   @ApiProperty({ example: 'name' })

@@ -6,12 +6,19 @@ import { toStudent, toStudentList } from './mappers/student.mapper';
 import { Pagination } from '../../common/types/pagination.interface';
 import { metaPagination } from '../../utils/response.utils';
 import { GradeStatus } from '@prisma/client';
+import { beforeSaveDate } from '../../utils/date.utils';
 
 @Injectable()
 export class StudentsService {
   async create(createStudentDto: CreateStudentDto) {
     const student = await prismaClient.student.create({
-      data: createStudentDto
+      data: {
+        ...createStudentDto,
+        birth_date: beforeSaveDate(createStudentDto.birth_date, 1),
+        join_date: createStudentDto.join_date
+          ? beforeSaveDate(createStudentDto.join_date, 1)
+          : beforeSaveDate(new Date().toISOString(), 1)
+      }
     });
 
     return toStudent(student);
@@ -19,10 +26,12 @@ export class StudentsService {
 
   async findAll({
     name,
+    musyrif_id,
     grade_status,
     pagination
   }: {
     name?: string;
+    musyrif_id?: string;
     grade_status?: string;
     pagination?: Pagination;
   }) {
@@ -41,6 +50,11 @@ export class StudentsService {
         ...(grade_status
           ? {
               grade_status: grade_status as GradeStatus
+            }
+          : {}),
+        ...(musyrif_id
+          ? {
+              musyrif_id
             }
           : {})
       },
@@ -68,6 +82,11 @@ export class StudentsService {
           ? {
               grade_status: grade_status as GradeStatus
             }
+          : {}),
+        ...(musyrif_id
+          ? {
+              musyrif_id
+            }
           : {})
       }
     });
@@ -93,6 +112,19 @@ export class StudentsService {
   }
 
   async update(id: string, updateStudentDto: UpdateStudentDto) {
+    if (updateStudentDto.birth_date) {
+      updateStudentDto.birth_date = beforeSaveDate(
+        updateStudentDto.birth_date,
+        1
+      );
+    }
+    if (updateStudentDto.join_date) {
+      updateStudentDto.join_date = beforeSaveDate(
+        updateStudentDto.join_date,
+        1
+      );
+    }
+
     const student = await prismaClient.student.update({
       data: updateStudentDto,
       where: {
