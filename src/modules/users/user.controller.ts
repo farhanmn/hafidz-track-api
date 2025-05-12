@@ -31,6 +31,10 @@ import { Pagination } from '../../common/types/pagination.interface';
 import { UserData } from '../../common/types/user.interface';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
+import { FindUserDto } from './dto/find-user.dto';
+import { Validation } from '../../common/validations/validation';
+import { UserValidation } from '../../common/validations/user-validation';
+import { Role } from '@prisma/client';
 
 @Controller('users')
 export class UserController {
@@ -87,19 +91,22 @@ export class UserController {
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')
-  async findAll(
-    @Query() query: Pagination,
-    @Query('name') name?: string
-  ): Promise<
+  async findAll(@Query() query: FindUserDto): Promise<
     ApiResponses<{
       data: UserData[];
       meta: Pagination;
     }>
   > {
     try {
+      const validateRequest = Validation.validate(UserValidation.LIST, query);
+
       const users = await this.userService.findAll({
-        name,
-        pagination: query
+        name: validateRequest.name,
+        role: validateRequest.role,
+        pagination: {
+          page: parseInt(validateRequest.page),
+          limit: parseInt(validateRequest.limit)
+        }
       });
       return successResponse('OK', users);
     } catch (error) {
