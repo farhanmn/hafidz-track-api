@@ -1,5 +1,6 @@
 import { Student as PrismaStudent } from '@prisma/client';
 import { User as PrismaUser } from '@prisma/client';
+import * as moment from 'moment';
 
 export function toStudent(
   student: PrismaStudent & { MusyrifUser?: PrismaUser | null }
@@ -10,9 +11,9 @@ export function toStudent(
     name: student.name,
     gender: student.gender,
     grade: student.grade,
-    grade_status: student.gradeStatus,
-    birth_date: student.birth_date,
-    join_date: student.join_date || undefined,
+    grade_status: student.grade_status,
+    birth_date: moment(student.birth_date).format('YYYY-MM-DD'),
+    join_date: moment(student.join_date).format('YYYY-MM-DD') || undefined,
     status: student.status,
     musyrif: student.MusyrifUser
       ? {
