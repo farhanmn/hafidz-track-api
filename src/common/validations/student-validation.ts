@@ -14,9 +14,12 @@ export class StudentValidation {
     birth_date: z.string().regex(/(\d{4})-(\d{2})-(\d{2})/, {
       message: "Invalid date format. Expected 'YYYY-MM-DD'"
     }),
-    join_date: z.string().regex(/(\d{4})-(\d{2})-(\d{2})/, {
-      message: "Invalid date format. Expected 'YYYY-MM-DD'"
-    })
+    join_date: z
+      .string()
+      .regex(/(\d{4})-(\d{2})-(\d{2})/, {
+        message: "Invalid date format. Expected 'YYYY-MM-DD'"
+      })
+      .optional()
   });
 
   static readonly UPDATE: ZodType = z.object({
