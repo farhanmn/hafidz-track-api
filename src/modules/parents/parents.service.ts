@@ -5,6 +5,7 @@ import { prismaClient } from '../../application/database';
 import { toParent, toParentList } from './mappers/parent.mapper';
 import { Pagination } from '../../common/types/pagination.interface';
 import { metaPagination } from '../../utils/response.utils';
+import { Gender } from '@prisma/client';
 
 @Injectable()
 export class ParentsService {
@@ -21,9 +22,13 @@ export class ParentsService {
 
   async findAll({
     name,
+    student_id,
+    gender,
     pagination
   }: {
     name?: string;
+    student_id?: string;
+    gender?: string;
     pagination?: Pagination;
   }) {
     const page = Number(pagination?.page) || 1;
@@ -36,6 +41,16 @@ export class ParentsService {
                 startsWith: `%${name}%`,
                 mode: 'insensitive'
               }
+            }
+          : {}),
+        ...(student_id
+          ? {
+              student_id
+            }
+          : {}),
+        ...(gender
+          ? {
+              gender: gender as Gender
             }
           : {})
       },
@@ -57,6 +72,16 @@ export class ParentsService {
                 startsWith: `%${name}%`,
                 mode: 'insensitive'
               }
+            }
+          : {}),
+        ...(student_id
+          ? {
+              student_id
+            }
+          : {}),
+        ...(gender
+          ? {
+              gender: gender as Gender
             }
           : {})
       }

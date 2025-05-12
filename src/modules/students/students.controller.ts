@@ -20,6 +20,9 @@ import { errorResponse, successResponse } from '../../utils/response.utils';
 import { Student as StudentInterface } from '../../common/types/student.interface';
 import { ApiResponses } from '../../common/types/response.interface';
 import { Pagination } from '../../common/types/pagination.interface';
+import { Validation } from '../../common/validations/validation';
+import { StudentValidation } from '../../common/validations/student-validation';
+import { FindStudentDto } from './dto/find-student.dto';
 
 @Controller('students')
 export class StudentsController {
@@ -32,7 +35,12 @@ export class StudentsController {
     @Body() createStudentDto: CreateStudentDto
   ): Promise<ApiResponses<StudentInterface>> {
     try {
-      const student = await this.studentsService.create(createStudentDto);
+      const validateRequest = Validation.validate(
+        StudentValidation.CREATE,
+        createStudentDto
+      );
+
+      const student = await this.studentsService.create(validateRequest);
       return successResponse('Create student successfully', student);
     } catch (error) {
       if (error instanceof HttpException) {
@@ -52,19 +60,25 @@ export class StudentsController {
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN', 'MUSYRIF')
-  async findAll(
-    @Query() query: Pagination,
-    @Query('name') name?: string
-  ): Promise<
+  async findAll(@Query() query: FindStudentDto): Promise<
     ApiResponses<{
       data: StudentInterface[];
       meta: Pagination;
     }>
   > {
     try {
+      const validateRequest = Validation.validate(
+        StudentValidation.LIST,
+        query
+      );
+
       const students = await this.studentsService.findAll({
-        name,
-        pagination: query
+        name: validateRequest.name ?? '',
+        grade_status: validateRequest.grade_status ?? '',
+        pagination: {
+          page: +validateRequest.page,
+          limit: +validateRequest.limit
+        }
       });
       return successResponse('OK', students);
     } catch (error) {
@@ -114,7 +128,12 @@ export class StudentsController {
     @Body() updateStudentDto: UpdateStudentDto
   ): Promise<ApiResponses<StudentInterface>> {
     try {
-      const student = await this.studentsService.update(id, updateStudentDto);
+      const validateRequest = Validation.validate(
+        StudentValidation.UPDATE,
+        updateStudentDto
+      );
+
+      const student = await this.studentsService.update(id, validateRequest);
       return successResponse('Student updated successfully', student);
     } catch (error) {
       if (error instanceof HttpException) {

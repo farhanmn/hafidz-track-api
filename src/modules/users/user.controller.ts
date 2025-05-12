@@ -34,7 +34,6 @@ import { Roles } from '../../common/decorators/roles.decorator';
 import { FindUserDto } from './dto/find-user.dto';
 import { Validation } from '../../common/validations/validation';
 import { UserValidation } from '../../common/validations/user-validation';
-import { Role } from '@prisma/client';
 
 @Controller('users')
 export class UserController {
@@ -63,7 +62,9 @@ export class UserController {
   @Roles('ADMIN')
   async create(@Body() dto: CreateUserDto): Promise<ApiResponses<UserData>> {
     try {
-      const user = await this.userService.create(dto);
+      const validateRequest = Validation.validate(UserValidation.CREATE, dto);
+
+      const user = await this.userService.create(validateRequest);
       return successResponse('Create user successfully', user);
     } catch (error) {
       if (error instanceof HttpException) {
@@ -104,8 +105,8 @@ export class UserController {
         name: validateRequest.name,
         role: validateRequest.role,
         pagination: {
-          page: parseInt(validateRequest.page),
-          limit: parseInt(validateRequest.limit)
+          page: +validateRequest.page,
+          limit: +validateRequest.limit
         }
       });
       return successResponse('OK', users);
@@ -171,7 +172,9 @@ export class UserController {
     @Body() dto: UpdateUserDto
   ): Promise<ApiResponses<UserData>> {
     try {
-      const user = await this.userService.update(id, dto);
+      const validateRequest = Validation.validate(UserValidation.UPDATE, dto);
+
+      const user = await this.userService.update(id, validateRequest);
       return successResponse('User updated successfully', user);
     } catch (error) {
       if (error instanceof HttpException) {

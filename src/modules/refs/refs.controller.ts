@@ -30,9 +30,13 @@ export class RefsController {
 
   @Get('surah/:juz_number')
   async findSurahByJuz(
-    @Param('juz_number') juz_number: number
+    @Param('juz_number') juz_number: string
   ): Promise<ApiResponses<Surah[]>> {
     try {
+      if (+juz_number < 1 && +juz_number > 30) {
+        return errorResponse('No such juz', juz_number);
+      }
+
       const surah = await this.refsService.getSurahByJuz(+juz_number);
       return successResponse('Get surah by juz', surah);
     } catch (error) {
