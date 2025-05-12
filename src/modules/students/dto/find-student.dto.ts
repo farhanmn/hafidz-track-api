@@ -1,14 +1,17 @@
-import { IsOptional } from 'class-validator';
+import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { GradeStatus } from '@prisma/client';
 
-export class FindUserDto {
+export class FindStudentDto {
   @IsOptional()
+  @IsString()
   @ApiProperty({ example: 'name' })
   name?: string;
 
   @IsOptional()
-  @ApiProperty({ example: 'ADMIN,MUSYRIF' })
-  role?: string;
+  @IsEnum(GradeStatus)
+  @ApiProperty({ example: GradeStatus.JUNIOR_HIGH_SCHOOL })
+  grade_status?: GradeStatus;
 
   @IsOptional()
   @ApiProperty({ example: 1, default: 1 })

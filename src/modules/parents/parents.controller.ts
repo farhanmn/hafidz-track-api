@@ -20,6 +20,9 @@ import { errorResponse, successResponse } from '../../utils/response.utils';
 import { ApiResponses } from '../../common/types/response.interface';
 import { Parent as ParentInterface } from '../../common/types/parent.interface';
 import { Pagination } from '../../common/types/pagination.interface';
+import { Validation } from '../../common/validations/validation';
+import { ParentValidation } from '../../common/validations/parent-validation';
+import { FindParentDto } from './dto/find-parent.dto';
 
 @Controller('parents')
 export class ParentsController {
@@ -32,7 +35,12 @@ export class ParentsController {
     @Body() createParentDto: CreateParentDto
   ): Promise<ApiResponses<ParentInterface>> {
     try {
-      const parent = await this.parentsService.create(createParentDto);
+      const validateRequest = Validation.validate(
+        ParentValidation.CREATE,
+        createParentDto
+      );
+
+      const parent = await this.parentsService.create(validateRequest);
       return successResponse('Create user successfully', parent);
     } catch (error) {
       if (error instanceof HttpException) {
@@ -52,19 +60,23 @@ export class ParentsController {
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN', 'MUSYRIF')
-  async findAll(
-    @Query() query: Pagination,
-    @Query('name') name?: string
-  ): Promise<
+  async findAll(@Query() query: FindParentDto): Promise<
     ApiResponses<{
       data: ParentInterface[];
       meta: Pagination;
     }>
   > {
     try {
+      const validateRequest = Validation.validate(ParentValidation.LIST, query);
+
       const parents = await this.parentsService.findAll({
-        name,
-        pagination: query
+        name: validateRequest.name ?? '',
+        gender: validateRequest.gender ?? '',
+        student_id: validateRequest.student_id ?? '',
+        pagination: {
+          page: +validateRequest.page,
+          limit: +validateRequest.limit
+        }
       });
       return successResponse('OK', parents);
     } catch (error) {
@@ -114,7 +126,12 @@ export class ParentsController {
     @Body() updateParentDto: UpdateParentDto
   ): Promise<ApiResponses<ParentInterface>> {
     try {
-      const parent = await this.parentsService.update(id, updateParentDto);
+      const validateRequest = Validation.validate(
+        ParentValidation.UPDATE,
+        updateParentDto
+      );
+
+      const parent = await this.parentsService.update(id, validateRequest);
       return successResponse('Parent updated successfully', parent);
     } catch (error) {
       if (error instanceof HttpException) {

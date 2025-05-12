@@ -5,6 +5,7 @@ import { prismaClient } from '../../application/database';
 import { toStudent, toStudentList } from './mappers/student.mapper';
 import { Pagination } from '../../common/types/pagination.interface';
 import { metaPagination } from '../../utils/response.utils';
+import { GradeStatus } from '@prisma/client';
 
 @Injectable()
 export class StudentsService {
@@ -18,9 +19,11 @@ export class StudentsService {
 
   async findAll({
     name,
+    grade_status,
     pagination
   }: {
     name?: string;
+    grade_status?: string;
     pagination?: Pagination;
   }) {
     const page = Number(pagination?.page) || 1;
@@ -33,6 +36,11 @@ export class StudentsService {
                 startsWith: `%${name}%`,
                 mode: 'insensitive'
               }
+            }
+          : {}),
+        ...(grade_status
+          ? {
+              grade_status: grade_status as GradeStatus
             }
           : {})
       },
@@ -54,6 +62,11 @@ export class StudentsService {
                 startsWith: `%${name}%`,
                 mode: 'insensitive'
               }
+            }
+          : {}),
+        ...(grade_status
+          ? {
+              grade_status: grade_status as GradeStatus
             }
           : {})
       }

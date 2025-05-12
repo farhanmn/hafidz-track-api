@@ -1,5 +1,4 @@
 import { z, ZodType } from 'zod';
-import { Role } from '@prisma/client';
 
 export class UserValidation {
   static readonly CREATE: ZodType = z.object({
@@ -15,10 +14,9 @@ export class UserValidation {
   });
 
   static readonly UPDATE: ZodType = z.object({
-    name: z.string().min(1).max(100),
+    name: z.string().min(1).max(100).optional(),
     password: z.string().max(100).optional(),
-    role: z.enum(['ADMIN', 'MUSYRIF']),
-    email: z.string().email().max(100)
+    role: z.enum(['ADMIN', 'MUSYRIF']).optional()
   });
 
   static readonly LIST: ZodType = z.object({
