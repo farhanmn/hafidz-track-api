@@ -1,10 +1,14 @@
 import { PrismaClient, Revelation } from '@prisma/client';
-import { JuzReq, Surah, SurahReq } from '../src/common/types/ref.interface';
+import {
+  JuzTypeReq,
+  SurahType,
+  SurahTypeReq
+} from '../src/common/types/ref.interface';
 import { prismaClient } from '../src/application/database';
 
 const prisma = new PrismaClient();
 
-const refJuz: JuzReq[] = [
+const refJuz: JuzTypeReq[] = [
   {
     juz: 1,
     start_surah: 'Al-Fatihah',
@@ -217,7 +221,7 @@ const refJuz: JuzReq[] = [
   }
 ];
 
-async function fetchData(i): Promise<Surah> {
+async function fetchData(i): Promise<SurahType> {
   const res = await fetch(
     `https://raw.githubusercontent.com/semarketir/quranjson/master/source/surah/surah_${i + 1}.json`
   );
@@ -226,7 +230,7 @@ async function fetchData(i): Promise<Surah> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const data: Surah = await res.json();
+  const data: SurahType = await res.json();
   return data;
 }
 
@@ -1155,12 +1159,12 @@ const main = async () => {
   });
 
   for (let i = 0; i < 114; i++) {
-    const result: Surah = await fetchData(i);
+    const result: SurahType = await fetchData(i);
     const idSurah = insertSurahData[i].id;
-    const query: SurahReq[] = [];
+    const query: SurahTypeReq[] = [];
 
     result.juz.map((item) => {
-      const subQuery: SurahReq[] = [];
+      const subQuery: SurahTypeReq[] = [];
       const juzNumber = parseInt(item.index);
       const [, rangeStart] = item.verse.start.split('_');
       const [, rangeEnd] = item.verse.end.split('_');

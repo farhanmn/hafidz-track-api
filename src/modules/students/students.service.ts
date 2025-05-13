@@ -59,7 +59,8 @@ export class StudentsService {
           : {})
       },
       include: {
-        MusyrifUser: true
+        MusyrifUser: true,
+        Parent: true
       },
       skip: (page - 1) * limit,
       take: limit,

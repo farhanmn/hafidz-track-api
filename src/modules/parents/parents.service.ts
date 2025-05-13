@@ -6,10 +6,20 @@ import { toParent, toParentList } from './mappers/parent.mapper';
 import { Pagination } from '../../common/types/pagination.interface';
 import { metaPagination } from '../../utils/response.utils';
 import { Gender } from '@prisma/client';
+import { StudentsService } from '../students/students.service';
 
 @Injectable()
 export class ParentsService {
+  constructor(private studentService: StudentsService) {}
   async create(createParentDto: CreateParentDto) {
+    const findStudent = await this.studentService.findOne(
+      createParentDto.student_id
+    );
+
+    if (!findStudent) {
+      throw new Error('Student not found');
+    }
+
     const parent = await prismaClient.parent.create({
       data: createParentDto,
       include: {

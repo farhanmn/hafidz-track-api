@@ -1,9 +1,10 @@
-import { Student as PrismaStudent } from '@prisma/client';
-import { User as PrismaUser } from '@prisma/client';
+import { Parent, Student, User } from '@prisma/client';
 import * as moment from 'moment-timezone';
 
 export function toStudent(
-  student: PrismaStudent & { MusyrifUser?: PrismaUser | null }
+  student: Student & { MusyrifUser?: User | null } & {
+    Parent?: Parent[] | null;
+  }
 ) {
   return {
     id: student.id,
@@ -15,18 +16,28 @@ export function toStudent(
     birth_date: moment(student.birth_date).format('YYYY-MM-DD'),
     join_date: moment(student.join_date).format('YYYY-MM-DD') || undefined,
     status: student.status,
-    musyrif: student.MusyrifUser
+    Musyrif: student.MusyrifUser
       ? {
           id: student.MusyrifUser.id,
           name: student.MusyrifUser.name,
           email: student.MusyrifUser.email
         }
-      : null
+      : null,
+    Parent: student.Parent?.map((parent) => {
+      return {
+        id: parent.id,
+        name: parent.name,
+        gender: parent.gender,
+        phone: parent.phone,
+        parent_status: parent.parent_status,
+        address: parent.address
+      };
+    })
   };
 }
 
 export function toStudentList(
-  student: PrismaStudent[] & { MusyrifUser?: PrismaUser | null }
+  student: Student[] & { MusyrifUser?: User | null }
 ) {
   return student.map(toStudent);
 }

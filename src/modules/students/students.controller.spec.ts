@@ -87,7 +87,6 @@ describe('StudentsController', () => {
       name: 'Student change name'
     };
     const result = await studentController.update(idStudentsTesting, dto);
-    console.log(result);
     expect(result).toHaveProperty('success');
     expect(result).toHaveProperty('message');
     expect(result).toHaveProperty('data');
