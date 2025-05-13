@@ -1,5 +1,4 @@
 import { z, ZodType } from 'zod';
-import { AttendanceStatus } from '@prisma/client';
 
 export class AttendanceValidation {
   static readonly CREATE: ZodType = z.object({

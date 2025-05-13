@@ -10,7 +10,7 @@ interface Student {
 interface Attendance {
   id: string;
   student_id: string;
-  date: Date;
+  date: string;
   status: string;
   remark?: string | null;
   recorded_by: string;

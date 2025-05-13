@@ -1,4 +1,5 @@
 import { Attendance, Student, User } from '@prisma/client';
+import * as moment from 'moment-timezone';
 
 export function toAttendace(
   attendance: Attendance & { AttendanceStudent?: Student | null } & {
@@ -8,7 +9,7 @@ export function toAttendace(
   return {
     id: attendance.id,
     student_id: attendance.student_id,
-    date: attendance.date,
+    date: moment(attendance.date).format('YYYY-MM-DD'),
     status: attendance.status,
     remark: attendance.remark,
     recorded_by: attendance.recorded_by,

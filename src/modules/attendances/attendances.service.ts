@@ -6,6 +6,7 @@ import { toAttendace, toAttendanceList } from './mappers/attendance.mapper';
 import { FindAttendanceDto } from './dto/find-attendance.dto';
 import { metaPagination } from '../../utils/response.utils';
 import { StudentsService } from '../students/students.service';
+import { beforeSaveDate } from '../../utils/date.utils';
 
 @Injectable()
 export class AttendancesService {
@@ -20,7 +21,15 @@ export class AttendancesService {
     }
 
     const attendance = await prismaClient.attendance.create({
-      data: createAttendanceDto,
+      data: {
+        ...createAttendanceDto,
+        date: beforeSaveDate(
+          createAttendanceDto.date
+            ? createAttendanceDto.date
+            : new Date().toISOString(),
+          1
+        )
+      },
       include: {
         AttendanceStudent: true,
         AttendanceMusyrif: true
@@ -110,6 +119,9 @@ export class AttendancesService {
   }
 
   async update(id: string, updateAttendanceDto: UpdateAttendanceDto) {
+    if (updateAttendanceDto.date) {
+      updateAttendanceDto.date = beforeSaveDate(updateAttendanceDto.date, 1);
+    }
     const attendance = await prismaClient.attendance.update({
       data: updateAttendanceDto,
       where: {
