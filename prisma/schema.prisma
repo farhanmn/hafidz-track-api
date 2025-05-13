@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "client"
 }
 
 datasource db {
@@ -85,12 +84,12 @@ model Attendance {
   student_id  String           @db.Uuid
   date        DateTime         @default(now())
   status      AttendanceStatus @default(PRESENT)
-  remark      String           @db.Text
+  remark      String?          @default("") @db.Text
   recorded_by String           @db.Uuid
   created_at  DateTime         @default(now())
 
   AttendanceStudent Student @relation(fields: [student_id], references: [id], onDelete: Cascade)
-  AttendaceMusyrif  User    @relation(fields: [recorded_by], references: [id], onDelete: Cascade)
+  AttendanceMusyrif User    @relation(fields: [recorded_by], references: [id], onDelete: Cascade)
 
   @@map("attendances")
 }

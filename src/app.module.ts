@@ -4,6 +4,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { StudentsModule } from './modules/students/students.module';
 import { ParentsModule } from './modules/parents/parents.module';
 import { RefsModule } from './modules/refs/refs.module';
+import { AttendancesModule } from './modules/attendances/attendances.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { RefsModule } from './modules/refs/refs.module';
     AuthModule,
     StudentsModule,
     ParentsModule,
-    RefsModule
+    RefsModule,
+    AttendancesModule
     // other modules
   ]
 })
