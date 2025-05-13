@@ -9,6 +9,12 @@ interface UserData {
   created_at: Date;
 }
 
+interface LoggedUser {
+  userId: string;
+  email: string;
+  role: Role;
+}
+
 interface User extends UserData {
   password: string | null;
   salt: string | null;
@@ -30,6 +36,7 @@ interface LoginResponse extends UserData {
 }
 
 export {
+  LoggedUser,
   User,
   UserData,
   UserJWTObject,
