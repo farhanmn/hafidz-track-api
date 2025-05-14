@@ -69,15 +69,7 @@ export class ParentsController {
     try {
       const validateRequest = Validation.validate(ParentValidation.LIST, query);
 
-      const parents = await this.parentsService.findAll({
-        name: validateRequest.name ?? '',
-        gender: validateRequest.gender ?? '',
-        student_id: validateRequest.student_id ?? '',
-        pagination: {
-          page: +validateRequest.page,
-          limit: +validateRequest.limit
-        }
-      });
+      const parents = await this.parentsService.findAll(validateRequest);
       return successResponse('OK', parents);
     } catch (error) {
       if (error instanceof HttpException) {

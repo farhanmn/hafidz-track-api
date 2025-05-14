@@ -3,10 +3,9 @@ import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { prismaClient } from '../../application/database';
 import { toStudent, toStudentList } from './mappers/student.mapper';
-import { Pagination } from '../../common/types/pagination.interface';
 import { metaPagination } from '../../utils/response.utils';
-import { GradeStatus } from '@prisma/client';
 import { beforeSaveDate } from '../../utils/date.utils';
+import { FindStudentDto } from './dto/find-student.dto';
 
 @Injectable()
 export class StudentsService {
@@ -24,37 +23,27 @@ export class StudentsService {
     return toStudent(student);
   }
 
-  async findAll({
-    name,
-    musyrif_id,
-    grade_status,
-    pagination
-  }: {
-    name?: string;
-    musyrif_id?: string;
-    grade_status?: string;
-    pagination?: Pagination;
-  }) {
-    const page = Number(pagination?.page) || 1;
-    const limit = Number(pagination?.limit) || 10;
+  async findAll(findStudentDto: FindStudentDto) {
+    const page = Number(findStudentDto?.page) || 1;
+    const limit = Number(findStudentDto?.limit) || 10;
     const students = await prismaClient.student.findMany({
       where: {
-        ...(name
+        ...(findStudentDto.name
           ? {
               name: {
-                startsWith: `%${name}%`,
+                startsWith: `%${findStudentDto.name}%`,
                 mode: 'insensitive'
               }
             }
           : {}),
-        ...(grade_status
+        ...(findStudentDto.grade_status
           ? {
-              grade_status: grade_status as GradeStatus
+              grade_status: findStudentDto.grade_status
             }
           : {}),
-        ...(musyrif_id
+        ...(findStudentDto.musyrif_id
           ? {
-              musyrif_id
+              musyrif_id: findStudentDto.musyrif_id
             }
           : {})
       },
@@ -71,22 +60,22 @@ export class StudentsService {
 
     const count = await prismaClient.student.count({
       where: {
-        ...(name
+        ...(findStudentDto.name
           ? {
               name: {
-                startsWith: `%${name}%`,
+                startsWith: `%${findStudentDto.name}%`,
                 mode: 'insensitive'
               }
             }
           : {}),
-        ...(grade_status
+        ...(findStudentDto.grade_status
           ? {
-              grade_status: grade_status as GradeStatus
+              grade_status: findStudentDto.grade_status
             }
           : {}),
-        ...(musyrif_id
+        ...(findStudentDto.musyrif_id
           ? {
-              musyrif_id
+              musyrif_id: findStudentDto.musyrif_id
             }
           : {})
       }

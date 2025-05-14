@@ -23,7 +23,6 @@ import { Pagination } from '../../common/types/pagination.interface';
 import { Validation } from '../../common/validations/validation';
 import { StudentValidation } from '../../common/validations/student-validation';
 import { FindStudentDto } from './dto/find-student.dto';
-import moment from 'moment-timezone';
 
 @Controller('students')
 export class StudentsController {
@@ -72,15 +71,7 @@ export class StudentsController {
         query
       );
 
-      const students = await this.studentsService.findAll({
-        name: validateRequest.name ?? '',
-        musyrif_id: validateRequest.musyrif_id ?? '',
-        grade_status: validateRequest.grade_status ?? '',
-        pagination: {
-          page: +validateRequest.page,
-          limit: +validateRequest.limit
-        }
-      });
+      const students = await this.studentsService.findAll(validateRequest);
       return successResponse('OK', students);
     } catch (error) {
       if (error instanceof HttpException) {

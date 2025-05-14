@@ -91,9 +91,7 @@ describe('StudentsService', () => {
       page: 1,
       limit: 5
     };
-    const result = await studentsService.findAll({
-      pagination: paginate
-    });
+    const result = await studentsService.findAll(paginate);
     expect(result).toHaveProperty('data');
     expect(result).toHaveProperty('meta');
     expect(result.data).toEqual(
