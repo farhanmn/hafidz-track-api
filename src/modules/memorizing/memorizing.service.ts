@@ -10,6 +10,7 @@ import {
 } from './mappers/memorizing.mapper';
 import { FindMemorizingDto } from './dto/find-memorizing.dto';
 import { metaPagination } from '../../utils/response.utils';
+import { beforeSaveDate } from '../../utils/date.utils';
 
 @Injectable()
 export class MemorizingService {
@@ -35,9 +36,15 @@ export class MemorizingService {
     }
 
     const addMemorizing = await prismaClient.memorizingLogs.create({
-      data: createMemorizingDto,
+      data: {
+        ...createMemorizingDto,
+        submission_date: createMemorizingDto.submission_date
+          ? beforeSaveDate(createMemorizingDto.submission_date, 1)
+          : beforeSaveDate(new Date().toISOString(), 1)
+      },
       include: {
-        MemorizingLogsStudent: true
+        MemorizingLogsStudent: true,
+        MemorizingLogsMusyrif: true
       }
     });
 
@@ -133,6 +140,10 @@ export class MemorizingService {
     const memorizingLog = await prismaClient.memorizingLogs.findUnique({
       where: {
         id
+      },
+      include: {
+        MemorizingLogsStudent: true,
+        MemorizingLogsMusyrif: true
       }
     });
 

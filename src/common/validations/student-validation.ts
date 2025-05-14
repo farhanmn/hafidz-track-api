@@ -5,7 +5,13 @@ export class StudentValidation {
     musyrif_id: z.string(),
     gender: z.enum(['L', 'P']),
     name: z.string().min(4).max(100),
-    grade: z.number().min(1).max(6),
+    grade: z
+      .string()
+      .transform((val) => +val)
+      .refine((val) => val > 0 && val < 7, {
+        message: 'Allowed value from 1 - 6'
+      })
+      .transform((val) => val.toString()),
     grade_status: z.enum([
       'ELEMENTARY_SCHOOL',
       'JUNIOR_HIGH_SCHOOL',
@@ -26,7 +32,14 @@ export class StudentValidation {
     musyrif_id: z.string().optional(),
     gender: z.enum(['L', 'P']).optional(),
     name: z.string().min(4).max(100).optional(),
-    grade: z.number().min(1).max(6).optional(),
+    grade: z
+      .string()
+      .transform((val) => +val)
+      .refine((val) => val > 0 && val < 7, {
+        message: 'Allowed value from 1 - 6'
+      })
+      .transform((val) => val.toString())
+      .optional(),
     grade_status: z
       .enum(['ELEMENTARY_SCHOOL', 'JUNIOR_HIGH_SCHOOL', 'SENIOR_HIGH_SCHOOL'])
       .optional(),

@@ -1,4 +1,11 @@
-import { IsBoolean, IsEnum, IsNumber, IsString, IsUUID } from 'class-validator';
+import {
+  IsBoolean,
+  IsEnum,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsUUID
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Assessment } from '@prisma/client';
 
@@ -32,18 +39,21 @@ export class CreateMemorizingDto {
   to_ayah: number;
 
   @IsString()
+  @IsOptional()
   @ApiProperty({ example: '2025-11-11' })
-  submission_date: string;
+  submission_date?: string;
 
   @IsEnum(Assessment)
   @ApiProperty({ example: Assessment.PASS })
   assessment: Assessment;
 
   @IsString()
+  @IsOptional()
   @ApiProperty({ example: 'Lulus bersyarat' })
-  notes: string;
+  notes?: string;
 
   @IsBoolean()
+  @IsOptional()
   @ApiProperty({ example: true })
   isRepeat: number;
 }

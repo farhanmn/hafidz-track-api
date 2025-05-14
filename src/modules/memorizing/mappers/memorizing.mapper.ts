@@ -2,8 +2,8 @@ import { MemorizingLogs, Student, User } from '@prisma/client';
 import * as moment from 'moment-timezone';
 
 export function toMemorizingLogs(
-  memorizing: MemorizingLogs & { Student?: Student | null } & {
-    Musyrif?: User | null;
+  memorizing: MemorizingLogs & { MemorizingLogsStudent?: Student | null } & {
+    MemorizingLogsMusyrif?: User | null;
   }
 ) {
   return {
@@ -20,21 +20,21 @@ export function toMemorizingLogs(
     notes: memorizing.notes,
     isRepeat: memorizing.isRepeat,
     created_at: memorizing.created_at,
-    Student: memorizing.Student
+    Student: memorizing.MemorizingLogsStudent
       ? {
-          id: memorizing.Student.id,
-          name: memorizing.Student.name,
-          gender: memorizing.Student.gender,
-          grade: memorizing.Student.grade,
-          grade_status: memorizing.Student.grade_status,
-          status: memorizing.Student.status
+          id: memorizing.MemorizingLogsStudent.id,
+          name: memorizing.MemorizingLogsStudent.name,
+          gender: memorizing.MemorizingLogsStudent.gender,
+          grade: memorizing.MemorizingLogsStudent.grade,
+          grade_status: memorizing.MemorizingLogsStudent.grade_status,
+          status: memorizing.MemorizingLogsStudent.status
         }
       : null,
-    Musyrif: memorizing.Musyrif
+    Musyrif: memorizing.MemorizingLogsMusyrif
       ? {
-          id: memorizing.Musyrif.id,
-          name: memorizing.Musyrif.name,
-          email: memorizing.Musyrif.email
+          id: memorizing.MemorizingLogsMusyrif.id,
+          name: memorizing.MemorizingLogsMusyrif.name,
+          email: memorizing.MemorizingLogsMusyrif.email
         }
       : null
   };

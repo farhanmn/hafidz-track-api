@@ -32,7 +32,7 @@ export class MemorizingController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('MUSYRIF')
+  @Roles('ADMIN', 'MUSYRIF')
   async create(
     @Body() createMemorizingDto: CreateMemorizingDto,
     @CurrentUser() user: LoggedUser
@@ -155,7 +155,10 @@ export class MemorizingController {
   async remove(@Param('id') id: string): Promise<ApiResponses<boolean>> {
     try {
       const memorizing = await this.memorizingService.remove(id);
-      return successResponse('OK', memorizing);
+      return successResponse(
+        'Memorizing record delete successfully',
+        memorizing
+      );
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;

@@ -128,10 +128,10 @@ model MemorizingLogs {
   from_ayah       Int        @db.Integer
   to_surah        String     @db.VarChar()
   to_ayah         Int        @db.Integer
-  submission_date DateTime   @db.Date
+  submission_date DateTime?  @db.Date
   assessment      Assessment @default(PASS)
   notes           String?    @db.Text
-  isRepeat        Int        @db.SmallInt
+  isRepeat        Int        @default(0) @db.SmallInt
   created_at      DateTime   @default(now())
   updated_at      DateTime   @default(now())
 
