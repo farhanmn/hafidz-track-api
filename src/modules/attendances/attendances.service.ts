@@ -89,9 +89,7 @@ export class AttendancesService {
               status: findAttendanceDto.status
             }
           : {})
-      },
-      skip: (page - 1) * limit,
-      take: limit
+      }
     });
 
     return {
