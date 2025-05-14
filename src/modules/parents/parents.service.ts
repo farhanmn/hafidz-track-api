@@ -3,10 +3,9 @@ import { CreateParentDto } from './dto/create-parent.dto';
 import { UpdateParentDto } from './dto/update-parent.dto';
 import { prismaClient } from '../../application/database';
 import { toParent, toParentList } from './mappers/parent.mapper';
-import { Pagination } from '../../common/types/pagination.interface';
 import { metaPagination } from '../../utils/response.utils';
-import { Gender } from '@prisma/client';
 import { StudentsService } from '../students/students.service';
+import { FindParentDto } from './dto/find-parent.dto';
 
 @Injectable()
 export class ParentsService {
@@ -30,37 +29,27 @@ export class ParentsService {
     return toParent(parent);
   }
 
-  async findAll({
-    name,
-    student_id,
-    gender,
-    pagination
-  }: {
-    name?: string;
-    student_id?: string;
-    gender?: string;
-    pagination?: Pagination;
-  }) {
-    const page = Number(pagination?.page) || 1;
-    const limit = Number(pagination?.limit) || 10;
+  async findAll(findParentDto: FindParentDto) {
+    const page = Number(findParentDto?.page) || 1;
+    const limit = Number(findParentDto?.limit) || 10;
     const parents = await prismaClient.parent.findMany({
       where: {
-        ...(name
+        ...(findParentDto.name
           ? {
               name: {
-                startsWith: `%${name}%`,
+                startsWith: `%${findParentDto.name}%`,
                 mode: 'insensitive'
               }
             }
           : {}),
-        ...(student_id
+        ...(findParentDto.student_id
           ? {
-              student_id
+              student_id: findParentDto.student_id
             }
           : {}),
-        ...(gender
+        ...(findParentDto.gender
           ? {
-              gender: gender as Gender
+              gender: findParentDto.gender
             }
           : {})
       },
@@ -76,22 +65,22 @@ export class ParentsService {
 
     const count = await prismaClient.parent.count({
       where: {
-        ...(name
+        ...(findParentDto.name
           ? {
               name: {
-                startsWith: `%${name}%`,
+                startsWith: `%${findParentDto.name}%`,
                 mode: 'insensitive'
               }
             }
           : {}),
-        ...(student_id
+        ...(findParentDto.student_id
           ? {
-              student_id
+              student_id: findParentDto.student_id
             }
           : {}),
-        ...(gender
+        ...(findParentDto.gender
           ? {
-              gender: gender as Gender
+              gender: findParentDto.gender
             }
           : {})
       }
