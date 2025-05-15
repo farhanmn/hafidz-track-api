@@ -8,7 +8,7 @@ describe('AttendancesController', () => {
   let attendancesController: AttendancesController;
   let studentController: StudentsController;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AttendancesController, StudentsController],
       providers: [AttendancesService, StudentsService]

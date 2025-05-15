@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MemorizingService } from './memorizing.service';
+import { MurojaahService } from './murojaah.service';
 import { StudentsService } from '../students/students.service';
 import { UsersService } from '../users/users.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
@@ -10,20 +10,20 @@ import {
   Role,
   StudentStatus
 } from '@prisma/client';
+import { CreateMurojaahDto } from './dto/create-murojaah.dto';
 import { CreateStudentDto } from '../students/dto/create-student.dto';
 import * as moment from 'moment-timezone';
-import { CreateMemorizingDto } from './dto/create-memorizing.dto';
 
-describe('MemorizingService', () => {
-  let memorizingService: MemorizingService;
+describe('MurojaahService', () => {
+  let murojaahService: MurojaahService;
   let studentService: StudentsService;
   let usersService: UsersService;
 
-  let memorizingId: string;
+  let murojaahId: string;
 
   const musyrifTesting: CreateUserDto = {
     name: 'musyrifTesting',
-    email: 'musyrifTesting@testing4.com',
+    email: 'musyrifTesting@testing3.com',
     password: 'passwordTesting',
     role: Role.MUSYRIF,
     created_at: new Date()
@@ -32,7 +32,7 @@ describe('MemorizingService', () => {
   const studentTesting: CreateStudentDto = {
     musyrif_id: '',
     gender: Gender.L,
-    name: 'studentTesting4',
+    name: 'studentTesting1',
     grade: '10',
     grade_status: GradeStatus.JUNIOR_HIGH_SCHOOL,
     birth_date: moment('2020-11-11', 'YYYY-MM-DD').toISOString(),
@@ -40,7 +40,7 @@ describe('MemorizingService', () => {
     status: StudentStatus.ACTIVE
   };
 
-  const memorizingLogs: CreateMemorizingDto = {
+  const murojaahLogs: CreateMurojaahDto = {
     student_id: '',
     musyrif_id: '',
     juz: 1,
@@ -54,19 +54,19 @@ describe('MemorizingService', () => {
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [MemorizingService, StudentsService, UsersService]
+      providers: [MurojaahService, StudentsService, UsersService]
     }).compile();
 
-    memorizingService = module.get<MemorizingService>(MemorizingService);
+    murojaahService = module.get<MurojaahService>(MurojaahService);
     studentService = module.get<StudentsService>(StudentsService);
     usersService = module.get<UsersService>(UsersService);
 
     const userMusyrif = await usersService.create(musyrifTesting);
     studentTesting.musyrif_id = userMusyrif.id;
-    memorizingLogs.musyrif_id = userMusyrif.id;
+    murojaahLogs.musyrif_id = userMusyrif.id;
 
     const userStudent = await studentService.create(studentTesting);
-    memorizingLogs.student_id = userStudent.id;
+    murojaahLogs.student_id = userStudent.id;
   });
 
   afterAll(async () => {
@@ -74,14 +74,14 @@ describe('MemorizingService', () => {
   });
 
   it('should be defined', () => {
-    expect(memorizingService).toBeDefined();
+    expect(murojaahService).toBeDefined();
     expect(studentService).toBeDefined();
     expect(usersService).toBeDefined();
   });
 
-  it('should be successfully created memorizing log', async () => {
-    const result = await memorizingService.create(memorizingLogs);
-    memorizingId = result.id;
+  it('should be successfully created murojaah log', async () => {
+    const result = await murojaahService.create(murojaahLogs);
+    murojaahId = result.id;
 
     expect(result).toHaveProperty('id');
     expect(result).toHaveProperty('student_id');
@@ -95,25 +95,25 @@ describe('MemorizingService', () => {
     expect(result).toHaveProperty('isRepeat');
   });
 
-  it('should be successfully get all memorizing logs', async () => {
+  it('should be successfully get all murojaah logs', async () => {
     const paginate = {
       page: 1,
       limit: 10
     };
-    const result = await memorizingService.findAll(paginate);
+    const result = await murojaahService.findAll(paginate);
     expect(result).toHaveProperty('data');
     expect(result).toHaveProperty('meta');
     expect(result.data).toEqual(
-      expect.arrayContaining([expect.objectContaining(memorizingLogs)])
+      expect.arrayContaining([expect.objectContaining(murojaahLogs)])
     );
   });
 
-  it('should be successfully update memorizing log', async () => {
+  it('should be successfully update murojaah log', async () => {
     const dto = {
       assessment: Assessment.FAIL
     };
 
-    const result = await memorizingService.update(memorizingId, dto);
+    const result = await murojaahService.update(murojaahId, dto);
     expect(result).toHaveProperty('id');
     expect(result).toHaveProperty('student_id');
     expect(result).toHaveProperty('musyrif_id');
@@ -126,8 +126,8 @@ describe('MemorizingService', () => {
     expect(result).toHaveProperty('isRepeat');
   });
 
-  it('should be successfully delete memorizing log', async () => {
-    const result = await memorizingService.remove(memorizingId);
+  it('should be successfully delete murojaah log', async () => {
+    const result = await murojaahService.remove(murojaahId);
     expect(result).toEqual(true);
   });
 });

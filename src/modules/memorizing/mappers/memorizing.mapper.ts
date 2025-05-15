@@ -41,8 +41,10 @@ export function toMemorizingLogs(
 }
 
 export function toMemorizingLogsList(
-  memorizingLogs: MemorizingLogs[] & { Student?: Student | null } & {
-    Musyrif?: User | null;
+  memorizingLogs: MemorizingLogs[] & {
+    MemorizingLogsStudent?: Student | null;
+  } & {
+    MemorizingLogsMusyrif?: User | null;
   }
 ) {
   return memorizingLogs.map(toMemorizingLogs);

@@ -7,7 +7,7 @@ describe('RefsController', () => {
 
   let alFatihahId: string;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [RefsController],
       providers: [RefsService]

@@ -6,7 +6,7 @@ describe('AttendancesService', () => {
   let attendancesService: AttendancesService;
   let studentService: StudentsService;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [AttendancesService, StudentsService]
     }).compile();
