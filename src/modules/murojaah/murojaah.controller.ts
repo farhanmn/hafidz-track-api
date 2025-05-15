@@ -6,45 +6,46 @@ import {
   Patch,
   Param,
   Delete,
-  HttpException,
   UseGuards,
+  HttpException,
   Query
 } from '@nestjs/common';
-import { MemorizingService } from './memorizing.service';
-import { CreateMemorizingDto } from './dto/create-memorizing.dto';
-import { UpdateMemorizingDto } from './dto/update-memorizing.dto';
-import { errorResponse, successResponse } from '../../utils/response.utils';
-import { Validation } from '../../common/validations/validation';
-import { MemorizingValidation } from '../../common/validations/memorizing-validation';
-import { ApiResponses } from '../../common/types/response.interface';
-import { Memorizing as MemorizingInterface } from '../../common/types/memorizing.interface';
+import { MurojaahService } from './murojaah.service';
+import { CreateMurojaahDto } from './dto/create-murojaah.dto';
+import { UpdateMurojaahDto } from './dto/update-murojaah.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
-import { FindMemorizingDto } from './dto/find-memorizing.dto';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { LoggedUser } from '../../common/types/user.interface';
+import { ApiResponses } from '../../common/types/response.interface';
+import { Murojaah as MurojaahInterface } from '../../common/types/murojaah.interface';
+import { Validation } from '../../common/validations/validation';
+import { MurojaahValidation } from '../../common/validations/murojaah-validation';
+import { errorResponse, successResponse } from '../../utils/response.utils';
+import { FindMurojaahDto } from './dto/find-murojaah.dto';
 import { Pagination } from '../../common/types/pagination.interface';
+import { MemorizingValidation } from '../../common/validations/memorizing-validation';
 
-@Controller('memorizing')
-export class MemorizingController {
-  constructor(private readonly memorizingService: MemorizingService) {}
+@Controller('murojaah')
+export class MurojaahController {
+  constructor(private readonly murojaahService: MurojaahService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN', 'MUSYRIF')
   async create(
-    @Body() createMemorizingDto: CreateMemorizingDto,
+    @Body() createMurojaahDto: CreateMurojaahDto,
     @CurrentUser() user: LoggedUser
-  ): Promise<ApiResponses<MemorizingInterface>> {
+  ): Promise<ApiResponses<MurojaahInterface>> {
     try {
-      const validateRequest = Validation.validate(MemorizingValidation.CREATE, {
-        ...createMemorizingDto,
+      const validateRequest = Validation.validate(MurojaahValidation.CREATE, {
+        ...createMurojaahDto,
         musyrif_id: user.userId
       });
 
-      const memorizing = await this.memorizingService.create(validateRequest);
-      return successResponse('Record memorizing successfully', memorizing);
+      const murojaah = await this.murojaahService.create(validateRequest);
+      return successResponse('Record murojaah successfully', murojaah);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -63,20 +64,20 @@ export class MemorizingController {
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN', 'MUSYRIF')
-  async findAll(@Query() query: FindMemorizingDto): Promise<
+  async findAll(@Query() query: FindMurojaahDto): Promise<
     ApiResponses<{
-      data: MemorizingInterface[];
+      data: MurojaahInterface[];
       meta: Pagination;
     }>
   > {
     try {
       const validateRequest = Validation.validate(
-        MemorizingValidation.LIST,
+        MurojaahValidation.LIST,
         query
       );
 
-      const memorizing = await this.memorizingService.findAll(validateRequest);
-      return successResponse('OK', memorizing);
+      const murojaah = await this.murojaahService.findAll(validateRequest);
+      return successResponse('OK', murojaah);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -97,10 +98,10 @@ export class MemorizingController {
   @Roles('ADMIN', 'MUSYRIF')
   async findOne(
     @Param('id') id: string
-  ): Promise<ApiResponses<MemorizingInterface | null>> {
+  ): Promise<ApiResponses<MurojaahInterface | null>> {
     try {
-      const memorizing = await this.memorizingService.findOne(id);
-      return successResponse('OK', memorizing);
+      const murojaah = await this.murojaahService.findOne(id);
+      return successResponse('OK', murojaah);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -121,19 +122,16 @@ export class MemorizingController {
   @Roles('ADMIN', 'MUSYRIF')
   async update(
     @Param('id') id: string,
-    @Body() updateMemorizingDto: UpdateMemorizingDto
-  ): Promise<ApiResponses<MemorizingInterface>> {
+    @Body() updateMurojaahDto: UpdateMurojaahDto
+  ): Promise<ApiResponses<MurojaahInterface>> {
     try {
       const validateRequest = Validation.validate(
         MemorizingValidation.UPDATE,
-        updateMemorizingDto
+        updateMurojaahDto
       );
 
-      const memorizing = await this.memorizingService.update(
-        id,
-        validateRequest
-      );
-      return successResponse('Memorizing data update successfully', memorizing);
+      const murojaah = await this.murojaahService.update(id, validateRequest);
+      return successResponse('Murojaah data update successfully', murojaah);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -154,11 +152,8 @@ export class MemorizingController {
   @Roles('ADMIN', 'MUSYRIF')
   async remove(@Param('id') id: string): Promise<ApiResponses<boolean>> {
     try {
-      const memorizing = await this.memorizingService.remove(id);
-      return successResponse(
-        'Memorizing record delete successfully',
-        memorizing
-      );
+      const murojaah = await this.murojaahService.remove(id);
+      return successResponse('Murojaah record delete successfully', murojaah);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;

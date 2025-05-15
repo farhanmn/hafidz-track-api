@@ -6,6 +6,7 @@ import { ParentsModule } from './modules/parents/parents.module';
 import { RefsModule } from './modules/refs/refs.module';
 import { AttendancesModule } from './modules/attendances/attendances.module';
 import { MemorizingModule } from './modules/memorizing/memorizing.module';
+import { MurojaahModule } from './modules/murojaah/murojaah.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { MemorizingModule } from './modules/memorizing/memorizing.module';
     ParentsModule,
     RefsModule,
     AttendancesModule,
-    MemorizingModule
+    MemorizingModule,
+    MurojaahModule
     // other modules
   ]
 })

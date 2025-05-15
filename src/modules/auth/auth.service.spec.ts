@@ -18,7 +18,7 @@ describe('AuthService', () => {
     created_at: new Date()
   };
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         PassportModule.register({ defaultStrategy: 'jwt' }),

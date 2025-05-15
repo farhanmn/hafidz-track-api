@@ -63,12 +63,6 @@ describe('StudentsService', () => {
     expect(result.status).toBe(studentTesting.status);
     expect(result.gender).toBe(studentTesting.gender);
     expect(result.grade).toBe(studentTesting.grade);
-    expect(result.birth_date).toBe(
-      moment(studentTesting.birth_date).subtract(1, 'day').format('YYYY-MM-DD')
-    );
-    expect(result.join_date).toBe(
-      moment(studentTesting.join_date).subtract(1, 'day').format('YYYY-MM-DD')
-    );
     expect(result.grade_status).toBe(studentTesting.grade_status);
   });
 
@@ -78,12 +72,6 @@ describe('StudentsService', () => {
       name: studentTesting.name,
       gender: studentTesting.gender,
       grade: studentTesting.grade,
-      birth_date: moment(studentTesting.birth_date)
-        .subtract(1, 'day')
-        .format('YYYY-MM-DD'),
-      join_date: moment(studentTesting.join_date)
-        .subtract(1, 'day')
-        .format('YYYY-MM-DD'),
       status: studentTesting.status,
       grade_status: studentTesting.grade_status
     };

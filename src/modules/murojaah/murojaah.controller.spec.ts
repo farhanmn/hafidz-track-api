@@ -1,11 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MemorizingController } from './memorizing.controller';
-import { MemorizingService } from './memorizing.service';
+import { MurojaahController } from './murojaah.controller';
+import { MurojaahService } from './murojaah.service';
 import { StudentsService } from '../students/students.service';
 import { UsersService } from '../users/users.service';
 import { StudentsController } from '../students/students.controller';
 import { UserController } from '../users/user.controller';
-import { LoggedUser } from '../../common/types/user.interface';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import {
   Assessment,
@@ -16,10 +15,11 @@ import {
 } from '@prisma/client';
 import { CreateStudentDto } from '../students/dto/create-student.dto';
 import * as moment from 'moment-timezone';
-import { CreateMemorizingDto } from './dto/create-memorizing.dto';
+import { CreateMurojaahDto } from './dto/create-murojaah.dto';
+import { LoggedUser } from '../../common/types/user.interface';
 
-describe('MemorizingController', () => {
-  let memorizingController: MemorizingController;
+describe('MurojaahController', () => {
+  let murojaahController: MurojaahController;
   let studentController: StudentsController;
   let usersController: UserController;
   let usersService: UsersService;
@@ -29,7 +29,7 @@ describe('MemorizingController', () => {
 
   const musyrifTesting: CreateUserDto = {
     name: 'musyrifTesting',
-    email: 'musyrifTesting@testing4.com',
+    email: 'musyrifTesting@testing3.com',
     password: 'passwordTesting',
     role: Role.MUSYRIF,
     created_at: new Date()
@@ -38,7 +38,7 @@ describe('MemorizingController', () => {
   const studentTesting: CreateStudentDto = {
     musyrif_id: '',
     gender: Gender.L,
-    name: 'studentTesting4',
+    name: 'studentTesting1',
     grade: '10',
     grade_status: GradeStatus.JUNIOR_HIGH_SCHOOL,
     birth_date: moment('2020-11-11', 'YYYY-MM-DD').toISOString(),
@@ -46,7 +46,7 @@ describe('MemorizingController', () => {
     status: StudentStatus.ACTIVE
   };
 
-  const memorizingLogs: CreateMemorizingDto = {
+  const murojaahLogs: CreateMurojaahDto = {
     student_id: '',
     musyrif_id: '',
     juz: 1,
@@ -60,12 +60,11 @@ describe('MemorizingController', () => {
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [MemorizingController, StudentsController, UserController],
-      providers: [MemorizingService, StudentsService, UsersService]
+      controllers: [MurojaahController, StudentsController, UserController],
+      providers: [MurojaahService, StudentsService, UsersService]
     }).compile();
 
-    memorizingController =
-      module.get<MemorizingController>(MemorizingController);
+    murojaahController = module.get<MurojaahController>(MurojaahController);
     studentController = module.get<StudentsController>(StudentsController);
     usersController = module.get<UserController>(UserController);
     usersService = module.get<UsersService>(UsersService);
@@ -73,7 +72,7 @@ describe('MemorizingController', () => {
     const userMusyrif = await usersController.create(musyrifTesting);
     if (userMusyrif.success) {
       studentTesting.musyrif_id = userMusyrif.data.id;
-      memorizingLogs.musyrif_id = userMusyrif.data.id;
+      murojaahLogs.musyrif_id = userMusyrif.data.id;
 
       loggedUser = {
         userId: userMusyrif.data.id,
@@ -84,7 +83,7 @@ describe('MemorizingController', () => {
 
     const userStudent = await studentController.create(studentTesting);
     if (userStudent.success) {
-      memorizingLogs.student_id = userStudent.data.id;
+      murojaahLogs.student_id = userStudent.data.id;
     }
   });
 
@@ -93,16 +92,13 @@ describe('MemorizingController', () => {
   });
 
   it('should be defined', () => {
-    expect(memorizingController).toBeDefined();
+    expect(murojaahController).toBeDefined();
     expect(studentController).toBeDefined();
     expect(usersController).toBeDefined();
   });
 
-  it('should be successfully created memorizing log', async () => {
-    const result = await memorizingController.create(
-      memorizingLogs,
-      loggedUser
-    );
+  it('should be successfully created murojaah log', async () => {
+    const result = await murojaahController.create(murojaahLogs, loggedUser);
     if (result.success) {
       murojaahId = result.data.id;
     }
@@ -112,30 +108,30 @@ describe('MemorizingController', () => {
     expect(result).toHaveProperty('data');
   });
 
-  it('should be successfully get all memorizing logs', async () => {
+  it('should be successfully get all murojaah logs', async () => {
     const paginate = {
       page: 1,
       limit: 10
     };
-    const result = await memorizingController.findAll(paginate);
+    const result = await murojaahController.findAll(paginate);
     expect(result).toHaveProperty('success');
     expect(result).toHaveProperty('message');
     expect(result).toHaveProperty('data');
   });
 
-  it('should be successfully update memorizing log', async () => {
+  it('should be successfully update murojaah log', async () => {
     const dto = {
       assessment: Assessment.FAIL
     };
 
-    const result = await memorizingController.update(murojaahId, dto);
+    const result = await murojaahController.update(murojaahId, dto);
     expect(result).toHaveProperty('success');
     expect(result).toHaveProperty('message');
     expect(result).toHaveProperty('data');
   });
 
-  it('should be successfully delete memorizing log', async () => {
-    const result = await memorizingController.remove(murojaahId);
+  it('should be successfully delete murojaah log', async () => {
+    const result = await murojaahController.remove(murojaahId);
     expect(result).toHaveProperty('success');
     expect(result).toHaveProperty('message');
     expect(result).toHaveProperty('data');
