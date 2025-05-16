@@ -5,9 +5,7 @@ import { StudentsModule } from './modules/students/students.module';
 import { ParentsModule } from './modules/parents/parents.module';
 import { RefsModule } from './modules/refs/refs.module';
 import { AttendancesModule } from './modules/attendances/attendances.module';
-import { MemorizingModule } from './modules/memorizing/memorizing.module';
-import { MurojaahModule } from './modules/murojaah/murojaah.module';
-
+import { TahfidzModule } from './modules/tahfidz/tahfidz.module';
 @Module({
   imports: [
     UsersModule,
@@ -16,8 +14,7 @@ import { MurojaahModule } from './modules/murojaah/murojaah.module';
     ParentsModule,
     RefsModule,
     AttendancesModule,
-    MemorizingModule,
-    MurojaahModule
+    TahfidzModule
     // other modules
   ]
 })

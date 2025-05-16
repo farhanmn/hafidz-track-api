@@ -1,23 +1,24 @@
 import { z, ZodType } from 'zod';
 
-export class MurojaahValidation {
+export class TahfidzValidation {
   static readonly CREATE: ZodType = z.object({
     student_id: z.string(),
     musyrif_id: z.string(),
+    class: z.enum(['QURAN', 'IQRO']),
     juz: z
       .string()
       .transform((val) => +val)
       .refine((val) => val > 0 && val < 31, {
         message: 'Allowed value from 1 - 30'
       }),
-    from_surah: z.string(),
+    from_surah: z.string().optional(),
     from_ayah: z
       .string()
       .transform((val) => +val)
       .refine((val) => val > 0, {
         message: 'Minimum value is 1'
       }),
-    to_surah: z.string(),
+    to_surah: z.string().optional(),
     to_ayah: z
       .string()
       .transform((val) => +val)
@@ -32,12 +33,14 @@ export class MurojaahValidation {
       .optional(),
     assessment: z.enum(['PASS', 'FAIL']),
     notes: z.string().optional(),
+    type: z.enum(['MEMORIZING', 'MUROJAAH']),
     isRepeat: z.number().default(0)
   });
 
   static readonly LIST: ZodType = z.object({
     student_id: z.string().optional(),
     musyrif_id: z.string().optional(),
+    class: z.enum(['QURAN', 'IQRO']).optional(),
     juz: z
       .string()
       .transform((val) => +val)
@@ -54,6 +57,7 @@ export class MurojaahValidation {
       })
       .optional(),
     assessment: z.enum(['PASS', 'FAIL']).optional(),
+    type: z.enum(['MEMORIZING', 'MUROJAAH']).optional(),
     page: z.number().optional(),
     limit: z.number().optional()
   });
@@ -61,6 +65,7 @@ export class MurojaahValidation {
   static readonly UPDATE: ZodType = z.object({
     student_id: z.string().optional(),
     musyrif_id: z.string().optional(),
+    class: z.enum(['QURAN', 'IQRO']).optional(),
     juz: z
       .string()
       .transform((val) => +val)
@@ -92,6 +97,7 @@ export class MurojaahValidation {
       .optional(),
     assessment: z.enum(['PASS', 'FAIL']).optional(),
     notes: z.string().optional(),
-    isRepeat: z.number().default(0).optional()
+    isRepeat: z.number().default(0).optional(),
+    type: z.enum(['MEMORIZING', 'MUROJAAH']).optional()
   });
 }

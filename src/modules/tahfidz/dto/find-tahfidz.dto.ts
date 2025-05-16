@@ -6,9 +6,9 @@ import {
   IsUUID
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Assessment } from '@prisma/client';
+import { Assessment, TahfidzClass, TahfidzType } from '@prisma/client';
 
-export class FindMurojaahDto {
+export class FindTahfidzDto {
   @IsUUID()
   @IsOptional()
   @ApiProperty({ example: 'uuid' })
@@ -18,6 +18,10 @@ export class FindMurojaahDto {
   @IsOptional()
   @ApiProperty({ example: 'uuid' })
   musyrif_id?: string;
+
+  @IsEnum(TahfidzClass)
+  @ApiProperty({ example: TahfidzClass.QURAN })
+  class?: TahfidzClass;
 
   @IsNumber()
   @IsOptional()
@@ -43,6 +47,10 @@ export class FindMurojaahDto {
   @IsOptional()
   @ApiProperty({ example: Assessment.PASS })
   assessment?: Assessment;
+
+  @IsEnum(TahfidzType)
+  @ApiProperty({ example: TahfidzType.MEMORIZING })
+  type?: TahfidzType;
 
   @ApiProperty({ example: 1, default: 1 })
   page: number;

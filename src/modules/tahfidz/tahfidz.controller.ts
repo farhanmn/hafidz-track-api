@@ -10,41 +10,41 @@ import {
   UseGuards,
   Query
 } from '@nestjs/common';
-import { MemorizingService } from './memorizing.service';
-import { CreateMemorizingDto } from './dto/create-memorizing.dto';
-import { UpdateMemorizingDto } from './dto/update-memorizing.dto';
+import { TahfidzService } from './tahfidz.service';
+import { CreateTahfidzDto } from './dto/create-tahfidz.dto';
+import { UpdateTahfidzDto } from './dto/update-tahfidz.dto';
 import { errorResponse, successResponse } from '../../utils/response.utils';
 import { Validation } from '../../common/validations/validation';
-import { MemorizingValidation } from '../../common/validations/memorizing-validation';
+import { TahfidzValidation } from '../../common/validations/tahfidz-validation';
 import { ApiResponses } from '../../common/types/response.interface';
-import { Memorizing as MemorizingInterface } from '../../common/types/memorizing.interface';
+import { Tahfidz as TahfidzInterface } from '../../common/types/tahfidz.interface';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
-import { FindMemorizingDto } from './dto/find-memorizing.dto';
+import { FindTahfidzDto } from './dto/find-tahfidz.dto';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { LoggedUser } from '../../common/types/user.interface';
 import { Pagination } from '../../common/types/pagination.interface';
 
-@Controller('memorizing')
-export class MemorizingController {
-  constructor(private readonly memorizingService: MemorizingService) {}
+@Controller('tahfidz')
+export class TahfidzController {
+  constructor(private readonly tahfidzService: TahfidzService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN', 'MUSYRIF')
   async create(
-    @Body() createMemorizingDto: CreateMemorizingDto,
+    @Body() createTahfidzDto: CreateTahfidzDto,
     @CurrentUser() user: LoggedUser
-  ): Promise<ApiResponses<MemorizingInterface>> {
+  ): Promise<ApiResponses<TahfidzInterface>> {
     try {
-      const validateRequest = Validation.validate(MemorizingValidation.CREATE, {
-        ...createMemorizingDto,
+      const validateRequest = Validation.validate(TahfidzValidation.CREATE, {
+        ...createTahfidzDto,
         musyrif_id: user.userId
       });
 
-      const memorizing = await this.memorizingService.create(validateRequest);
-      return successResponse('Record memorizing successfully', memorizing);
+      const tahfidz = await this.tahfidzService.create(validateRequest);
+      return successResponse('Record tahfidz successfully', tahfidz);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -63,20 +63,20 @@ export class MemorizingController {
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN', 'MUSYRIF')
-  async findAll(@Query() query: FindMemorizingDto): Promise<
+  async findAll(@Query() query: FindTahfidzDto): Promise<
     ApiResponses<{
-      data: MemorizingInterface[];
+      data: TahfidzInterface[];
       meta: Pagination;
     }>
   > {
     try {
       const validateRequest = Validation.validate(
-        MemorizingValidation.LIST,
+        TahfidzValidation.LIST,
         query
       );
 
-      const memorizing = await this.memorizingService.findAll(validateRequest);
-      return successResponse('OK', memorizing);
+      const tahfidz = await this.tahfidzService.findAll(validateRequest);
+      return successResponse('OK', tahfidz);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -97,10 +97,10 @@ export class MemorizingController {
   @Roles('ADMIN', 'MUSYRIF')
   async findOne(
     @Param('id') id: string
-  ): Promise<ApiResponses<MemorizingInterface | null>> {
+  ): Promise<ApiResponses<TahfidzInterface | null>> {
     try {
-      const memorizing = await this.memorizingService.findOne(id);
-      return successResponse('OK', memorizing);
+      const tahfidz = await this.tahfidzService.findOne(id);
+      return successResponse('OK', tahfidz);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -121,19 +121,16 @@ export class MemorizingController {
   @Roles('ADMIN', 'MUSYRIF')
   async update(
     @Param('id') id: string,
-    @Body() updateMemorizingDto: UpdateMemorizingDto
-  ): Promise<ApiResponses<MemorizingInterface>> {
+    @Body() updateTahfidzDto: UpdateTahfidzDto
+  ): Promise<ApiResponses<TahfidzInterface>> {
     try {
       const validateRequest = Validation.validate(
-        MemorizingValidation.UPDATE,
-        updateMemorizingDto
+        TahfidzValidation.UPDATE,
+        updateTahfidzDto
       );
 
-      const memorizing = await this.memorizingService.update(
-        id,
-        validateRequest
-      );
-      return successResponse('Memorizing data update successfully', memorizing);
+      const tahfidz = await this.tahfidzService.update(id, validateRequest);
+      return successResponse('Tahfidz data update successfully', tahfidz);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -154,11 +151,8 @@ export class MemorizingController {
   @Roles('ADMIN', 'MUSYRIF')
   async remove(@Param('id') id: string): Promise<ApiResponses<boolean>> {
     try {
-      const memorizing = await this.memorizingService.remove(id);
-      return successResponse(
-        'Memorizing record delete successfully',
-        memorizing
-      );
+      const tahfidz = await this.tahfidzService.remove(id);
+      return successResponse('Tahfidz record delete successfully', tahfidz);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;

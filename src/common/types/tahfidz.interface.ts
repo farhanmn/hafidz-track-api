@@ -15,22 +15,24 @@ interface Musyrif {
   email: string;
 }
 
-interface Murojaah {
+interface Tahfidz {
   id: string;
   student_id: string;
   musyrif_id: string;
+  class: string;
   juz: number;
-  from_surah: string;
+  from_surah?: string | null;
   from_ayah: number;
-  to_surah: string;
+  to_surah?: string | null;
   to_ayah: number;
   submission_date: string;
   assessment: Assessment;
   notes?: string | null;
   isRepeat: number;
+  type: string;
   created_at: Date;
   Student?: Student | null;
   Musyrif?: Musyrif | null;
 }
 
-export { Murojaah };
+export { Tahfidz };
