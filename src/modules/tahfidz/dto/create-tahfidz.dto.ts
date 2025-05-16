@@ -7,9 +7,9 @@ import {
   IsUUID
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Assessment } from '@prisma/client';
+import { Assessment, TahfidzClass, TahfidzType } from '@prisma/client';
 
-export class CreateMurojaahDto {
+export class CreateTahfidzDto {
   @IsUUID()
   @ApiProperty({ example: 'uuid' })
   student_id: string;
@@ -18,21 +18,27 @@ export class CreateMurojaahDto {
   @ApiProperty({ example: 'uuid' })
   musyrif_id: string;
 
+  @IsEnum(TahfidzClass)
+  @ApiProperty({ example: TahfidzClass.QURAN })
+  class: TahfidzClass;
+
   @IsNumber()
   @ApiProperty({ example: 2, minimum: 1, maximum: 30 })
   juz: number;
 
   @IsString()
+  @IsOptional()
   @ApiProperty({ example: 'Al-Fatihah' })
-  from_surah: string;
+  from_surah?: string | null;
 
   @IsNumber()
   @ApiProperty({ example: 2, minimum: 1 })
   from_ayah: number;
 
   @IsString()
+  @IsOptional()
   @ApiProperty({ example: 'Al-Fatihah' })
-  to_surah: string;
+  to_surah?: string | null;
 
   @IsNumber()
   @ApiProperty({ example: 2, minimum: 1 })
@@ -52,8 +58,11 @@ export class CreateMurojaahDto {
   @ApiProperty({ example: 'Lulus bersyarat' })
   notes?: string;
 
+  @IsEnum(TahfidzType)
+  @ApiProperty({ example: TahfidzType.MEMORIZING })
+  type: TahfidzType;
+
   @IsBoolean()
-  @IsOptional()
   @ApiProperty({ example: true })
   isRepeat: number;
 }

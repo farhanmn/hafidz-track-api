@@ -1,35 +1,37 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MurojaahController } from './murojaah.controller';
-import { MurojaahService } from './murojaah.service';
+import { TahfidzController } from './tahfidz.controller';
+import { TahfidzService } from './tahfidz.service';
 import { StudentsService } from '../students/students.service';
 import { UsersService } from '../users/users.service';
 import { StudentsController } from '../students/students.controller';
 import { UserController } from '../users/user.controller';
+import { LoggedUser } from '../../common/types/user.interface';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import {
   Assessment,
   Gender,
   GradeStatus,
   Role,
-  StudentStatus
+  StudentStatus,
+  TahfidzClass,
+  TahfidzType
 } from '@prisma/client';
 import { CreateStudentDto } from '../students/dto/create-student.dto';
 import * as moment from 'moment-timezone';
-import { CreateMurojaahDto } from './dto/create-murojaah.dto';
-import { LoggedUser } from '../../common/types/user.interface';
+import { CreateTahfidzDto } from './dto/create-tahfidz.dto';
 
-describe('MurojaahController', () => {
-  let murojaahController: MurojaahController;
+describe('TahfidzController', () => {
+  let tahfidzController: TahfidzController;
   let studentController: StudentsController;
   let usersController: UserController;
   let usersService: UsersService;
 
-  let murojaahId: string;
+  let tahfidzId: string;
   let loggedUser: LoggedUser;
 
   const musyrifTesting: CreateUserDto = {
     name: 'musyrifTesting',
-    email: 'musyrifTesting@testing3.com',
+    email: 'musyrifTesting@testing4.com',
     password: 'passwordTesting',
     role: Role.MUSYRIF,
     created_at: new Date()
@@ -38,7 +40,7 @@ describe('MurojaahController', () => {
   const studentTesting: CreateStudentDto = {
     musyrif_id: '',
     gender: Gender.L,
-    name: 'studentTesting1',
+    name: 'studentTesting4',
     grade: '10',
     grade_status: GradeStatus.JUNIOR_HIGH_SCHOOL,
     birth_date: moment('2020-11-11', 'YYYY-MM-DD').toISOString(),
@@ -46,25 +48,27 @@ describe('MurojaahController', () => {
     status: StudentStatus.ACTIVE
   };
 
-  const murojaahLogs: CreateMurojaahDto = {
+  const tahfidzLogs: CreateTahfidzDto = {
     student_id: '',
     musyrif_id: '',
+    class: TahfidzClass.QURAN,
     juz: 1,
     from_surah: 'Al-Fatihah',
     to_surah: 'Al-Fatihah',
     from_ayah: 1,
     to_ayah: 7,
     assessment: Assessment.PASS,
-    isRepeat: 0
+    isRepeat: 0,
+    type: TahfidzType.MEMORIZING
   };
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [MurojaahController, StudentsController, UserController],
-      providers: [MurojaahService, StudentsService, UsersService]
+      controllers: [TahfidzController, StudentsController, UserController],
+      providers: [TahfidzService, StudentsService, UsersService]
     }).compile();
 
-    murojaahController = module.get<MurojaahController>(MurojaahController);
+    tahfidzController = module.get<TahfidzController>(TahfidzController);
     studentController = module.get<StudentsController>(StudentsController);
     usersController = module.get<UserController>(UserController);
     usersService = module.get<UsersService>(UsersService);
@@ -72,7 +76,7 @@ describe('MurojaahController', () => {
     const userMusyrif = await usersController.create(musyrifTesting);
     if (userMusyrif.success) {
       studentTesting.musyrif_id = userMusyrif.data.id;
-      murojaahLogs.musyrif_id = userMusyrif.data.id;
+      tahfidzLogs.musyrif_id = userMusyrif.data.id;
 
       loggedUser = {
         userId: userMusyrif.data.id,
@@ -83,7 +87,7 @@ describe('MurojaahController', () => {
 
     const userStudent = await studentController.create(studentTesting);
     if (userStudent.success) {
-      murojaahLogs.student_id = userStudent.data.id;
+      tahfidzLogs.student_id = userStudent.data.id;
     }
   });
 
@@ -92,15 +96,15 @@ describe('MurojaahController', () => {
   });
 
   it('should be defined', () => {
-    expect(murojaahController).toBeDefined();
+    expect(tahfidzController).toBeDefined();
     expect(studentController).toBeDefined();
     expect(usersController).toBeDefined();
   });
 
-  it('should be successfully created murojaah log', async () => {
-    const result = await murojaahController.create(murojaahLogs, loggedUser);
+  it('should be successfully created tahfidz log', async () => {
+    const result = await tahfidzController.create(tahfidzLogs, loggedUser);
     if (result.success) {
-      murojaahId = result.data.id;
+      tahfidzId = result.data.id;
     }
 
     expect(result).toHaveProperty('success');
@@ -108,30 +112,30 @@ describe('MurojaahController', () => {
     expect(result).toHaveProperty('data');
   });
 
-  it('should be successfully get all murojaah logs', async () => {
+  it('should be successfully get all tahfidz logs', async () => {
     const paginate = {
       page: 1,
       limit: 10
     };
-    const result = await murojaahController.findAll(paginate);
+    const result = await tahfidzController.findAll(paginate);
     expect(result).toHaveProperty('success');
     expect(result).toHaveProperty('message');
     expect(result).toHaveProperty('data');
   });
 
-  it('should be successfully update murojaah log', async () => {
+  it('should be successfully update tahfidz log', async () => {
     const dto = {
       assessment: Assessment.FAIL
     };
 
-    const result = await murojaahController.update(murojaahId, dto);
+    const result = await tahfidzController.update(tahfidzId, dto);
     expect(result).toHaveProperty('success');
     expect(result).toHaveProperty('message');
     expect(result).toHaveProperty('data');
   });
 
-  it('should be successfully delete murojaah log', async () => {
-    const result = await murojaahController.remove(murojaahId);
+  it('should be successfully delete tahfidz log', async () => {
+    const result = await tahfidzController.remove(tahfidzId);
     expect(result).toHaveProperty('success');
     expect(result).toHaveProperty('message');
     expect(result).toHaveProperty('data');
