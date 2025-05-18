@@ -199,7 +199,7 @@ model JuzEvaluation {
   juz_number      Int        @db.Integer
   evaluation_date DateTime   @default(now())
   assessment      Assessment @default(PASS)
-  notes           String     @db.Text
+  notes           String?    @db.Text
   created_at      DateTime   @default(now())
   updated_at      DateTime   @default(now())
 
