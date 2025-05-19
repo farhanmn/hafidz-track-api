@@ -2,11 +2,27 @@ import { Injectable } from '@nestjs/common';
 import { CreateTahfidzPlanDto } from './dto/create-tahfidz-plan.dto';
 import { UpdateTahfidzPlanDto } from './dto/update-tahfidz-plan.dto';
 import { prismaClient } from '../../application/database';
-import { toTahfidzPlan } from './mappers/tahfidz-plan.mapper';
+import {
+  toTahfidzPlan,
+  toTahfidzPlanList
+} from './mappers/tahfidz-plan.mapper';
+import { FindTahfidzPlanDto } from './dto/find-tahfidz-plan.dto';
+import { metaPagination } from '../../utils/response.utils';
+import { StudentsService } from '../students/students.service';
 
 @Injectable()
 export class TahfidzPlanService {
+  constructor(private readonly studentService: StudentsService) {}
+
   async create(createTahfidzPlanDto: CreateTahfidzPlanDto) {
+    const findStudent = await this.studentService.findOne(
+      createTahfidzPlanDto.student_id
+    );
+
+    if (!findStudent) {
+      throw new Error('Student not found');
+    }
+
     const tahfidzPlan = await prismaClient.tahfidzPlan.create({
       data: createTahfidzPlanDto,
       include: {
@@ -18,19 +34,106 @@ export class TahfidzPlanService {
     return toTahfidzPlan(tahfidzPlan);
   }
 
-  findAll() {
-    return `This action returns all tahfidzPlan`;
+  async findAll(findTahfidzPlanDto: FindTahfidzPlanDto) {
+    const page = Number(findTahfidzPlanDto?.page) || 1;
+    const limit = Number(findTahfidzPlanDto?.limit) || 10;
+    const tahfidzPlan = await prismaClient.tahfidzPlan.findMany({
+      where: {
+        ...(findTahfidzPlanDto.student_id
+          ? {
+              student_id: findTahfidzPlanDto.student_id
+            }
+          : {}),
+        ...(findTahfidzPlanDto.plan_type
+          ? {
+              plan_type: findTahfidzPlanDto.plan_type
+            }
+          : {}),
+        ...(findTahfidzPlanDto.target_date
+          ? {
+              target_date: findTahfidzPlanDto.target_date
+            }
+          : {})
+      },
+      skip: (page - 1) * limit,
+      take: limit,
+      orderBy: {
+        created_at: 'desc'
+      }
+    });
+
+    const count = await prismaClient.tahfidzPlan.count({
+      where: {
+        ...(findTahfidzPlanDto.student_id
+          ? {
+              student_id: findTahfidzPlanDto.student_id
+            }
+          : {}),
+        ...(findTahfidzPlanDto.plan_type
+          ? {
+              plan_type: findTahfidzPlanDto.plan_type
+            }
+          : {}),
+        ...(findTahfidzPlanDto.target_date
+          ? {
+              target_date: findTahfidzPlanDto.target_date
+            }
+          : {})
+      }
+    });
+
+    return {
+      data: toTahfidzPlanList(tahfidzPlan),
+      meta: metaPagination(count, page, limit)
+    };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} tahfidzPlan`;
+  async findOne(id: string) {
+    const tahfidzPlan = await prismaClient.tahfidzPlan.findFirst({
+      where: {
+        id
+      },
+      include: {
+        TahfidzPlanStudents: true,
+        TahfidzPlanMusyrif: true,
+        TahfidzPlanSurah: true
+      }
+    });
+
+    if (!tahfidzPlan) {
+      return null;
+    }
+
+    return toTahfidzPlan(tahfidzPlan);
   }
 
-  update(id: number, updateTahfidzPlanDto: UpdateTahfidzPlanDto) {
-    return `This action updates a #${id} tahfidzPlan`;
+  async update(id: string, updateTahfidzPlanDto: UpdateTahfidzPlanDto) {
+    const tahfidzPlan = await prismaClient.tahfidzPlan.update({
+      data: updateTahfidzPlanDto,
+      where: {
+        id
+      },
+      include: {
+        TahfidzPlanStudents: true,
+        TahfidzPlanMusyrif: true,
+        TahfidzPlanSurah: true
+      }
+    });
+
+    return toTahfidzPlan(tahfidzPlan);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} tahfidzPlan`;
+  async remove(id: string) {
+    const tahfidzPlan = await prismaClient.tahfidzPlan.delete({
+      where: {
+        id
+      }
+    });
+
+    if (!tahfidzPlan) {
+      return false;
+    }
+
+    return true;
   }
 }

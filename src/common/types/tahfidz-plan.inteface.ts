@@ -1,19 +1,11 @@
 import { GradeStatus, StudentStatus } from '@prisma/client';
 
-interface Juz {
-  index: string;
-  verse: {
-    start: string;
-    end: string;
-  };
-}
-
 interface Surah {
-  index: string;
+  id: string;
   name: string;
-  verse: object;
-  count: number;
-  juz: Juz[];
+  surah_number: number;
+  ayah_counts: number;
+  juz: number[];
 }
 
 interface Student {

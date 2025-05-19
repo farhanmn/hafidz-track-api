@@ -1,5 +1,5 @@
-import { Parent, Student, Surah, TahfidzPlan, User } from '@prisma/client';
-import moment from 'moment-timezone';
+import { Student, Surah, TahfidzPlan, User } from '@prisma/client';
+import * as moment from 'moment-timezone';
 
 export function toTahfidzPlan(
   tahfidzPlan: TahfidzPlan & { TahfidzPlanStudent?: Student | null } & {
