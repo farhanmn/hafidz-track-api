@@ -6,6 +6,7 @@ import { ParentsModule } from './modules/parents/parents.module';
 import { RefsModule } from './modules/refs/refs.module';
 import { AttendancesModule } from './modules/attendances/attendances.module';
 import { TahfidzModule } from './modules/tahfidz/tahfidz.module';
+import { JuzEvaluationModule } from './modules/juz-evaluation/juz-evaluation.module';
 @Module({
   imports: [
     UsersModule,
@@ -14,7 +15,8 @@ import { TahfidzModule } from './modules/tahfidz/tahfidz.module';
     ParentsModule,
     RefsModule,
     AttendancesModule,
-    TahfidzModule
+    TahfidzModule,
+    JuzEvaluationModule
     // other modules
   ]
 })
