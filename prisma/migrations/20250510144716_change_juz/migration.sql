@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "juz" ALTER COLUMN "start_surah" SET DATA TYPE VARCHAR,
+ALTER COLUMN "end_surah" SET DATA TYPE VARCHAR;
