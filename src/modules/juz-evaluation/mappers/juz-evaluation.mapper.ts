@@ -1,5 +1,5 @@
 import { JuzEvaluation, Student } from '@prisma/client';
-import moment from 'moment-timezone';
+import * as moment from 'moment-timezone';
 
 export function toJuzEvaluation(
   juzEvaluation: JuzEvaluation & { EvaluationStudent?: Student | null }
@@ -11,7 +11,6 @@ export function toJuzEvaluation(
     evaluation_date: moment(juzEvaluation.evaluation_date).format('YYYY-MM-DD'),
     assessment: juzEvaluation.assessment,
     notes: juzEvaluation.notes,
-    created_at: juzEvaluation.created_at,
     Student: juzEvaluation.EvaluationStudent
       ? {
           id: juzEvaluation.EvaluationStudent.id,

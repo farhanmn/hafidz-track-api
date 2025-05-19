@@ -3,7 +3,7 @@ import { z, ZodType } from 'zod';
 export class JuzEvaluationValidation {
   static readonly CREATE: ZodType = z.object({
     student_id: z.string(),
-    juz: z
+    juz_number: z
       .string()
       .transform((val) => +val)
       .refine((val) => val > 0 && val < 31, {
@@ -16,7 +16,7 @@ export class JuzEvaluationValidation {
 
   static readonly LIST: ZodType = z.object({
     student_id: z.string().optional(),
-    juz: z
+    juz_number: z
       .string()
       .transform((val) => +val)
       .refine((val) => val > 0 && val < 31, {
@@ -29,7 +29,7 @@ export class JuzEvaluationValidation {
 
   static readonly UPDATE: ZodType = z.object({
     student_id: z.string().optional(),
-    juz: z
+    juz_number: z
       .string()
       .transform((val) => +val)
       .refine((val) => val > 0 && val < 31, {
