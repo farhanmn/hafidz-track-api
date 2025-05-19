@@ -27,10 +27,10 @@ model User {
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 
-  Student          Student[]
-  MemorizationPlan MemorizationPlan[]
-  Attendance       Attendance[]
-  TahfidzLogs      TahfidzLogs[]
+  Student     Student[]
+  TahfidzPlan TahfidzPlan[]
+  Attendance  Attendance[]
+  TahfidzLogs TahfidzLogs[]
 
   @@map("users")
 }
@@ -60,12 +60,12 @@ model Student {
   created_at   DateTime      @default(now())
   updated_at   DateTime      @default(now())
 
-  MusyrifUser      User               @relation(fields: [musyrif_id], references: [id], onDelete: Cascade)
-  Parent           Parent[]
-  JuzEvaluation    JuzEvaluation[]
-  MemorizationPlan MemorizationPlan[]
-  Attendance       Attendance[]
-  TahfidzLogs      TahfidzLogs[]
+  MusyrifUser   User            @relation(fields: [musyrif_id], references: [id], onDelete: Cascade)
+  Parent        Parent[]
+  JuzEvaluation JuzEvaluation[]
+  TahfidzPlan   TahfidzPlan[]
+  Attendance    Attendance[]
+  TahfidzLogs   TahfidzLogs[]
 
   @@map("students")
 }
@@ -157,14 +157,15 @@ enum Revelation {
 }
 
 model Surah {
-  id              String     @id @default(uuid()) @db.Uuid
-  name            String     @db.VarChar(50)
-  surah_number    Int        @db.Integer
-  arabic_name     String     @db.VarChar(50)
-  ayah_counts     Int        @db.Integer
-  revelation_type Revelation @default(MECCAN)
-  juz             Int[]      @default([])
+  id              String        @id @default(uuid()) @db.Uuid
+  name            String        @db.VarChar(50)
+  surah_number    Int           @db.Integer
+  arabic_name     String        @db.VarChar(50)
+  ayah_counts     Int           @db.Integer
+  revelation_type Revelation    @default(MECCAN)
+  juz             Int[]         @default([])
   Ayah            Ayah[]
+  TahfidzPlan     TahfidzPlan[]
 
   @@map("surahs")
 }
@@ -214,7 +215,7 @@ enum PlanType {
   PAGE
 }
 
-model MemorizationPlan {
+model TahfidzPlan {
   id          String   @id @default(uuid()) @db.Uuid
   student_id  String   @db.Uuid
   plan_type   PlanType @default(SURAH)
@@ -227,11 +228,12 @@ model MemorizationPlan {
 
   target_date DateTime @db.Date
   assigned_by String   @db.Uuid
-  notes       String   @db.Text
+  notes       String?  @db.Text
   created_at  DateTime @default(now())
 
-  MemorizingPlanStudents Student @relation(fields: [student_id], references: [id], onDelete: Cascade)
-  MemorizingPlanMusyrif  User    @relation(fields: [assigned_by], references: [id], onDelete: Cascade)
+  TahfidzPlanStudents Student @relation(fields: [student_id], references: [id], onDelete: Cascade)
+  TahfidzPlanMusyrif  User    @relation(fields: [assigned_by], references: [id], onDelete: Cascade)
+  TahfidzPlanSurah    Surah?  @relation(fields: [surah_id], references: [id], onDelete: Cascade)
 
-  @@map("memorizing_plans")
+  @@map("tahfidz_plans")
 }
