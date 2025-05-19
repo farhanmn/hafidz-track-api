@@ -1,11 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTahfidzPlanDto } from './dto/create-tahfidz-plan.dto';
 import { UpdateTahfidzPlanDto } from './dto/update-tahfidz-plan.dto';
+import { prismaClient } from '../../application/database';
+import { toTahfidzPlan } from './mappers/tahfidz-plan.mapper';
 
 @Injectable()
 export class TahfidzPlanService {
-  create(createTahfidzPlanDto: CreateTahfidzPlanDto) {
-    return 'This action adds a new tahfidzPlan';
+  async create(createTahfidzPlanDto: CreateTahfidzPlanDto) {
+    const tahfidzPlan = await prismaClient.tahfidzPlan.create({
+      data: createTahfidzPlanDto,
+      include: {
+        TahfidzPlanStudents: true,
+        TahfidzPlanMusyrif: true
+      }
+    });
+
+    return toTahfidzPlan(tahfidzPlan);
   }
 
   findAll() {

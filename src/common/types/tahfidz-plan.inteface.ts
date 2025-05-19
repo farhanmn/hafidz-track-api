@@ -1,5 +1,21 @@
 import { GradeStatus, StudentStatus } from '@prisma/client';
 
+interface Juz {
+  index: string;
+  verse: {
+    start: string;
+    end: string;
+  };
+}
+
+interface Surah {
+  index: string;
+  name: string;
+  verse: object;
+  count: number;
+  juz: Juz[];
+}
+
 interface Student {
   id: string;
   name: string;
@@ -29,6 +45,7 @@ interface TahfidzPlan {
   created_at: string;
   Student?: Student | null;
   Musyrif?: Musyrif | null;
+  Surah?: Surah | null;
 }
 
 export { TahfidzPlan };

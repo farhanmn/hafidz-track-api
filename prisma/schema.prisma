@@ -157,14 +157,15 @@ enum Revelation {
 }
 
 model Surah {
-  id              String     @id @default(uuid()) @db.Uuid
-  name            String     @db.VarChar(50)
-  surah_number    Int        @db.Integer
-  arabic_name     String     @db.VarChar(50)
-  ayah_counts     Int        @db.Integer
-  revelation_type Revelation @default(MECCAN)
-  juz             Int[]      @default([])
+  id              String        @id @default(uuid()) @db.Uuid
+  name            String        @db.VarChar(50)
+  surah_number    Int           @db.Integer
+  arabic_name     String        @db.VarChar(50)
+  ayah_counts     Int           @db.Integer
+  revelation_type Revelation    @default(MECCAN)
+  juz             Int[]         @default([])
   Ayah            Ayah[]
+  TahfidzPlan     TahfidzPlan[]
 
   @@map("surahs")
 }
@@ -227,11 +228,12 @@ model TahfidzPlan {
 
   target_date DateTime @db.Date
   assigned_by String   @db.Uuid
-  notes       String   @db.Text
+  notes       String?  @db.Text
   created_at  DateTime @default(now())
 
   TahfidzPlanStudents Student @relation(fields: [student_id], references: [id], onDelete: Cascade)
   TahfidzPlanMusyrif  User    @relation(fields: [assigned_by], references: [id], onDelete: Cascade)
+  TahfidzPlanSurah    Surah?  @relation(fields: [surah_id], references: [id], onDelete: Cascade)
 
   @@map("tahfidz_plans")
 }
