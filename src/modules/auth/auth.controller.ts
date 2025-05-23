@@ -1,11 +1,14 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpException,
   HttpStatus,
-  Post
+  Post,
+  Response as Res
 } from '@nestjs/common';
+import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { registerDto } from './dto/register.dto';
 import { loginDto } from './dto/login.dto';
@@ -15,6 +18,7 @@ import { ApiResponses } from '../../common/types/response.interface';
 import { UserData } from '../../common/types/user.interface';
 import { Validation } from '../../common/validations/validation';
 import { UserValidation } from '../../common/validations/user-validation';
+import * as process from 'node:process';
 
 @Controller('auth')
 export class AuthController {
@@ -56,7 +60,10 @@ export class AuthController {
     status: 200,
     description: 'User login'
   })
-  async login(@Body() dto: loginDto): Promise<
+  async login(
+    @Body() dto: loginDto,
+    @Res({ passthrough: true }) response: Response
+  ): Promise<
     ApiResponses<{
       id: string;
       email: string;
@@ -67,6 +74,13 @@ export class AuthController {
     try {
       const validateRequest = Validation.validate(UserValidation.LOGIN, dto);
       const user = await this.authService.signIn(validateRequest);
+
+      response.cookie('token', user.token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 24 * 60 * 60 * 1000
+      });
       return successResponse('OK', user);
     } catch (error) {
       if (error instanceof HttpException) {
@@ -81,5 +95,20 @@ export class AuthController {
 
       return errorResponse(message);
     }
+  }
+
+  @Get('logout')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Logout a user' })
+  @ApiBody({ type: loginDto })
+  @ApiResponse({
+    status: 200,
+    description: 'User logout'
+  })
+  logout(@Res({ passthrough: true }) response: Response): ApiResponses<{
+    message: string;
+  }> {
+    response.clearCookie('token');
+    return successResponse('OK', { message: 'Logged out' });
   }
 }
