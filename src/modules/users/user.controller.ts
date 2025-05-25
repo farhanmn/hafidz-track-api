@@ -28,12 +28,14 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { errorResponse, successResponse } from '../../utils/response.utils';
 import { ApiResponses } from '../../common/types/response.interface';
 import { Pagination } from '../../common/types/pagination.interface';
-import { UserData } from '../../common/types/user.interface';
+import { LoggedUser, UserData } from '../../common/types/user.interface';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { FindUserDto } from './dto/find-user.dto';
 import { Validation } from '../../common/validations/validation';
 import { UserValidation } from '../../common/validations/user-validation';
+import { CurrentUser } from '../../common/decorators/current-user.decorator';
+import { User } from '@prisma/client';
 
 @Controller('users')
 export class UserController {
@@ -132,7 +134,7 @@ export class UserController {
     description: 'User data',
     type: ResponseSchema
   })
-  @Get(':id')
+  @Get(':id/detail')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')
   async findOne(
@@ -204,6 +206,38 @@ export class UserController {
     try {
       const user = await this.userService.remove(id);
       return successResponse('User deleted successfully', user);
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      const message =
+        error instanceof Error
+          ? error.message
+          : typeof error === 'string'
+            ? error
+            : 'Internal Server Error';
+
+      return errorResponse(message);
+    }
+  }
+
+  @ApiOperation({ summary: 'Get profile' })
+  @ApiResponse({
+    status: 200,
+    description: 'User profile'
+  })
+  @Get('/profile')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN', 'MUSYRIF')
+  async profile(
+    @CurrentUser() user: LoggedUser
+  ): Promise<
+    ApiResponses<Omit<User, 'password' | 'salt' | 'updated_at'> | null>
+  > {
+    try {
+      const profile = await this.userService.getProfile(user.userId);
+
+      return successResponse('OK', profile);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;

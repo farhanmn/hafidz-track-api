@@ -176,4 +176,20 @@ export class UsersService {
 
     return true;
   }
+
+  async getProfile(
+    id: string
+  ): Promise<Omit<User, 'password' | 'salt' | 'updated_at'> | null> {
+    const user = await prismaClient.user.findUnique({
+      where: {
+        id
+      }
+    });
+
+    if (!user) {
+      return null;
+    }
+
+    return toUser(user);
+  }
 }
