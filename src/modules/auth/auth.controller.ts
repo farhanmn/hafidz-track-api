@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Get,
   HttpCode,
   HttpException,
   HttpStatus,
@@ -18,7 +17,7 @@ import { ApiResponses } from '../../common/types/response.interface';
 import { UserData } from '../../common/types/user.interface';
 import { Validation } from '../../common/validations/validation';
 import { UserValidation } from '../../common/validations/user-validation';
-import * as process from 'node:process';
+import { removeCookie, setCookie } from '../../utils/cookie.utils';
 
 @Controller('auth')
 export class AuthController {
@@ -75,12 +74,7 @@ export class AuthController {
       const validateRequest = Validation.validate(UserValidation.LOGIN, dto);
       const user = await this.authService.signIn(validateRequest);
 
-      response.cookie('token', user.token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 24 * 60 * 60 * 1000
-      });
+      setCookie(user, response);
       return successResponse('OK', user);
     } catch (error) {
       if (error instanceof HttpException) {
@@ -97,7 +91,7 @@ export class AuthController {
     }
   }
 
-  @Get('logout')
+  @Post('logout')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Logout a user' })
   @ApiBody({ type: loginDto })
@@ -108,7 +102,7 @@ export class AuthController {
   logout(@Res({ passthrough: true }) response: Response): ApiResponses<{
     message: string;
   }> {
-    response.clearCookie('token');
+    removeCookie(response);
     return successResponse('OK', { message: 'Logged out' });
   }
 }

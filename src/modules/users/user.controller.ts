@@ -226,7 +226,7 @@ export class UserController {
     status: 200,
     description: 'User profile'
   })
-  @Get('/profile')
+  @Get('/me')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN', 'MUSYRIF')
   async profile(
