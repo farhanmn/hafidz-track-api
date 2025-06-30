@@ -1,15 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { testDBConnection } from './application/database';
 import { RestLoggingInterceptor } from './application/logging';
 import { JwtAuthExceptionFilter } from './modules/auth/filters/jwt-auth-exception.filter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
+  await testDBConnection();
   const app = await NestFactory.create(AppModule, {
     cors: {
       origin: 'http://localhost:3000',
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
       allowedHeaders: ['Content-Type', 'Authorization'],
       credentials: true
     }
