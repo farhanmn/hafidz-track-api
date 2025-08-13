@@ -93,7 +93,7 @@ export class UserController {
   })
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN')
+  @Roles('ADMIN', 'MUSYRIF')
   async findAll(@Query() query: FindUserDto): Promise<
     ApiResponses<{
       data: UserData[];

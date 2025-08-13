@@ -7,6 +7,7 @@ import {
 import { Observable, tap } from 'rxjs';
 import { Request } from 'express';
 import { logger } from '../utils/logger.utils';
+import * as pc from 'picocolors';
 
 @Injectable()
 export class RestLoggingInterceptor implements NestInterceptor {
@@ -40,7 +41,7 @@ export class RestLoggingInterceptor implements NestInterceptor {
         }
 
         logger.info(
-          `${method} ${url} ${parameter}| response-time: ${duration}ms`
+          `${method} ${pc.yellow(url)} ${parameter}| response-time: ${duration}ms`
         );
       })
     );
